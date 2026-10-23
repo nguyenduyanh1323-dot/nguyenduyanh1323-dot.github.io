@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTCSxAI 1 Chạm - Nhân Bản Website Chỉ Bằng 1 Đường Link</title>
+  <meta name="description" content="Chỉ cần dán link website bất kỳ, hệ thống tự động nhân bản giao diện, màu sắc, thay đổi thông tin cá nhân của bạn, tích hợp Trợ lý AI và xuất file index.html kéo thả lên Netlify chỉ 5 giây.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body class="dark-theme">
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="logo-badge">
+        <span class="logo-icon">⚡</span>
+      </div>
+      <div class="brand-info">
+        <h1 class="app-title">KTCSxAI <span class="gradient-text">1 Chạm</span></h1>
+        <span class="app-tagline">Dán Link Website Bất Kỳ ➔ Tự Động Nhân Bản & Đổi Thông Tin Của Bạn</span>
+      </div>
+    </div>
+
+    <!-- Quick action controls -->
+    <div class="header-actions">
+      <div class="preview-mode-switch" id="viewportSwitch" role="group" aria-label="Thiết bị hiển thị">
+        <button class="mode-btn active" data-viewport="desktop" title="Màn hình Máy tính (Desktop)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Desktop</span>
+        </button>
+        <button class="mode-btn" data-viewport="tablet" title="Máy tính bảng (Tablet)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span>Tablet</span>
+        </button>
+        <button class="mode-btn" data-viewport="mobile" title="Điện thoại (Mobile)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span>Mobile</span>
+        </button>
+      </div>
+
+      <div class="header-autosave-badge" id="headerAutosaveBadge">
+        <span class="autosave-pulse-dot"></span>
+        <span id="headerAutosaveText">Tự động lưu tức thì</span>
+      </div>
+
+      <button class="btn btn-secondary" id="btnPreviewNewTab" title="Xem thử toàn màn hình trong tab mới">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        <span>Mở Tab Mới</span>
+      </button>
+
+      <!-- Prominent Always-Visible Header Apply Button -->
+      <button class="btn btn-apply-main pulse-btn" id="btnHeaderApplyProfile" title="Bấm để áp dụng dữ liệu cá nhân lên toàn bộ website & mọi trang mẫu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>⚡ ÁP DỤNG DỮ LIỆU</span>
+      </button>
+
+      <!-- Main Fast Download Buttons: ZIP (Netlify & GitHub) & index.html -->
+      <button class="btn btn-gradient pulse-btn" id="btnHeaderDownloadZip" title="Tải gói .ZIP tự động đặt tên theo nội dung, chứa index.html chuẩn gốc để kéo thả Netlify hoặc đưa lên GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>📦 Tải Gói .ZIP (Netlify & GitHub)</span>
+      </button>
+
+      <button class="btn btn-primary" id="btnDirectDownloadHtml" title="Tải file index.html đơn lập">
+        <span>📄 Tải index.html</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Application Body -->
+  <main class="app-workspace">
+    <!-- Sidebar Control Panel -->
+    <aside class="control-panel">
+      <!-- Tabs Navigation -->
+      <nav class="panel-tabs">
+        <button class="tab-btn active" data-tab="tab-url">
+          <span class="tab-icon">🔗</span>
+          <span class="tab-text">1. Dán Link Web Mẫu</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-profile">
+          <span class="tab-icon">👤</span>
+          <span class="tab-text">2. Thông Tin Của Bạn</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-design">
+          <span class="tab-icon">🎨</span>
+          <span class="tab-text">3. Đổi Màu Sắc</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-ai">
+          <span class="tab-icon">🤖</span>
+          <span class="tab-text">4. Trợ Lý AI</span>
+        </button>
+        <button class="tab-btn highlight-tab" data-tab="tab-deploy">
+          <span class="tab-icon">🚀</span>
+          <span class="tab-text">5. Kéo Thả Netlify</span>
+        </button>
+      </nav>
+
+      <!-- Tab Content 1: Dán Link Website Mẫu (URL CLONER) -->
+      <div class="tab-pane active" id="tab-url">
+        <div class="url-hero-box">
+          <div class="url-hero-badge">Dành cho người không biết lập trình</div>
+          <h3>Dán Link Website Mẫu Bất Kỳ</h3>
+          <p>Ứng dụng sẽ tự động tải giao diện, màu sắc, cấu trúc và biến nó thành website riêng của bạn.</p>
+        </div>
+
+        <!-- Super Prominent URL Input -->
+        <div class="form-group">
+          <label for="targetUrlInput" class="section-label">🔗 Nhập địa chỉ link website mẫu:</label>
+          <div class="url-input-wrapper">
+            <span class="url-prefix">https://</span>
+            <input type="text" id="targetUrlInput" class="url-input-field" placeholder="Dán link website bạn muốn nhân bản..." value="https://mastercoach.edu.vn">
+            <button type="button" class="url-clear-btn" id="btnClearUrl" title="Xóa">✕</button>
+          </div>
+        </div>
+
+        <!-- Fast 1-Click Action Button -->
+        <button class="btn btn-gradient btn-hero-action w-100" id="btnCloneFromUrl">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span id="btnCloneText">⚡ TỰ ĐỘNG NHÂN BẢN BẰNG 1 CÚ CLICK</span>
+        </button>
+
+        <!-- Loading indicator (Hidden by default) -->
+        <div class="clone-status-box" id="cloneStatusBox" style="display: none;">
+          <div class="spinner"></div>
+          <div class="status-texts">
+            <strong id="statusTitle">Đang quét mã nguồn từ website mẫu...</strong>
+            <small id="statusDesc">Đang bóc tách 100% hình ảnh, giao diện và chuyển sang thông tin của bạn...</small>
+          </div>
+        </div>
+
+        <!-- Preset sample links for instant 1-click test with 14 diverse industries -->
+        <div class="preset-links-card">
+          <div class="preset-header-row">
+            <label class="section-label">⚡ Kho Giao Diện Đa Ngành Nghề:</label>
+            <span class="preset-badge-count">14 Mẫu Web</span>
+          </div>
+
+          <!-- Industry Category Filter Tabs -->
+          <div class="industry-filter-nav">
+            <button type="button" class="industry-filter-btn active" data-category="all">Tất Cả (14)</button>
+            <button type="button" class="industry-filter-btn" data-category="admin">🏢 Hành Chính - VP</button>
+            <button type="button" class="industry-filter-btn" data-category="business">🛒 Tự Doanh & Dịch Vụ</button>
+            <button type="button" class="industry-filter-btn" data-category="blog">✍️ Blog & Tin Tức</button>
+            <button type="button" class="industry-filter-btn" data-category="personal">👤 Trang Cá Nhân</button>
+          </div>
+
+          <!-- Search filter box -->
+          <div class="preset-search-wrapper">
+            <input type="text" id="presetSearchInput" class="form-input preset-search-input" placeholder="🔍 Nhập tìm kiếm ngành: luật, kế toán, điện máy, bác sĩ, blog...">
+          </div>
+
+          <div class="preset-grid" id="presetGrid">
+            <!-- 1. Chuyên Gia / Huấn Luyện (Personal) -->
+            <button class="preset-btn active" data-url="https://mastercoach.edu.vn" data-template="coach" data-category="personal">
+              <span class="preset-icon">🎓</span>
+              <div class="preset-info">
+                <strong>Chuyên Gia / Khóa Học</strong>
+                <small>Nhân hiệu & Đào tạo thực chiến</small>
+                <span class="preset-category-tag">Cá Nhân</span>
+              </div>
+            </button>
+
+            <!-- 2. Văn Phòng Luật Sư (Admin) -->
+            <button class="preset-btn" data-url="https://luatsu-phaply.vn" data-template="legal" data-category="admin">
+              <span class="preset-icon">⚖️</span>
+              <div class="preset-info">
+                <strong>Văn Phòng Luật Sư & Pháp Lý</strong>
+                <small>Tư vấn hợp đồng & Tranh tụng</small>
+                <span class="preset-category-tag">Hành Chính</span>
+              </div>
+            </button>
+
+            <!-- 3. Kế Toán & Dịch Vụ Thuế (Admin) -->
+            <button class="preset-btn" data-url="https://ketoanthue-trongo.vn" data-template="accounting" data-category="admin">
+              <span class="preset-icon">📊</span>
+              <div class="preset-info">
+                <strong>Kế Toán & Đại Lý Thuế</strong>
+                <small>Báo cáo thuế, Quyết toán, GPKD</small>
+                <span class="preset-category-tag">Hành Chính</span>
+              </div>
+            </button>
+
+            <!-- 4. Tư Vấn Nhân Sự & Tuyển Dụng (Admin) -->
+            <button class="preset-btn" data-url="https://nhansu-talent.vn" data-template="hr" data-category="admin">
+              <span class="preset-icon">🤝</span>
+              <div class="preset-info">
+                <strong>Tư Vấn Nhân Sự & Headhunt</strong>
+                <small>Cung ứng nhân tài & Hệ thống KPI</small>
+                <span class="preset-category-tag">Hành Chính</span>
+              </div>
+            </button>
+
+            <!-- 5. Điện Máy & Dịch Vụ Gia Đình (Business) -->
+            <button class="preset-btn" data-url="https://dienmay-dienlanhtannha.vn" data-template="appliance" data-category="business">
+              <span class="preset-icon">❄️</span>
+              <div class="preset-info">
+                <strong>Điện Máy & Kỹ Thuật Tận Nhà</strong>
+                <small>Sửa điều hòa, tủ lạnh, máy giặt</small>
+                <span class="preset-category-tag">Tự Doanh</span>
+              </div>
+            </button>
+
+            <!-- 6. Nhà Hàng & F&B (Business) -->
+            <button class="preset-btn" data-url="https://nhahang-amthuctinhoa.vn" data-template="restaurant" data-category="business">
+              <span class="preset-icon">🍽️</span>
+              <div class="preset-info">
+                <strong>Nhà Hàng, Cafe & F&B</strong>
+                <small>Thực đơn món ngon & Đặt bàn</small>
+                <span class="preset-category-tag">Tự Doanh</span>
+              </div>
+            </button>
+
+            <!-- 7. Sản Phẩm Sinh Học / Tiêu Dùng (Business) -->
+            <button class="preset-btn" data-url="https://sanpham-sinhhoc-yensao.vn" data-template="retail" data-category="business">
+              <span class="preset-icon">🌿</span>
+              <div class="preset-info">
+                <strong>Sản Phẩm Cao Cấp & Tiêu Dùng</strong>
+                <small>Yến sào, Sinh học, Quà biếu VIP</small>
+                <span class="preset-category-tag">Tự Doanh</span>
+              </div>
+            </button>
+
+            <!-- 8. Spa & Làm Đẹp (Business) -->
+            <button class="preset-btn" data-url="https://auraspa.vn" data-template="spa" data-category="business">
+              <span class="preset-icon">✨</span>
+              <div class="preset-info">
+                <strong>Spa / Mỹ Phẩm / Làm Đẹp</strong>
+                <small>Thanh lịch, Đặt lịch nhận voucher</small>
+                <span class="preset-category-tag">Tự Doanh</span>
+              </div>
+            </button>
+
+            <!-- 9. Blog Phong Cách Sống (Blog) -->
+            <button class="preset-btn" data-url="https://lifestyle-journal.vn" data-template="blog_lifestyle" data-category="blog">
+              <span class="preset-icon">📖</span>
+              <div class="preset-info">
+                <strong>Blog Cá Nhân & Phong Cách</strong>
+                <small>Trải nghiệm sống, Du lịch, Tản văn</small>
+                <span class="preset-category-tag">Blog</span>
+              </div>
+            </button>
+
+            <!-- 10. Blog Công Nghệ & Review (Blog) -->
+            <button class="preset-btn" data-url="https://techinsights-review.vn" data-template="blog_tech" data-category="blog">
+              <span class="preset-icon">💡</span>
+              <div class="preset-info">
+                <strong>Blog Công Nghệ & Đánh Giá AI</strong>
+                <small>Bài viết chuyên sâu, Thủ thuật IT</small>
+                <span class="preset-category-tag">Blog</span>
+              </div>
+            </button>
+
+            <!-- 11. Portfolio Cá Nhân (Personal) -->
+            <button class="preset-btn" data-url="https://creative-portfolio.me" data-template="portfolio" data-category="personal">
+              <span class="preset-icon">🎨</span>
+              <div class="preset-info">
+                <strong>Portfolio Cá Nhân / Freelancer</strong>
+                <small>Showcase dự án, Kỹ năng, Hợp tác</small>
+                <span class="preset-category-tag">Cá Nhân</span>
+              </div>
+            </button>
+
+            <!-- 12. Bác Sĩ & Chuyên Gia Y Tế (Personal) -->
+            <button class="preset-btn" data-url="https://bacsi-chuyenkhoa.vn" data-template="doctor" data-category="personal">
+              <span class="preset-icon">🩺</span>
+              <div class="preset-info">
+                <strong>Bác Sĩ & Chuyên Gia Sức Khỏe</strong>
+                <small>Phòng khám, Đặt lịch khám từ xa</small>
+                <span class="preset-category-tag">Cá Nhân</span>
+              </div>
+            </button>
+
+            <!-- 13. Dịch Vụ & Doanh Nghiệp (Personal / Business) -->
+            <button class="preset-btn" data-url="https://digitalagency.com.vn" data-template="agency" data-category="personal">
+              <span class="preset-icon">💼</span>
+              <div class="preset-info">
+                <strong>Dịch Vụ & Doanh Nghiệp</strong>
+                <small>Bảng giá, Dịch vụ trọn gói</small>
+                <span class="preset-category-tag">Doanh Nghiệp</span>
+              </div>
+            </button>
+
+            <!-- 14. Công Nghệ & SaaS (Personal) -->
+            <button class="preset-btn" data-url="https://techflow.io.vn" data-template="tech" data-category="personal">
+              <span class="preset-icon">💻</span>
+              <div class="preset-info">
+                <strong>Công Nghệ / SaaS / AI</strong>
+                <small>Hiện đại, Bảng tính năng & Giá</small>
+                <span class="preset-category-tag">Công Nghệ</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Big download index.html button right in tab 1 -->
+        <div class="instant-export-card">
+          <div class="export-callout">
+            <span class="export-icon">🎁</span>
+            <div>
+              <strong>Đã có ngay file <code>index.html</code> hoàn chỉnh!</strong>
+              <p>Bạn không cần biết lập trình, chỉ cần bấm nút dưới là tải về máy.</p>
+            </div>
+          </div>
+          <button class="btn btn-success w-100 mt-2" id="btnQuickDownloadHtml">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Tải Tệp index.html Về Máy Ngay</span>
+          </button>
+        </div>
+
+        <!-- Collapsible Advanced Mode for users who also want to paste raw HTML -->
+        <details class="advanced-raw-details">
+          <summary>Dành cho chuyên gia: Tùy chọn xem / sửa mã HTML thô</summary>
+          <div class="form-group mt-2">
+            <textarea id="rawHtmlInput" class="code-textarea" rows="6" placeholder="Mã nguồn HTML sẽ tự động hiển thị ở đây sau khi nhân bản..."></textarea>
+            <div class="code-stats">
+              <span id="codeLength">0 ký tự</span>
+              <span id="detectedSections">0 phần tử</span>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Tab Content 2: Hồ Sơ Cá Nhân Hóa -->
+      <div class="tab-pane" id="tab-profile">
+        <div class="autosave-badge" id="autoSaveBadge">
+          <span class="autosave-pulse-dot"></span>
+          <span id="autoSaveText">✓ Đã lưu bảo mật 4 lớp (Không bao giờ mất khi chuyển tab)</span>
+        </div>
+
+        <div class="panel-section-header" style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+          <div>
+            <h3>Hồ Sơ Thương Hiệu Của Bạn</h3>
+            <p>Nhập thông tin của bạn vào đây. Bấm nút <strong>ÁP DỤNG</strong> để cập nhật lên toàn bộ website & mọi biểu mẫu!</p>
+          </div>
+          <button type="button" class="text-btn" id="btnRestoreDefaultProfile" title="Khôi phục hồ sơ chuẩn" style="white-space:nowrap; font-size:0.75rem; padding:4px 8px; background:rgba(56,189,248,0.12); border-radius:6px; color:#38bdf8;">🔄 Hồ sơ gốc</button>
+        </div>
+
+        <!-- Sticky Top Apply Bar -->
+        <div class="apply-sticky-bar">
+          <button type="button" class="btn btn-apply-main w-100 pulse-btn" id="btnApplyProfileTop">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>⚡ BẤM ĐỂ ÁP DỤNG THÔNG TIN LÊN TOÀN BỘ WEBSITE & BIỂU MẪU</span>
+          </button>
+        </div>
+
+        <form id="profileForm" class="profile-form">
+          <div class="form-group">
+            <label for="profName">Tên Cá nhân / Thương hiệu đào tạo *</label>
+            <input type="text" id="profName" class="form-input" placeholder="Nhập tên thương hiệu của bạn..." value="Tuấn Tử Tế Từ Tâm">
+          </div>
+
+          <div class="form-group">
+            <label for="profOldBrand">Tên thương hiệu cũ trên web mẫu muốn thay thế (Tùy chọn)</label>
+            <input type="text" id="profOldBrand" class="form-input" placeholder="Ví dụ: Tên chủ web cũ (Để trống hệ thống vẫn giữ 100% cấu trúc gốc)" value="">
+          </div>
+
+          <div class="form-group">
+            <label for="profTitle">Chức danh / Định vị chuyên môn</label>
+            <input type="text" id="profTitle" class="form-input" placeholder="Chức danh định vị..." value="Nhà Đào tạo Phát Triển Bản Thân Toàn Diện Thân Tâm Trí trong kỷ nguyên trí tuệ AI">
+          </div>
+
+          <div class="form-group">
+            <label for="profCourse">Khóa học chủ đạo & Giá trị cốt lõi</label>
+            <input type="text" id="profCourse" class="form-input" placeholder="Tên khóa học chủ đạo..." value="Kiến Tạo Cuộc Sống — Giúp học viên Giàu có, Khỏe mạnh, Hạnh phúc">
+          </div>
+
+          <div class="form-group">
+            <label for="profSchedule">Học viên mục tiêu, Lịch học & Cộng đồng</label>
+            <textarea id="profSchedule" class="form-textarea" rows="3" placeholder="Lịch học và hoạt động thực hành...">Học viên: Người đi làm tại Việt Nam (38 - 58 tuổi). Học tối Thứ Tư & Thứ Bảy (20h00 - 22h00). Ban ngày tự chủ động thực hành chuyển hóa bài học. Hàng sáng chạy bộ cùng nhau & cập nhật kết quả trên Vrace.com.vn, nhóm Zalo và Facebook.</textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="profPhone">Số Hotline gọi điện</label>
+              <input type="tel" id="profPhone" class="form-input" placeholder="Nhập số điện thoại của bạn (VD: 0912...)" value="">
+            </div>
+            <div class="form-group flex-1">
+              <label for="profZalo">Số Zalo / Link Nhóm Zalo</label>
+              <input type="text" id="profZalo" class="form-input" placeholder="Nhập SĐT Zalo hoặc link zalo.me/..." value="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="profAddress">Địa chỉ / Cộng đồng kết nối</label>
+            <input type="text" id="profAddress" class="form-input" placeholder="Địa chỉ hoặc nền tảng hoạt động..." value="Đào tạo Trực tuyến Toàn quốc (Việt Nam) • Cộng đồng Vrace.com.vn, Zalo & Facebook">
+          </div>
+
+          <div class="form-group">
+            <label for="profEmail">Email liên hệ / Website cộng đồng</label>
+            <input type="text" id="profEmail" class="form-input" placeholder="Email hoặc Vrace.com.vn..." value="">
+          </div>
+
+          <!-- Avatar / Logo customization -->
+          <div class="form-group">
+            <label class="section-label">Ảnh đại diện Avatar / Nhân hiệu của bạn:</label>
+            <div class="avatar-setting-row">
+              <img id="avatarPreview" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=256&q=80" alt="Avatar Preview" class="avatar-thumbnail">
+              <div class="avatar-inputs flex-1">
+                <input type="url" id="profAvatarUrl" class="form-input" placeholder="Link ảnh hoặc tải ảnh từ máy tính..." value="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80">
+                <div class="avatar-quick-actions">
+                  <button type="button" class="text-btn" id="btnUploadAvatar">📷 Tải ảnh từ máy (Tự nén siêu nhẹ)</button>
+                  <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+                  <button type="button" class="text-btn" id="btnPresetAvatarMale">Nam Chuyên gia</button>
+                  <button type="button" class="text-btn" id="btnPresetAvatarFemale">Nữ Chuyên gia</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="profHeadline">Câu khẩu hiệu / Tiêu đề chính trang web:</label>
+            <input type="text" id="profHeadline" class="form-input" placeholder="Câu khẩu hiệu chính..." value="Khóa Học Kiến Tạo Cuộc Sống — Phát Triển Toàn Diện Thân - Tâm - Trí Trong Kỷ Nguyên Trí Tuệ AI">
+          </div>
+
+          <div class="form-group">
+            <label for="profBio">Đoạn giới thiệu chuẩn về bạn & khóa học:</label>
+            <textarea id="profBio" class="form-textarea" rows="4" placeholder="Giới thiệu về bạn...">Tuấn Tử Tế Từ Tâm — Nhà Đào tạo Phát Triển Bản Thân Toàn Diện Thân - Tâm - Trí trong kỷ nguyên trí tuệ AI. Khóa học Kiến Tạo Cuộc Sống giúp học viên (người đi làm tại Việt Nam từ 38 - 58 tuổi) Giàu có, Khỏe mạnh, Hạnh phúc. Lịch học: 20h00 - 22h00 tối Thứ Tư & tối Thứ Bảy hàng tuần; ban ngày chủ động thực hành chuyển hóa bài học. Hàng sáng cùng nhau chạy bộ và cập nhật kết quả trên Vrace.com.vn, nhóm Zalo và Facebook để truyền cảm hứng sống tích cực và hạnh phúc.</textarea>
+          </div>
+
+          <div class="form-group" style="background: rgba(16, 185, 129, 0.08); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.25);">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.82rem; color:#d1fae5; margin:0;">
+              <input type="checkbox" id="injectProfileSectionToggle" style="width:16px; height:16px;">
+              <span>Chèn thêm Khối Hồ Sơ "Tuấn Tử Tế Từ Tâm - Kiến Tạo Cuộc Sống" vào trang web mẫu (nếu trang mẫu chưa có khu vực giới thiệu diễn giả)</span>
+            </label>
+          </div>
+
+          <!-- Auto-Transform Button -->
+          <button type="button" class="btn btn-apply-main w-100 pulse-btn" id="btnApplyProfile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>⚡ BẤM ĐỂ ÁP DỤNG THÔNG TIN LÊN TOÀN BỘ WEBSITE & BIỂU MẪU</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab Content 3: Tùy Chỉnh Màu Sắc & Nhận Diện -->
+      <div class="tab-pane" id="tab-design">
+        <div class="panel-section-header">
+          <h3>Màu Sắc & Giao Diện</h3>
+          <p>Mặc định giữ nguyên 100% bảng màu gốc của website nguồn. Bạn có thể bật tùy chọn đổi màu theo nhận diện thương hiệu khi cần.</p>
+        </div>
+
+        <div class="ai-toggle-card" style="margin-bottom: 14px;">
+          <div class="toggle-info">
+            <strong>Giữ Nguyên 100% Màu Gốc Của Web Nguồn</strong>
+            <small>Bật để bảo toàn nguyên bản CSS màu sắc của trang web nhân bản</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="keepOriginalColorsToggle" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <!-- Color Presets -->
+        <div class="form-group">
+          <label class="section-label">Bảng màu phong thủy / Ngành nghề khuyên dùng:</label>
+          <div class="palette-grid">
+            <button class="palette-card active" data-primary="#2563eb" data-secondary="#0f172a" data-accent="#38bdf8" data-font="Plus Jakarta Sans">
+              <div class="palette-bars">
+                <span style="background: #2563eb;"></span>
+                <span style="background: #0f172a;"></span>
+                <span style="background: #38bdf8;"></span>
+              </div>
+              <span class="palette-name">Lam Thủy (Chuyên Gia, Đào Tạo, Uy Tín)</span>
+            </button>
+
+            <button class="palette-card" data-primary="#c59b27" data-secondary="#1a1c23" data-accent="#e5b84c" data-font="Plus Jakarta Sans">
+              <div class="palette-bars">
+                <span style="background: #c59b27;"></span>
+                <span style="background: #1a1c23;"></span>
+                <span style="background: #e5b84c;"></span>
+              </div>
+              <span class="palette-name">Kim Hoàng (Sang Trọng, Đẳng Cấp)</span>
+            </button>
+
+            <button class="palette-card" data-primary="#059669" data-secondary="#064e3b" data-accent="#34d399" data-font="Plus Jakarta Sans">
+              <div class="palette-bars">
+                <span style="background: #059669;"></span>
+                <span style="background: #064e3b;"></span>
+                <span style="background: #34d399;"></span>
+              </div>
+              <span class="palette-name">Ngọc Mộc (Doanh Nghiệp, Sức Khỏe)</span>
+            </button>
+
+            <button class="palette-card" data-primary="#db2777" data-secondary="#831843" data-accent="#f472b6" data-font="Plus Jakarta Sans">
+              <div class="palette-bars">
+                <span style="background: #db2777;"></span>
+                <span style="background: #831843;"></span>
+                <span style="background: #f472b6;"></span>
+              </div>
+              <span class="palette-name">Hồng Hỏa (Spa, Mỹ Phẩm, Làm Đẹp)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Manual Color Pickers -->
+        <div class="color-picker-box">
+          <div class="picker-row">
+            <label for="primaryColor">Màu chủ đạo (Nút bấm, Điểm nhấn):</label>
+            <div class="color-input-badge">
+              <input type="color" id="primaryColor" value="#2563eb">
+              <span id="primaryColorHex">#2563eb</span>
+            </div>
+          </div>
+          <div class="picker-row">
+            <label for="secondaryColor">Màu nền tối / Header:</label>
+            <div class="color-input-badge">
+              <input type="color" id="secondaryColor" value="#0f172a">
+              <span id="secondaryColorHex">#0f172a</span>
+            </div>
+          </div>
+          <div class="picker-row">
+            <label for="accentColor">Màu sáng nổi bật (Accent):</label>
+            <div class="color-input-badge">
+              <input type="color" id="accentColor" value="#38bdf8">
+              <span id="accentColorHex">#38bdf8</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary w-100" id="btnApplyThemeColors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          <span>Áp Dụng Bảng Màu Thương Hiệu</span>
+        </button>
+      </div>
+
+      <!-- Tab Content 4: Tích Hợp Trợ Lý Thương Hiệu Trực Tuyến -->
+      <div class="tab-pane" id="tab-ai">
+        <div class="panel-section-header">
+          <h3>Trợ Lý Thương Hiệu Trực Tuyến 24/7</h3>
+          <p>Nhúng hộp thoại tư vấn trực tiếp mang dấu ấn Tuấn Tử Tế Từ Tâm ở góc website, giải đáp chi tiết về khóa học Kiến Tạo Cuộc Sống, lịch học và cộng đồng chạy bộ sáng</p>
+        </div>
+
+        <div class="ai-toggle-card">
+          <div class="toggle-info">
+            <strong>Bật Trợ lý Thương hiệu trên Website</strong>
+            <small>Hiển thị nút hỗ trợ trực tuyến ở góc dưới phải website</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="aiEnabledToggle" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="aiWidgetTitle">Tên hiển thị trên hộp thoại:</label>
+          <input type="text" id="aiWidgetTitle" class="form-input" value="Hỏi Tuấn Tử Tế Từ Tâm">
+        </div>
+
+        <div class="form-group">
+          <label for="aiWelcomeMsg">Câu chào mừng mở đầu:</label>
+          <textarea id="aiWelcomeMsg" class="form-textarea" rows="3">Xin chào anh/chị! Tôi là kênh hỗ trợ trực tuyến của Tuấn Tử Tế Từ Tâm – Nhà Đào tạo Phát Triển Bản Thân Toàn Diện Thân - Tâm - Trí trong kỷ nguyên AI. Anh/chị đang quan tâm đến khóa học Kiến Tạo Cuộc Sống (dành cho người đi làm 38 - 58 tuổi, học 20h00 - 22h00 tối Thứ Tư & Thứ Bảy) hay cộng đồng chạy bộ sáng trên Vrace.com.vn, Zalo & Facebook cứ nhắn tại đây nhé!</textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="section-label">Câu hỏi gợi ý nhanh cho học viên bấm:</label>
+          <div class="suggestion-chips-editor" id="chipsList">
+            <div class="chip-item">
+              <input type="text" class="chip-input" value="Tìm hiểu khóa học Kiến Tạo Cuộc Sống">
+              <button type="button" class="chip-del" onclick="this.parentElement.remove()">×</button>
+            </div>
+            <div class="chip-item">
+              <input type="text" class="chip-input" value="Lịch học tối Thứ 4 & Thứ 7 (20h00 - 22h00)">
+              <button type="button" class="chip-del" onclick="this.parentElement.remove()">×</button>
+            </div>
+            <div class="chip-item">
+              <input type="text" class="chip-input" value="Tham gia chạy bộ sáng Vrace.com.vn & Zalo">
+              <button type="button" class="chip-del" onclick="this.parentElement.remove()">×</button>
+            </div>
+            <div class="chip-item">
+              <input type="text" class="chip-input" value="Đăng ký đồng hành cùng Tuấn Tử Tế Từ Tâm">
+              <button type="button" class="chip-del" onclick="this.parentElement.remove()">×</button>
+            </div>
+          </div>
+          <button type="button" class="text-btn mt-2" id="btnAddChip">+ Thêm câu hỏi gợi ý</button>
+        </div>
+
+        <button class="btn btn-primary w-100" id="btnUpdateAiAssistant">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          <span>Cập Nhật Trợ Lý Vào Website</span>
+        </button>
+      </div>
+
+      <!-- Tab Content 5: Xuất File & Đưa Lên Netlify -->
+      <div class="tab-pane" id="tab-deploy">
+        <div class="panel-section-header">
+          <h3>Xuất File index.html & Kéo Thả Lên Netlify</h3>
+          <p>Chỉ cần 3 bước cực kỳ đơn giản để website của bạn hoạt động trên internet miễn phí</p>
+        </div>
+
+        <!-- Netlify 3-Step Guide Card -->
+        <div class="deploy-steps-card">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-body">
+              <strong>Tải file <code>index.html</code> về máy</strong>
+              <p>Mã nguồn đã tích hợp toàn bộ giao diện 100%, hình ảnh, thông tin của Tuấn Tử Tế Từ Tâm và Trợ lý trực tuyến 24/7.</p>
+              <button class="btn btn-primary btn-sm mt-2" id="btnDownloadSingleHtml">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Tải File index.html (Khuyên Dùng)</span>
+              </button>
+              <button class="btn btn-secondary btn-sm mt-2 ml-1" id="btnDownloadZip">
+                <span>Tải File .ZIP</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-body">
+              <strong>Mở trang Netlify Drop</strong>
+              <p>Trang web lưu trữ miễn phí của Netlify (không cần cài đặt gì cả):</p>
+              <a href="https://app.netlify.com/drop" target="_blank" rel="noopener noreferrer" class="link-btn">
+                <span>Mở app.netlify.com/drop (Bấm vào đây)</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-body">
+              <strong>Kéo thả thư mục chứa index.html vào ô Netlify</strong>
+              <p>Chỉ sau 5 giây, Netlify sẽ cấp ngay một đường link website chính thức có chứng chỉ SSL HTTPS an toàn để bạn gửi cho học viên!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-item">
+            <span class="summary-label">Trạng thái Website:</span>
+            <span class="badge-tag green" id="statusBadge">Sẵn sàng kéo thả Netlify</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Chủ sở hữu:</span>
+            <span id="summaryOwner" class="summary-val">Tuấn Tử Tế Từ Tâm</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Hotline / Zalo:</span>
+            <span id="summaryHotline" class="summary-val">Kết nối trực tiếp qua Zalo / Facebook</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Trợ lý Thương hiệu:</span>
+            <span id="summaryAiStatus" class="summary-val">Đang Bật</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center & Right Area: Real-Time Interactive Preview -->
+    <section class="preview-area">
+      <div class="preview-toolbar">
+        <div class="browser-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="address-bar-mock">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span class="mock-url" id="mockPreviewUrl">https://your-site.netlify.app (Xem trước)</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="live-edit-pill-btn active" id="btnToggleLiveEdit" title="Bật/Tắt chế độ sửa trực tiếp mọi chữ, ảnh và nút bấm trên website">
+            <span class="live-edit-dot"></span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span id="liveEditBtnText">Sửa Trực Tiếp: <strong>BẬT</strong></span>
+          </button>
+          <button class="icon-tool-btn" id="btnReloadPreview" title="Làm mới xem trước">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Direct In-Place Editing Notification Banner -->
+      <div class="live-edit-banner" id="liveEditBanner">
+        <div class="banner-content">
+          <span class="banner-badge">✏️ SỬA TRỰC TIẾP TRÊN WEB</span>
+          <span class="banner-text">Bấm chuột trực tiếp vào <strong>bất kỳ dòng chữ, nút bấm, hình ảnh hoặc video</strong> nào bên dưới để chỉnh sửa ngay!</span>
+        </div>
+        <div class="banner-actions">
+          <span class="banner-status-tag" id="directEditSyncStatus">✓ Mọi thay đổi được lưu tự động 100%</span>
+        </div>
+      </div>
+
+      <!-- AI Magic Co-Pilot Quick Prompt Bar (Tích Hợp AI Sửa Mọi Thứ) -->
+      <div class="ai-magic-bar" id="aiMagicBar">
+        <div class="ai-bar-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          <span>AI Trợ Lý Web</span>
+        </div>
+        <div class="ai-input-wrapper">
+          <input type="text" id="aiPromptInput" class="ai-prompt-input" placeholder="Ra lệnh cho AI: 'Đổi sang màu tím huyền bí, viết lại lời bán hàng thôi miên, thay bộ ảnh doanh nhân...'">
+          <button type="button" class="btn btn-primary btn-ai-run" id="btnRunAiCommand">
+            <span>✨ AI Sửa Ngay</span>
+          </button>
+        </div>
+        <div class="ai-quick-chips">
+          <button type="button" class="ai-chip-btn" data-action="rewrite-copy">✍️ Viết Lại Lời Bán Hàng</button>
+          <button type="button" class="ai-chip-btn" data-action="recolor-luxury">🎨 Phối Màu Sang Trọng</button>
+          <button type="button" class="ai-chip-btn" data-action="hd-images">🖼️ Đổi Bộ Ảnh HD Mới</button>
+          <button type="button" class="ai-chip-btn" data-action="add-pricing">🏷️ Thêm Bảng Giá Ưu Đãi</button>
+          <button type="button" class="ai-chip-btn" data-action="add-reviews">⭐ Thêm 3 Đánh Giá 5 Sao</button>
+        </div>
+      </div>
+
+      <!-- Device Viewport Container -->
+      <div class="viewport-canvas-wrapper" id="canvasWrapper">
+        <div class="viewport-frame desktop" id="viewportFrame">
+          <iframe id="previewIframe" title="Xem trước Website nhân bản" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Export Dialog Modal -->
+  <div class="modal-overlay" id="exportModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <span class="modal-icon">📦</span>
+          <div>
+            <h3>Tải File index.html & Kéo Thả Lên Netlify</h3>
+            <p>File độc lập hoàn chỉnh, bao gồm toàn bộ giao diện và Trợ lý AI</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btnCloseModal">&times;</button>
+      </div>
+
+      <div class="modal-content">
+        <div class="export-options-grid">
+          <div class="export-option-card highlighted">
+            <div class="option-badge">DỄ NHẤT</div>
+            <div class="option-icon">📄</div>
+            <h4>Tệp <code>index.html</code> Đơn Lập</h4>
+            <p>Chỉ cần 1 file duy nhất! Mở trực tiếp trên máy hoặc kéo thả thẳng lên Netlify Drop là xong.</p>
+            <button class="btn btn-primary w-100" id="btnModalDownloadHtml">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Tải index.html Ngay</span>
+            </button>
+          </div>
+
+          <div class="export-option-card">
+            <div class="option-icon">📁</div>
+            <h4>Gói Thư Mục <code>.ZIP</code></h4>
+            <p>Gồm file index.html và tài liệu hướng dẫn kéo thả Netlify chi tiết.</p>
+            <button class="btn btn-secondary w-100" id="btnModalDownloadZip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Tải file .ZIP</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="netlify-visual-guide">
+          <h5>🚀 Hướng dẫn 3 bước kéo thả lên Netlify (30 giây):</h5>
+          <ol class="guide-steps">
+            <li>Bấm nút <strong>"Tải index.html Ngay"</strong> ở trên để tải file về máy.</li>
+            <li>Vào trang web: <a href="https://app.netlify.com/drop" target="_blank" rel="noopener noreferrer">app.netlify.com/drop</a>.</li>
+            <li>Kéo thả thư mục chứa file <code>index.html</code> vào vòng tròn giữa màn hình Netlify. Website của bạn sẽ lập tức online với liên kết HTTPS miễn phí!</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btnCancelModal">Đóng</button>
+        <a href="https://app.netlify.com/drop" target="_blank" rel="noopener noreferrer" class="btn btn-gradient">
+          <span>Đi Đến Netlify Drop</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Media In-Place Editing Modal (Thay Thế Ảnh & Video) -->
+  <div class="modal-overlay" id="mediaEditModal">
+    <div class="modal-card modal-card-sm">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <span class="modal-icon" id="mediaModalIcon">🖼️</span>
+          <div>
+            <h3 id="mediaModalTitle">Thay Thế Hình Ảnh & Video</h3>
+            <p id="mediaModalSubtitle">Click chuột trực tiếp vào ảnh hoặc video để đổi ngay</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btnCloseMediaModal">&times;</button>
+      </div>
+
+      <!-- Media Type Tabs -->
+      <div class="media-tabs-nav">
+        <button type="button" class="media-tab-btn active" id="tabBtnImage">🖼️ Hình Ảnh</button>
+        <button type="button" class="media-tab-btn" id="tabBtnVideo">🎥 Video / YouTube</button>
+      </div>
+
+      <div class="modal-content">
+        <!-- Panel 1: Hình Ảnh -->
+        <div class="media-tab-panel active" id="panelImage">
+          <div class="form-group">
+            <label class="section-label">Xem trước ảnh:</label>
+            <div class="current-img-preview-box">
+              <img id="modalImgPreview" src="" alt="Xem trước">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="modalImgUrlInput" class="section-label">Dán link ảnh mới (URL):</label>
+            <input type="text" id="modalImgUrlInput" class="form-input" placeholder="https://images.unsplash.com/...">
+          </div>
+
+          <!-- Gắn đường link liên kết cho khối ảnh -->
+          <div class="form-group" style="background: rgba(139, 92, 246, 0.08); padding: 12px; border-radius: 8px; border: 1px dashed rgba(139, 92, 246, 0.35);">
+            <label for="modalImgLinkInput" class="section-label" style="color:#c4b5fd;">🔗 Gắn đường link khi khách bấm vào ảnh (Tùy chọn):</label>
+            <input type="url" id="modalImgLinkInput" class="form-input" placeholder="Ví dụ: https://zalo.me/... hoặc link sản phẩm, bài viết...">
+            <small style="color:var(--text-muted); font-size:0.75rem; margin-top:4px; display:block;">Khách hàng bấm vào bức ảnh này trên website sẽ mở ngay trang liên kết của bạn (mở tab mới).</small>
+          </div>
+          <div class="form-group">
+            <label class="section-label">Hoặc tải ảnh từ máy tính:</label>
+            <input type="file" id="modalImgFileInput" accept="image/*" style="display:none;">
+            <button type="button" class="btn btn-outline w-100" id="btnModalUploadImg">
+              📁 Chọn file ảnh từ máy tính
+            </button>
+          </div>
+          <div class="form-group">
+            <label class="section-label">Kho ảnh gợi ý chất lượng cao (Unsplash HD):</label>
+            <div class="ai-media-gallery">
+              <button type="button" class="gallery-chip" data-img="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80">👨‍💼 Doanh nhân</button>
+              <button type="button" class="gallery-chip" data-img="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80">🎓 Đào tạo</button>
+              <button type="button" class="gallery-chip" data-img="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80">🏢 Văn phòng</button>
+              <button type="button" class="gallery-chip" data-img="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80">🚀 Hội thảo</button>
+              <button type="button" class="gallery-chip" data-img="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80">✨ Spa / Làm đẹp</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline w-100 mt-2" id="btnModalUseAvatar">
+            👤 Dùng ảnh đại diện của tôi
+          </button>
+        </div>
+
+        <!-- Panel 2: Video -->
+        <div class="media-tab-panel" id="panelVideo" style="display:none;">
+          <div class="form-group">
+            <label for="modalVideoUrlInput" class="section-label">Dán link YouTube hoặc video MP4:</label>
+            <input type="text" id="modalVideoUrlInput" class="form-input" placeholder="Ví dụ: https://www.youtube.com/watch?v=... hoặc https://youtu.be/...">
+            <small style="color:var(--text-muted); font-size:0.75rem; margin-top:4px; display:block;">Hỗ trợ link video YouTube thông thường, tự động chuyển đổi thành video nhúng chuẩn HD.</small>
+          </div>
+          <div class="form-group">
+            <label class="section-label">Video mẫu thịnh hành:</label>
+            <div class="ai-media-gallery">
+              <button type="button" class="video-chip" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">🎬 Video giới thiệu</button>
+              <button type="button" class="video-chip" data-video="https://www.youtube.com/embed/jNQXAC9IVRw">🚀 Video truyền cảm hứng</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions mt-3">
+          <button class="btn btn-secondary flex-1" id="btnCancelMediaModal">Hủy</button>
+          <button class="btn btn-primary flex-1" id="btnConfirmMediaModal">Cập Nhật Ngay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
