@@ -1,0 +1,66 @@
+/* ==========================================================
+   STYLING NÂNG CAO - HỆ SINH THÁI NGƯỜI NÔNG DÂN SỐ HÓA
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --ndsh-primary: #16a34a;
+    --ndsh-primary-dark: #15803d;
+    --ndsh-secondary: #0f172a;
+    --ndsh-accent: #f59e0b;
+    --ndsh-bg: #f8fafc;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--ndsh-bg);
+    color: var(--ndsh-secondary);
+    overflow-x: hidden;
+}
+
+/* Hiệu ứng Banner động & Gradient rực rỡ */
+.hero-gradient {
+    background: linear-gradient(135deg, #064e3b 0%, #022c22 50%, #0f172a 100%);
+    position: relative;
+}
+
+.hero-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(22, 163, 74, 0.15);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Hiệu ứng nổi Card sản phẩm */
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.1);
+    border-color: var(--ndsh-primary);
+}
+
+/* Tùy chỉnh thanh cuộn */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    gap: 4px;
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ndsh-primary);
+}

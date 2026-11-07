@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sống Vui - Sống Khỏe 60+ | Cổng Thông Tin Chăm Sóc Sức Khỏe Toàn Diện</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Be Vietnam Pro & Nunito (cực kỳ rõ nét, tròn trịa, dễ đọc) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#0d9488',     // Xanh ngọc ấm dịu mắt
+              tealDark: '#0f766e',
+              tealLight: '#ccfbf1',
+              emerald: '#059669',  // Xanh lá sức khỏe
+              amber: '#d97706',    // Vàng cam ấm áp
+              coral: '#e11d48',    // Đỏ cấp cứu nổi bật
+              cream: '#fdfbf7',    // Màu nền trắng kem ấm dịu mắt
+              paper: '#ffffff',
+              darkText: '#1e293b'
+            }
+          },
+          fontFamily: {
+            sans: ['Nunito', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Chế độ cỡ chữ trợ năng */
+    :root {
+      --text-scale: 1;
+    }
+    body {
+      font-size: calc(18px * var(--text-scale));
+      background-color: #fdfbf7;
+      color: #1e293b;
+      line-height: 1.65;
+    }
+    .font-size-lg { --text-scale: 1.15; }
+    .font-size-xl { --text-scale: 1.3; }
+
+    /* Chế độ tương phản cao */
+    .high-contrast {
+      background-color: #000000 !important;
+      color: #ffff00 !important;
+    }
+    .high-contrast .bg-white,
+    .high-contrast .bg-brand-cream,
+    .high-contrast .bg-emerald-50,
+    .high-contrast .bg-teal-50,
+    .high-contrast .bg-amber-50,
+    .high-contrast .bg-rose-50 {
+      background-color: #121212 !important;
+      color: #ffffff !important;
+      border: 2px solid #ffff00 !important;
+    }
+    .high-contrast h1, .high-contrast h2, .high-contrast h3, .high-contrast h4,
+    .high-contrast strong {
+      color: #00ffff !important;
+    }
+    .high-contrast .text-slate-600, .high-contrast .text-slate-700, .high-contrast .text-slate-500 {
+      color: #f8fafc !important;
+    }
+
+    /* Hiệu ứng thở / nhịp đếm */
+    @keyframes breatheCircle {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.35); opacity: 1; }
+    }
+    .animate-breathe {
+      animation: breatheCircle 8s ease-in-out infinite;
+    }
+    
+    /* Tối ưu viền nút và chạm ngón tay */
+    button, a {
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+
+<body class="transition-all duration-200">
+
+  <!-- ==================== THANH CÔNG CỤ TRỢ NĂNG DÀNH CHO NGƯỜI CAO TUỔI ==================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-md border-b-2 border-teal-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Logo & Tên trang -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-600 to-emerald-500 flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>
+          <span class="text-2xl sm:text-3xl font-extrabold text-teal-800 tracking-tight block">Sống Vui 60+</span>
+          <span class="text-xs sm:text-sm font-bold text-amber-700 block">Cẩm nang sức khỏe vàng cho tuổi bạc</span>
+        </div>
+      </a>
+
+      <!-- Thanh công cụ trợ năng: Cỡ chữ, Giọng đọc, Tương phản -->
+      <div class="flex items-center flex-wrap gap-2 sm:gap-3">
+        <!-- Đổi cỡ chữ -->
+        <div class="flex items-center bg-teal-50 border-2 border-teal-200 rounded-full p-1" title="Chỉnh cỡ chữ hiển thị">
+          <span class="text-xs font-bold px-2 text-teal-900 hidden md:inline">Cỡ chữ:</span>
+          <button id="btnTextNormal" onclick="setFontScale(1)" class="w-9 h-9 rounded-full font-bold text-sm bg-white shadow-sm text-teal-800 hover:bg-teal-600 hover:text-white transition" aria-label="Cỡ chữ vừa">A</button>
+          <button id="btnTextLg" onclick="setFontScale(1.15)" class="w-9 h-9 rounded-full font-bold text-base text-teal-800 hover:bg-teal-600 hover:text-white transition" aria-label="Cỡ chữ to">A+</button>
+          <button id="btnTextXl" onclick="setFontScale(1.3)" class="w-9 h-9 rounded-full font-black text-lg text-teal-800 hover:bg-teal-600 hover:text-white transition" aria-label="Cỡ chữ rất to">A++</button>
+        </div>
+
+        <!-- Bật/Tắt Đọc Giọng Nói -->
+        <button id="btnSpeak" onclick="toggleReadPage()" class="flex items-center gap-2 px-3.5 py-2 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold rounded-full text-sm sm:text-base transition shadow-sm" title="Nghe đọc nội dung trang web">
+          <i class="fa-solid fa-volume-high text-amber-700"></i>
+          <span id="speakBtnText" class="hidden sm:inline">Đọc to trang web</span>
+        </button>
+
+        <!-- Chế độ Tương phản cao -->
+        <button onclick="toggleContrast()" class="p-2 sm:px-3 sm:py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 font-bold rounded-full text-sm sm:text-base transition flex items-center gap-1.5" title="Đổi màu tương phản">
+          <i class="fa-solid fa-circle-half-stroke text-base"></i>
+          <span class="hidden lg:inline">Tương phản</span>
+        </button>
+
+        <!-- Nút Hotline & Zalo Tư Vấn Nhanh Trên Header -->
+        <a href="https://zalo.me/0983212252" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 px-3.5 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 border-2 border-emerald-400 font-extrabold rounded-full text-sm transition shadow-sm" title="Chat Zalo Tư Vấn Miễn Phí">
+          <i class="fa-solid fa-comment-dots text-emerald-700 text-base"></i>
+          <span>Zalo: 0983.212.252</span>
+        </a>
+
+        <!-- Nút Cấp Cứu Khẩn Cấp SOS NỔI BẬT NHẤT -->
+        <button onclick="openEmergencyModal()" class="flex items-center gap-2 px-4 py-2 sm:py-2.5 bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-extrabold text-base sm:text-lg rounded-full shadow-lg shadow-rose-600/40 animate-pulse border-2 border-white">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>CẤP CỨU (115)</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Thanh Menu điều hướng nhanh theo chuyên đề -->
+    <nav class="bg-teal-700 text-white shadow-inner">
+      <div class="max-w-7xl mx-auto px-4 flex items-center justify-start xl:justify-center overflow-x-auto gap-1.5 py-2 text-sm sm:text-base font-bold whitespace-nowrap scrollbar-none">
+        <a href="#hoidong" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 hover:bg-amber-400 transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-user-doctor"></i> Hội Đồng Y Khoa Quốc Tế
+        </a>
+        <a href="#thanhtuu" class="px-3 py-1.5 rounded-lg bg-emerald-400 text-slate-950 hover:bg-emerald-300 transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-microscope"></i> Thành Tựu Y Sinh Mới Nhất
+        </a>
+        <a href="#dotquy" class="px-3 py-1.5 rounded-lg hover:bg-teal-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-triangle-exclamation text-amber-300"></i> Đột Quỵ BE-FAST
+        </a>
+        <a href="#dinhduong" class="px-3 py-1.5 rounded-lg hover:bg-teal-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-bowl-rice text-teal-200"></i> Dinh Dưỡng Trường Thọ
+        </a>
+        <a href="#tapluyen" class="px-3 py-1.5 rounded-lg hover:bg-teal-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-person-walking text-teal-200"></i> Dưỡng Sinh & Khớp
+        </a>
+        <a href="#xuongkhop" class="px-3 py-1.5 rounded-lg hover:bg-teal-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-crutch text-amber-300"></i> Chống Té Ngã & Trí Nhớ
+        </a>
+        <a href="#ngunghi" class="px-3 py-1.5 rounded-lg hover:bg-teal-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-bed text-teal-200"></i> Giấc Ngủ
+        </a>
+        <a href="#theodoi" class="px-3 py-1.5 rounded-lg hover:bg-teal-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-notes-medical text-teal-200"></i> Huyết Áp & Đường Huyết
+        </a>
+        <a href="#tamsoat" class="px-3 py-1.5 rounded-lg hover:bg-teal-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-virus text-emerald-300"></i> Tầm Soát & Vắc-xin
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== BANNER LỜI CHÀO & ĐỘNG LỰC ==================== -->
+  <section class="bg-gradient-to-b from-teal-50 via-emerald-50/40 to-transparent py-8 sm:py-12 border-b border-teal-100">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-sm sm:text-base font-extrabold mb-4 shadow-sm">
+        <i class="fa-solid fa-seedling"></i> “Sức khỏe là tài sản vô giá nhất của tuổi xế chiều”
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-teal-950 tracking-tight leading-tight mb-4">
+        Chăm Sóc Toàn Diện Cho Người Cao Tuổi
+      </h1>
+      <p class="text-lg sm:text-2xl text-slate-700 max-w-3xl mx-auto font-medium">
+        Cổng thông tin dễ đọc, dễ làm theo, giúp các bác, các cô chú tự tin vui sống mỗi ngày cùng con cháu.
+      </p>
+
+      <!-- Khối Liên Hệ Hỗ Trợ Trực Tiếp Nhanh -->
+      <div class="mt-6 inline-flex flex-wrap items-center justify-center gap-3 bg-white/90 border-2 border-teal-300 px-6 py-3 rounded-2xl shadow-sm">
+        <span class="text-slate-800 font-extrabold text-base sm:text-lg flex items-center gap-2">
+          <i class="fa-solid fa-headset text-teal-600 text-xl"></i> Ban Hỗ Trợ Chăm Sóc Sức Khỏe 60+:
+        </span>
+        <a href="tel:0983212252" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base rounded-xl transition shadow flex items-center gap-2">
+          <i class="fa-solid fa-phone"></i> Gọi 0983 212 252
+        </a>
+        <a href="https://zalo.me/0983212252" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-base rounded-xl transition shadow flex items-center gap-2">
+          <i class="fa-solid fa-comment"></i> Nhắn Zalo 0983 212 252
+        </a>
+      </div>
+
+      <!-- 4 Thẻ Phím Tắt Nhanh -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 max-w-4xl mx-auto text-left">
+        <a href="#dotquy" class="bg-rose-50 hover:bg-rose-100 border-2 border-rose-300 p-4 rounded-2xl transition shadow-sm block group">
+          <div class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <span class="font-extrabold text-rose-950 text-base sm:text-lg block">Nhận Biết Đột Quỵ</span>
+          <span class="text-xs sm:text-sm text-rose-800 font-semibold">Não & Tim cấp tốc</span>
+        </a>
+
+        <a href="#theodoi" class="bg-teal-50 hover:bg-teal-100 border-2 border-teal-300 p-4 rounded-2xl transition shadow-sm block group">
+          <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <span class="font-extrabold text-teal-950 text-base sm:text-lg block">Đo Huyết Áp</span>
+          <span class="text-xs sm:text-sm text-teal-800 font-semibold">Nhập kiểm tra ngay</span>
+        </a>
+
+        <a href="#dinhduong" class="bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 p-4 rounded-2xl transition shadow-sm block group">
+          <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <span class="font-extrabold text-amber-950 text-base sm:text-lg block">Thực Đơn 7 Ngày</span>
+          <span class="text-xs sm:text-sm text-amber-800 font-semibold">Giảm mặn, dễ tiêu</span>
+        </a>
+
+        <a href="#tapluyen" class="bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-300 p-4 rounded-2xl transition shadow-sm block group">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <span class="font-extrabold text-emerald-950 text-base sm:text-lg block">Nhịp Thở & Khớp</span>
+          <span class="text-xs sm:text-sm text-emerald-800 font-semibold">Đếm nhịp thư giãn</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CHUYÊN MỤC MỚI: HỘI ĐỒNG Y KHOA LÃO KHOA THẾ GIỚI ==================== -->
+  <section id="hoidong" class="py-12 px-4 max-w-7xl mx-auto">
+    <div class="bg-gradient-to-br from-teal-900 via-teal-800 to-emerald-900 text-white rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-teal-500">
+      <div class="text-center max-w-4xl mx-auto mb-8">
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider mb-3">
+          <i class="fa-solid fa-award"></i> Tinh Hoa Y Học Thế Giới Hội Tụ
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-white leading-tight">
+          Phác Đồ Liên Ngành Từ Hội Đồng Y Tế Lão Khoa Hàng Đầu Thế Giới
+        </h2>
+        <p class="text-teal-100 text-base sm:text-lg mt-2">
+          Tổng hợp các khuyến nghị chuẩn mực mới nhất từ 5 tổ chức y tế danh tiếng toàn cầu, được chuyển hóa thành hướng dẫn bình dân, dễ hiểu và dễ áp dụng hàng ngày cho người cao tuổi Việt Nam.
+        </p>
+      </div>
+
+      <!-- 5 Chuyên Khoa Mũi Nhọn Quốc Tế (Tabs tương tác) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
+        <button onclick="selectCouncilTab(1)" id="councilTab1" class="council-tab p-4 rounded-2xl bg-amber-400 text-slate-950 font-black text-left transition shadow-lg flex flex-col justify-between border-2 border-white">
+          <i class="fa-solid fa-heart-circle-check text-2xl mb-2 text-rose-700"></i>
+          <div>
+            <span class="text-xs uppercase font-bold block opacity-80">Tim Mạch & Đột Quỵ</span>
+            <span class="text-base block leading-snug">Hiệp Hội Tim Mạch Mỹ (AHA / WSO)</span>
+          </div>
+        </button>
+
+        <button onclick="selectCouncilTab(2)" id="councilTab2" class="council-tab p-4 rounded-2xl bg-teal-950/60 hover:bg-teal-950 text-teal-100 font-bold text-left transition flex flex-col justify-between border border-teal-600">
+          <i class="fa-solid fa-apple-whole text-2xl mb-2 text-emerald-400"></i>
+          <div>
+            <span class="text-xs uppercase font-bold block opacity-75">Dinh Dưỡng Trường Thọ</span>
+            <span class="text-base block leading-snug">ĐH Y Khoa Harvard & Okinawa Nhật Bản</span>
+          </div>
+        </button>
+
+        <button onclick="selectCouncilTab(3)" id="councilTab3" class="council-tab p-4 rounded-2xl bg-teal-950/60 hover:bg-teal-950 text-teal-100 font-bold text-left transition flex flex-col justify-between border border-teal-600">
+          <i class="fa-solid fa-brain text-2xl mb-2 text-amber-300"></i>
+          <div>
+            <span class="text-xs uppercase font-bold block opacity-75">Thần Kinh & Trí Nhớ</span>
+            <span class="text-base block leading-snug">Viện Lão Khoa Quốc Gia (NIA)</span>
+          </div>
+        </button>
+
+        <button onclick="selectCouncilTab(4)" id="councilTab4" class="council-tab p-4 rounded-2xl bg-teal-950/60 hover:bg-teal-950 text-teal-100 font-bold text-left transition flex flex-col justify-between border border-teal-600">
+          <i class="fa-solid fa-bone text-2xl mb-2 text-sky-300"></i>
+          <div>
+            <span class="text-xs uppercase font-bold block opacity-75">Cơ Xương Khớp & Vận Động</span>
+            <span class="text-base block leading-snug">Tổ Chức Y Tế Thế Giới (WHO)</span>
+          </div>
+        </button>
+
+        <button onclick="selectCouncilTab(5)" id="councilTab5" class="council-tab p-4 rounded-2xl bg-teal-950/60 hover:bg-teal-950 text-teal-100 font-bold text-left transition flex flex-col justify-between border border-teal-600">
+          <i class="fa-solid fa-prescription-bottle-medical text-2xl mb-2 text-purple-300"></i>
+          <div>
+            <span class="text-xs uppercase font-bold block opacity-75">Dược Lâm Sàng 60+</span>
+            <span class="text-base block leading-snug">Hiệp Hội Lão Khoa Hoa Kỳ (AGS Beers)</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Khung hiển thị phác đồ chi tiết từ Hội Đồng -->
+      <div id="councilDetailBox" class="bg-white text-slate-800 rounded-2xl p-6 sm:p-8 shadow-inner">
+        <!-- Nội dung render qua JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CHUYÊN MỤC MỚI: THÀNH TỰU PHÁT MINH Y SINH HỌC, DƯỢC HỌC & ĐIỀU TRỊ LÃO KHOA THẾ GIỚI ==================== -->
+  <section id="thanhtuu" class="py-12 px-4 max-w-7xl mx-auto">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl border-4 border-teal-600 relative overflow-hidden">
+      
+      <!-- Tiêu đề & Giới thiệu -->
+      <div class="text-center max-w-4xl mx-auto mb-8">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-100 text-teal-900 font-black text-xs sm:text-sm uppercase tracking-wider mb-3 border border-teal-300">
+          <i class="fa-solid fa-dna text-teal-600"></i> Cập Nhật Y Học Chứng Cứ Toàn Cầu (Evidence-Based Medicine 2024 - 2026)
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-teal-950 leading-tight">
+          Những Đột Phá Y Sinh Học, Dược Học & Công Nghệ Điều Trị Cho Người Cao Tuổi
+        </h2>
+        <p class="text-slate-700 text-base sm:text-lg mt-2 font-medium">
+          Tổng hợp các phát minh y học hiện đại đã được kiểm chứng lâm sàng và phê duyệt bởi <strong>Cục Quản lý Thực phẩm & Dược phẩm Hoa Kỳ (FDA)</strong>, <strong>Cơ quan Dược phẩm Châu Âu (EMA)</strong> và công bố trên các tạp chí y khoa uy tín nhất thế giới (<em>NEJM, The Lancet, JAMA, Nature Medicine</em>).
+        </p>
+      </div>
+
+      <!-- Bộ lọc Chuyên ngành Khoa học (4 Nhóm) -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8" id="bioFilterContainer">
+        <button onclick="filterBioBreakthroughs('all')" id="btnBioAll" class="bio-filter-btn px-4 py-2.5 rounded-xl font-black text-sm sm:text-base bg-teal-700 text-white shadow-md transition flex items-center gap-2">
+          <i class="fa-solid fa-layer-group"></i> Tất Cả (6 Đột Phá Lớn)
+        </button>
+        <button onclick="filterBioBreakthroughs('neuro')" id="btnBioNeuro" class="bio-filter-btn px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base bg-slate-100 hover:bg-teal-50 text-slate-700 border border-slate-300 transition flex items-center gap-2">
+          <i class="fa-solid fa-brain text-amber-600"></i> Thần Kinh & Đột Quỵ
+        </button>
+        <button onclick="filterBioBreakthroughs('cardio')" id="btnBioCardio" class="bio-filter-btn px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base bg-slate-100 hover:bg-teal-50 text-slate-700 border border-slate-300 transition flex items-center gap-2">
+          <i class="fa-solid fa-heart-pulse text-rose-600"></i> Tim Mạch - Thận - Chuyển Hóa
+        </button>
+        <button onclick="filterBioBreakthroughs('gero')" id="btnBioGero" class="bio-filter-btn px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base bg-slate-100 hover:bg-teal-50 text-slate-700 border border-slate-300 transition flex items-center gap-2">
+          <i class="fa-solid fa-dna text-emerald-600"></i> Y Sinh Học Tái Tạo & Lão Khoa
+        </button>
+      </div>
+
+      <!-- Lưới hiển thị các thẻ Thành tựu Y học -->
+      <div id="bioCardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Sẽ được render tự động từ dữ liệu có dẫn chứng chính thống qua JavaScript -->
+      </div>
+
+      <!-- Khung Giải Thích Y Học Thực Tiễn Cho Gia Đình Việt Nam -->
+      <div class="mt-8 bg-gradient-to-r from-amber-50 via-teal-50 to-emerald-50 p-6 rounded-2xl border-2 border-teal-300 flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 text-teal-900 font-black text-lg">
+            <i class="fa-solid fa-book-medical text-teal-600 text-2xl"></i>
+            <span>Lưu Ý Y Khoa Quan Trọng Khi Tiếp Cận Thành Tựu Mới:</span>
+          </div>
+          <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+            Mọi thuốc sinh học thế hệ mới (như kháng thể đơn dòng hay thuốc ức chế SGLT2, siRNA) đều cần được <strong>bác sĩ chuyên khoa tại các bệnh viện tuyến cuối</strong> thăm khám, xét nghiệm chức năng gan thận và chỉ định cá thể hóa. Người cao tuổi tuyệt đối không tự ý mua thuốc xách tay hoặc thực phẩm chức năng quảng cáo phóng đại trên mạng.
+          </p>
+        </div>
+        <a href="tel:0983212252" class="px-5 py-3 bg-teal-700 hover:bg-teal-800 text-white font-black rounded-xl text-base shrink-0 shadow-md flex items-center gap-2">
+          <i class="fa-solid fa-phone-volume"></i> Tư Vấn Thông Tin: 0983 212 252
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PHẦN 1: BÁO ĐỘNG KHẨN CẤP & ĐỘT QUỴ (NÃO & TIM) ==================== -->
+  <section id="dotquy" class="py-12 px-4 max-w-7xl mx-auto">
+    <div class="bg-rose-50 border-4 border-rose-500 rounded-3xl p-6 sm:p-10 shadow-xl">
+      
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b-2 border-rose-200 pb-6 mb-8">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-rose-600 text-white px-3.5 py-1 rounded-full text-sm font-black mb-2">
+            <i class="fa-solid fa-clock-rotate-left"></i> GIỜ VÀNG CỨU SỐNG: 3 ĐẾN 4.5 GIỜ ĐẦU
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-black text-rose-950">
+            Tiêu Chuẩn Mở Rộng BE-FAST: Nhận Biết Đột Quỵ Não & Nhồi Máu Cơ Tim
+          </h2>
+          <p class="text-slate-700 text-base sm:text-xl font-medium mt-1">
+            Hội đồng Đột quỵ Thế giới đã nâng cấp quy tắc từ FAST lên <strong class="text-rose-700 underline">BE-FAST</strong> (bổ sung Thăng bằng & Thị giác) để không bỏ sót các ca đột quỵ tiểu não nguy hiểm!
+          </p>
+        </div>
+        <button onclick="openEmergencyModal()" class="w-full md:w-auto px-6 py-4 bg-rose-600 hover:bg-rose-700 text-white text-xl font-black rounded-2xl shadow-lg flex items-center justify-center gap-3 shrink-0">
+          <i class="fa-solid fa-phone"></i> BẤM GỌI CẤP CỨU 115
+        </button>
+      </div>
+
+      <!-- Hai Cột: Não vs Tim -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Đột quỵ NÃO (Quy tắc BE-FAST mới nhất) -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl border-2 border-rose-300 shadow-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center text-2xl font-bold">
+              <i class="fa-solid fa-brain"></i>
+            </span>
+            <div>
+              <h3 class="text-2xl font-black text-rose-900">1. Đột Quỵ Não (Quy Tắc BE-FAST)</h3>
+              <p class="text-sm font-bold text-slate-500">Chuẩn Chẩn Đoán Cấp Cứu Thần Kinh Quốc Tế</p>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-amber-50 border border-amber-300">
+              <div class="w-10 h-10 rounded-full bg-amber-600 text-white font-black flex items-center justify-center shrink-0 text-lg">B</div>
+              <div>
+                <h4 class="font-black text-lg text-amber-950">Balance (Mất thăng bằng đột ngột)</h4>
+                <p class="text-slate-700 text-sm sm:text-base">Đang đứng hoặc đi tự nhiên xây xẩm, loạng choạng như say sóng, ngã khuỵu hoặc không ngồi vững được.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-amber-50 border border-amber-300">
+              <div class="w-10 h-10 rounded-full bg-amber-600 text-white font-black flex items-center justify-center shrink-0 text-lg">E</div>
+              <div>
+                <h4 class="font-black text-lg text-amber-950">Eyes (Mờ mắt, nhìn đôi hoặc mất thị lực)</h4>
+                <p class="text-slate-700 text-sm sm:text-base">Đột nhiên nhìn 1 hóa 2, tối sầm một bên mắt hoặc cả hai mắt dù trước đó vẫn nhìn rõ.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-rose-50 border border-rose-200">
+              <div class="w-10 h-10 rounded-full bg-rose-600 text-white font-black flex items-center justify-center shrink-0 text-lg">F</div>
+              <div>
+                <h4 class="font-black text-lg text-rose-950">Face (Mặt méo / Lệch nhân trung)</h4>
+                <p class="text-slate-700 text-sm sm:text-base">Bảo người bệnh cười hoặc nhe răng. Một bên khóe miệng bị xệ xuống, uống nước bị trào ra một bên mép.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-rose-50 border border-rose-200">
+              <div class="w-10 h-10 rounded-full bg-rose-600 text-white font-black flex items-center justify-center shrink-0 text-lg">A</div>
+              <div>
+                <h4 class="font-black text-lg text-rose-950">Arms (Tay chân tê bì, yếu liệt 1 bên)</h4>
+                <p class="text-slate-700 text-sm sm:text-base">Yêu cầu giơ 2 tay lên trước mặt 10 giây. Một bên tay bị trôi rơi xuống, hoặc đang cầm bát đũa tự nhiên rơi vỡ.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-rose-50 border border-rose-200">
+              <div class="w-10 h-10 rounded-full bg-rose-600 text-white font-black flex items-center justify-center shrink-0 text-lg">S</div>
+              <div>
+                <h4 class="font-black text-lg text-rose-950">Speech (Nói đớ lưỡi, nói ngọng, ú ớ)</h4>
+                <p class="text-slate-700 text-sm sm:text-base">Lời nói bị dính chữ, phát âm khó khăn, gọi tên con cháu không ra tiếng hoặc ngơ ngác không hiểu câu hỏi.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-rose-600 text-white">
+              <div class="w-10 h-10 rounded-full bg-white text-rose-600 font-black flex items-center justify-center shrink-0 text-lg">T</div>
+              <div>
+                <h4 class="font-black text-lg text-white">Time (Mỗi phút trôi qua mất 2 triệu tế bào não!)</h4>
+                <p class="text-rose-100 text-sm">Gọi 115 ngay lập tức. Ghi nhớ mốc giờ phát hiện triệu chứng đầu tiên để báo cho bác sĩ cấp cứu.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Đột quỵ TIM (Nhồi Máu Cơ Tim & Hội chứng vành cấp) -->
+        <div class="bg-white p-6 sm:p-8 rounded-2xl border-2 border-rose-300 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <span class="w-12 h-12 rounded-2xl bg-red-100 text-red-700 flex items-center justify-center text-2xl font-bold">
+                <i class="fa-solid fa-heart-crack"></i>
+              </span>
+              <div>
+                <h3 class="text-2xl font-black text-rose-900">2. Nhồi Máu Cơ Tim ( Điển Hình & Không Điển Hình)</h3>
+                <p class="text-sm font-bold text-slate-500">Đặc biệt lưu ý ở người có bệnh Tiểu Đường & Phụ Nữ Cao Tuổi</p>
+              </div>
+            </div>
+
+            <div class="space-y-3.5">
+              <div class="p-3.5 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3">
+                <i class="fa-solid fa-hand-holding-heart text-2xl text-rose-600 mt-1"></i>
+                <div>
+                  <h4 class="font-black text-lg text-slate-900">Đau thắt bóp nghẹt vùng ngực trái hoặc giữa ức</h4>
+                  <p class="text-slate-700 text-sm sm:text-base">Cảm giác như có tảng đá đè nặng lên lồng ngực, kéo dài trên 5-15 phút, ngồi nghỉ vẫn không thuyên giảm.</p>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3">
+                <i class="fa-solid fa-arrow-up-right-dots text-2xl text-rose-600 mt-1"></i>
+                <div>
+                  <h4 class="font-black text-lg text-slate-900">Hướng đau lan: Lên cổ, quai hàm, bả vai và cánh tay trái</h4>
+                  <p class="text-slate-700 text-sm sm:text-base">Đau lan xuống tận ngón út và áp út tay trái, hoặc xuyên ra sau lưng giữa hai xương bả vai.</p>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-amber-50 border-2 border-amber-300 flex items-start gap-3">
+                <i class="fa-solid fa-user-Secret text-2xl text-amber-700 mt-1"></i>
+                <div>
+                  <h4 class="font-black text-lg text-amber-950">Triệu chứng "Giả Đau Dạ Dày" (Rất hay nhầm lẫn!)</h4>
+                  <p class="text-slate-800 text-sm sm:text-base">Nhiều cụ ông, cụ bà bị nhồi máu cơ tim vùng thành dưới chỉ thấy <strong>đau tức vùng thượng vị (trên rốn), buồn nôn, ợ hơi, vã mồ hôi lạnh như tắm</strong> và mệt lả không rõ nguyên nhân.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bảng Đánh Giá Nhanh Tương Tác -->
+          <div class="mt-6 pt-4 border-t border-slate-200 bg-teal-50/70 p-4 rounded-xl">
+            <h4 class="font-black text-teal-900 text-base mb-2">
+              <i class="fa-solid fa-clipboard-check text-teal-700"></i> Bảng Gạn Lọc Triệu Chứng Khẩn Cấp Tại Chỗ:
+            </h4>
+            <div id="quickCheckContainer" class="space-y-2 text-sm sm:text-base">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-5 h-5 accent-rose-600 check-sym" onchange="assessRisk()">
+                <span>Mặt lệch, méo miệng hoặc uống nước bị rớt ra ngoài?</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-5 h-5 accent-rose-600 check-sym" onchange="assessRisk()">
+                <span>Tay chân bủn rủn, tê yếu 1 bên người hoặc mất thăng bằng?</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-5 h-5 accent-rose-600 check-sym" onchange="assessRisk()">
+                <span>Nói đớ lưỡi, gọi không phản ứng hoặc nhìn mờ đột ngột?</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-5 h-5 accent-rose-600 check-sym" onchange="assessRisk()">
+                <span>Đau tức ngực / thượng vị kèm vã mồ hôi lạnh, hụt hơi?</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-5 h-5 accent-rose-600 check-sym" onchange="assessRisk()">
+                <span>Cơn tê yếu thoáng qua vài phút rồi tự khỏi (Cơn thiếu máu não thoáng qua TIA)?</span>
+              </label>
+            </div>
+            <div id="riskAlert" class="mt-3 hidden p-3 rounded-lg bg-rose-600 text-white font-black text-center text-sm animate-bounce">
+              ⚠️ CẢNH BÁO ĐỎ! DÙ TRIỆU CHỨNG VỪA THOÁNG QUA CŨNG PHẢI ĐI BỆNH VIỆN NGAY (GỌI 115 HOẶC 0983 212 252)!
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CẢNH BÁO ĐẶC BIỆT VỀ CƠN THIẾU MÁU NÃO THOÁNG QUA (TIA) & 3 KHUNG GIỜ NGUY HIỂM -->
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-amber-100/90 border-2 border-amber-500 p-5 rounded-2xl">
+          <h4 class="font-black text-amber-950 text-lg flex items-center gap-2">
+            <i class="fa-solid fa-bolt text-amber-600 text-xl"></i> Đừng mắc bẫy "Đột Quỵ Nhỏ" (Cơn TIA)!
+          </h4>
+          <p class="text-slate-800 text-sm sm:text-base mt-1 leading-relaxed">
+            Nếu người cao tuổi đột nhiên tê nửa người, nói ngọng hoặc mờ mắt trong <strong>5 - 15 phút rồi tự nhiên khỏi hoàn toàn</strong>, tuyệt đối không được chủ quan nghĩ là "trúng gió đã khỏi". Đây là <strong>Cơn thiếu máu não thoáng qua (TIA)</strong> — dấu hiệu báo trước một cơn đột quỵ thật sự nặng nề sẽ ập đến trong vòng 48 giờ tới!
+          </p>
+        </div>
+
+        <div class="bg-indigo-950 text-white p-5 rounded-2xl border-2 border-indigo-400">
+          <h4 class="font-black text-amber-300 text-lg flex items-center gap-2">
+            <i class="fa-solid fa-temperature-arrow-down text-sky-300 text-xl"></i> 3 Thời Điểm Dễ Xảy Ra Đột Quỵ Nhất Trong Ngày:
+          </h4>
+          <ul class="text-indigo-100 text-sm sm:text-base mt-1 space-y-1 font-medium">
+            <li>• <strong>4h00 - 6h00 sáng:</strong> Máu đặc nhất sau đêm dài và hormone huyết áp tăng vọt khi thức giấc.</li>
+            <li>• <strong>Khi đi tắm đêm hoặc bước từ chăn ấm ra lạnh:</strong> Mạch máu co rút đột ngột làm vọt huyết áp.</li>
+            <li>• <strong>Khi rặn mạnh trong nhà vệ sinh:</strong> Áp lực nội sọ tăng cao dễ gây vỡ phình mạch não.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- HƯỚNG DẪN XỬ TRÍ: NÊN LÀM VÀ KHÔNG ĐƯỢC LÀM (RẤT QUAN TRỌNG) -->
+      <div class="mt-8 bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200">
+        <h3 class="text-2xl font-black text-slate-900 mb-4 text-center">
+          Hướng Dẫn Xử Trí Tại Nhà Trong Lúc Chờ Cấp Cứu 115
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- VIỆC CẦN LÀM NGAY -->
+          <div class="bg-emerald-50 border-2 border-emerald-400 p-5 rounded-xl">
+            <h4 class="text-xl font-black text-emerald-900 flex items-center gap-2 mb-3">
+              <i class="fa-solid fa-circle-check text-emerald-600 text-2xl"></i> ĐIỀU NÊN LÀM NGAY:
+            </h4>
+            <ul class="space-y-2 text-slate-800 font-medium">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                <span>Đặt người bệnh nằm nghiêng an toàn (nếu có đờm dãi hoặc nôn), đầu kê cao khoảng 30 độ.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                <span>Nới lỏng cổ áo, thắt lưng, mở cửa sổ thông thoáng khí sạch, giữ yên tĩnh.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                <span>Lấy hết dị vật trong miệng như răng giả, thức ăn còn sót để tránh bít tắc đường thở.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                <span>Ghi nhớ chính xác thời gian khởi phát và gom sẵn đơn thuốc người bệnh đang dùng đưa cho bác sĩ.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- TUYỆT ĐỐI KHÔNG ĐƯỢC LÀM (DÂN GIAN SAI LẦM) -->
+          <div class="bg-rose-50 border-2 border-rose-400 p-5 rounded-xl">
+            <h4 class="text-xl font-black text-rose-950 flex items-center gap-2 mb-3">
+              <i class="fa-solid fa-circle-xmark text-rose-600 text-2xl"></i> TUYỆT ĐỐI TRÁNH SAI LẦM NÀY:
+            </h4>
+            <ul class="space-y-2 text-slate-900 font-semibold">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-xmark text-rose-600 mt-1 text-lg"></i>
+                <span><strong>KHÔNG chích nặn máu ngón tay hay dái tai:</strong> Gây đau đớn, kích thích huyết áp vọt cao hơn và nhiễm trùng nguy hiểm.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-xmark text-rose-600 mt-1 text-lg"></i>
+                <span><strong>KHÔNG cho uống nước, sữa hay ngậm thuốc:</strong> Khi nuốt bị liệt, chất lỏng sẽ lọt vào phổi gây sặc, ngạt thở tử vong ngay lập tức.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-xmark text-rose-600 mt-1 text-lg"></i>
+                <span><strong>KHÔNG cạo gió, giật tóc mai hay bấm huyệt thô bạo:</strong> Làm mất thời gian vàng 3 giờ đầu quý giá để thông mạch máu não.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-xmark text-rose-600 mt-1 text-lg"></i>
+                <span><strong>KHÔNG tự ý uống thuốc hạ áp quá nhanh:</strong> Có thể làm tụt huyết áp đột ngột khiến máu càng không lên được não.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PHẦN 2: DINH DƯỠNG & THỰC ĐƠN 7 NGÀY (60+) ==================== -->
+  <section id="dinhduong" class="py-12 bg-amber-50/50 border-y border-amber-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-amber-800 font-black text-sm uppercase tracking-wider bg-amber-100 px-3.5 py-1 rounded-full">Dinh Dưỡng Vàng 60+</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-amber-950 mt-2">Ăn Đúng Cách Để Trẻ Khỏe & Thảnh Thơi</h2>
+        <p class="text-slate-700 text-lg mt-2">Nguyên tắc: "Ăn ấm, nhai kỹ, bớt mặn, tăng rau xanh, uống từng ngụm nước nhỏ".</p>
+      </div>
+
+      <!-- 4 Nguyên tắc dinh dưỡng cốt lõi -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div class="bg-white p-5 rounded-2xl border-2 border-amber-200 shadow-sm">
+          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-700 text-2xl font-black mb-3">
+            <i class="fa-solid fa-jar"></i>
+          </div>
+          <h3 class="font-extrabold text-xl text-slate-900 mb-1">Giảm Muối (Dưới 5g/ngày)</h3>
+          <p class="text-slate-600 text-sm">Tránh đồ kho mặn, cá khô, dưa cà muối xổi. Giúp bảo vệ thành mạch và ổn định huyết áp.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border-2 border-emerald-200 shadow-sm">
+          <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-700 text-2xl font-black mb-3">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3 class="font-extrabold text-xl text-slate-900 mb-1">Tăng Chất Xơ & Rau Luộc</h3>
+          <p class="text-slate-600 text-sm">300-400g rau xanh mềm (mồng tơi, bầu, bí, rau ngót). Giảm táo bón và quét sạch mỡ máu thừa.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border-2 border-blue-200 shadow-sm">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-700 text-2xl font-black mb-3">
+            <i class="fa-solid fa-fish"></i>
+          </div>
+          <h3 class="font-extrabold text-xl text-slate-900 mb-1">Đạm Dễ Tiêu & Canxi</h3>
+          <p class="text-slate-600 text-sm">Ưu tiên cá biển nạc, đậu phụ non, ức gà, sữa chua không đường và hạt vừng để chống loãng xương.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border-2 border-rose-200 shadow-sm">
+          <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center text-rose-700 text-2xl font-black mb-3">
+            <i class="fa-solid fa-glass-water"></i>
+          </div>
+          <h3 class="font-extrabold text-xl text-slate-900 mb-1">4 Ly Nước Ấm "Cứu Mạng"</h3>
+          <p class="text-slate-600 text-sm">1 ly khi thức dậy, 1 ly lúc 10h sáng, 1 ly lúc 15h chiều, và 1 ngụm nhỏ ấm trước khi đi ngủ 1 tiếng.</p>
+        </div>
+      </div>
+
+      <!-- MỚI: MÔ HÌNH ĐĨA ĂN HARVARD & SIÊU THỰC PHẨM BẢO VỆ MẠCH MÁU -->
+      <div class="bg-gradient-to-r from-emerald-800 to-teal-900 text-white rounded-3xl p-6 sm:p-8 mb-10 shadow-lg">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+          <div class="lg:col-span-1">
+            <span class="bg-amber-400 text-slate-950 text-xs font-black px-3 py-1 rounded-full uppercase">Chuẩn Đại Học Harvard</span>
+            <h3 class="text-2xl font-black mt-2">Quy Tắc "Đĩa Ăn Trường Thọ" & Hara Hachi Bu (Ăn No 8 Phần)</h3>
+            <p class="text-teal-100 text-sm mt-2 leading-relaxed">
+              Các cụ già sống trên 100 tuổi tại vùng xanh Okinawa (Nhật Bản) luôn dừng đũa khi bụng vừa chớm no 80% để giảm gánh nặng cho tim và dạ dày.
+            </p>
+          </div>
+          <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white/10 backdrop-blur p-4 rounded-2xl border border-white/20">
+              <span class="text-3xl font-black text-emerald-300">50% Đĩa Ăn</span>
+              <h4 class="font-extrabold text-lg mt-1">Rau Xanh & Củ Quả Đa Sắc</h4>
+              <p class="text-xs text-teal-100 mt-1">Rau lá xanh đậm (cải bó xôi, rau ngót, bông cải), cà rốt, bí đỏ nấu mềm giúp thông mạch, nhuận tràng.</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur p-4 rounded-2xl border border-white/20">
+              <span class="text-3xl font-black text-amber-300">25% Đĩa Ăn</span>
+              <h4 class="font-extrabold text-lg mt-1">Đạm Sạch Bảo Vệ Cơ</h4>
+              <p class="text-xs text-teal-100 mt-1">Cá biển nhỏ ăn cả xương, đậu phụ, trứng gà, thịt gia cầm bỏ da. Tránh mất khối cơ (Sarcopenia) ở tuổi già.</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur p-4 rounded-2xl border border-white/20">
+              <span class="text-3xl font-black text-sky-300">25% Đĩa Ăn</span>
+              <h4 class="font-extrabold text-lg mt-1">Tinh Bột Chậm (Low GI)</h4>
+              <p class="text-xs text-teal-100 mt-1">Gạoxát dối nấu nhiều nước, yến mạch, khoai lang hấp, bún gạo lứt giúp đường huyết không tăng vọt sau ăn.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bảng Thực Đơn 7 Ngày Mẫu Có Thể Chọn Tab -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-amber-300 shadow-lg">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200 gap-4">
+          <div>
+            <h3 class="text-2xl font-black text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-calendar-week text-amber-600"></i> Gợi Ý Thực Đơn 7 Ngày Cân Bằng (Dễ Nấu, Dễ Nhai)
+            </h3>
+            <p class="text-slate-600 text-sm mt-1">Bấm chọn từng ngày để xem chi tiết các bữa ăn dinh dưỡng:</p>
+          </div>
+        </div>
+
+        <!-- Các Nút Chọn Thứ Trong Tuần -->
+        <div class="flex gap-2 overflow-x-auto py-4 scrollbar-none" id="dayTabsContainer">
+          <button onclick="showMenuDay(2)" id="tabDay2" class="day-tab px-4 py-2.5 rounded-xl font-black text-base bg-amber-600 text-white shadow transition shrink-0">Thứ Hai</button>
+          <button onclick="showMenuDay(3)" id="tabDay3" class="day-tab px-4 py-2.5 rounded-xl font-bold text-base bg-slate-100 text-slate-700 hover:bg-amber-100 transition shrink-0">Thứ Ba</button>
+          <button onclick="showMenuDay(4)" id="tabDay4" class="day-tab px-4 py-2.5 rounded-xl font-bold text-base bg-slate-100 text-slate-700 hover:bg-amber-100 transition shrink-0">Thứ Tư</button>
+          <button onclick="showMenuDay(5)" id="tabDay5" class="day-tab px-4 py-2.5 rounded-xl font-bold text-base bg-slate-100 text-slate-700 hover:bg-amber-100 transition shrink-0">Thứ Năm</button>
+          <button onclick="showMenuDay(6)" id="tabDay6" class="day-tab px-4 py-2.5 rounded-xl font-bold text-base bg-slate-100 text-slate-700 hover:bg-amber-100 transition shrink-0">Thứ Sáu</button>
+          <button onclick="showMenuDay(7)" id="tabDay7" class="day-tab px-4 py-2.5 rounded-xl font-bold text-base bg-slate-100 text-slate-700 hover:bg-amber-100 transition shrink-0">Thứ Bảy</button>
+          <button onclick="showMenuDay(8)" id="tabDay8" class="day-tab px-4 py-2.5 rounded-xl font-bold text-base bg-slate-100 text-slate-700 hover:bg-amber-100 transition shrink-0">Chủ Nhật</button>
+        </div>
+
+        <!-- Khung hiển thị nội dung thực đơn ngày được chọn -->
+        <div id="menuDetailCard" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          <!-- Sẽ render bằng JavaScript tự động -->
+        </div>
+
+        <!-- Bảng Phân Loại Nên Ăn vs Tránh Xa -->
+        <div class="mt-8 pt-6 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-300">
+            <h4 class="font-black text-emerald-900 text-lg mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-thumbs-up text-emerald-600"></i> Rất tốt cho Huyết Áp & Đường Huyết:
+            </h4>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Yến mạch, gạo lứt xốp mềm, đậu bắp luộc, bí đỏ, hạt óc chó/hạnh nhân nghiền, cá hồi, cá thu, chuối chín (giàu kali giúp hạ áp), canh bí nấu thịt nạc băm.
+            </p>
+          </div>
+          <div class="bg-rose-50 p-4 rounded-2xl border border-rose-300">
+            <h4 class="font-black text-rose-950 text-lg mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-ban text-rose-600"></i> Cần kiêng khem cẩn thận:
+            </h4>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Mỡ động vật, da gà/vịt, nội tạng (lòng, cật), chả giò chiên ngập dầu, bánh kẹo quá ngọt, nước ngọt có ga, mắm tôm mắm ruốc quá mặn, rượu bia đậm độ.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PHẦN 3: VẬN ĐỘNG & BÀI TẬP DƯỠNG SINH CÓ BỘ ĐẾM ==================== -->
+  <section id="tapluyen" class="py-12 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="text-emerald-800 font-black text-sm uppercase tracking-wider bg-emerald-100 px-3.5 py-1 rounded-full">Vận Động Hợp Lý</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-teal-950 mt-2">Dưỡng Sinh, Nhịp Thở & Giữ Gân Cốt Dẻo Dai</h2>
+      <p class="text-slate-700 text-lg mt-2">Tập nhẹ nhàng 20-30 phút mỗi ngày giúp máu huyết lưu thông, phòng tránh xơ cứng khớp và đột quỵ.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Cột 1 & 2: 4 Bài Tập Dễ Thực Hiện Nhất -->
+      <div class="lg:col-span-2 space-y-4">
+        
+        <div class="bg-white p-5 rounded-2xl border-2 border-teal-200 shadow-sm flex flex-col sm:flex-row gap-4 items-start">
+          <div class="w-14 h-14 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-3xl font-black shrink-0">
+            1
+          </div>
+          <div>
+            <h3 class="text-xl font-black text-teal-950">Vẩy Tay Dịch Cân Kinh (Khí Huyết Lưu Thông)</h3>
+            <p class="text-slate-700 text-sm mt-1">
+              Đứng thẳng, chân mở rộng bằng vai, các ngón chân bám nhẹ sàn. Đưa hai tay về phía trước một góc 30 độ, sau đó vẩy mạnh hai tay ra phía sau góc 60 độ. Thả lỏng toàn thân, bụng thót nhẹ. Vẩy từ tốn 200 - 500 nhịp mỗi sáng.
+            </p>
+            <span class="inline-block mt-2 text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md">
+              <i class="fa-solid fa-circle-info"></i> Tác dụng: Bơm máu về tim, nhuận tràng, giải tỏa uất kết phổi.
+            </span>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border-2 border-teal-200 shadow-sm flex flex-col sm:flex-row gap-4 items-start">
+          <div class="w-14 h-14 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-3xl font-black shrink-0">
+            2
+          </div>
+          <div>
+            <h3 class="text-xl font-black text-teal-950">Bài Tập Giãn Cột Sống Ngồi Trên Ghế</h3>
+            <p class="text-slate-700 text-sm mt-1">
+              Ngồi thẳng lưng trên ghế tựa chắc chắn. Hít sâu, từ từ nâng hai tay đan lại qua đầu, kéo căng ngực. Thở ra, nhẹ nhàng nghiêng người sang trái rồi sang phải. Giúp chống gù lưng, mở rộng dung tích phổi và giảm đau mỏi thắt lưng.
+            </p>
+            <span class="inline-block mt-2 text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md">
+              <i class="fa-solid fa-shield-halved"></i> An toàn tuyệt đối: Không sợ té ngã, phù hợp người đau khớp gối.
+            </span>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border-2 border-teal-200 shadow-sm flex flex-col sm:flex-row gap-4 items-start">
+          <div class="w-14 h-14 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-3xl font-black shrink-0">
+            3
+          </div>
+          <div>
+            <h3 class="text-xl font-black text-teal-950">Xoay Khớp Cổ Chân & Nhón Gót (Tránh Đọng Máu Tĩnh Mạch)</h3>
+            <p class="text-slate-700 text-sm mt-1">
+              Ngồi hoặc vịn tay vào bàn: Nâng cao gót chân, giữ 3 giây rồi hạ xuống. Tiếp tục xoay tròn cổ chân theo chiều kim đồng hồ. Động tác này ví như "quả tim thứ hai" bơm máu ngược từ chi dưới trở về tim, ngừa huyết khối tắc mạch.
+            </p>
+            <span class="inline-block mt-2 text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md">
+              <i class="fa-solid fa-heart"></i> Bảo vệ tĩnh mạch: Giảm sưng phù mắt cá chân về chiều.
+            </span>
+          </div>
+        </div>
+
+        <!-- Lưu ý vàng khi tập luyện -->
+        <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300">
+          <h4 class="font-extrabold text-amber-950 text-base flex items-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600"></i> Lời Dặn An Toàn Khi Tập:
+          </h4>
+          <p class="text-sm text-slate-700 mt-1">
+            • Uống một ngụm nước ấm trước khi tập. <br>
+            • <strong>Không xoay cổ ngoáy đầu quá nhanh hoặc quá mạnh</strong> (dễ chèn ép động mạch đốt sống gây chóng mặt ngã). <br>
+            • Nếu cảm thấy hồi hộp, hoa mắt hoặc hụt hơi, hãy dừng lại và ngồi nghỉ ngay.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Cột 3: Công Cụ Tương Tác: BỘ ĐẾM NHỊP THỞ DƯỠNG SINH (4-4-4) -->
+      <div class="bg-gradient-to-br from-teal-900 to-emerald-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between items-center text-center">
+        <div>
+          <span class="bg-teal-800 text-teal-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Tập Luyện Trực Quan</span>
+          <h3 class="text-2xl font-black mt-2">Đồng Hồ Luyện Thở Sâu Thư Giãn</h3>
+          <p class="text-teal-200 text-sm mt-2">
+            Hít vào bụng phình - Nín thở giữ hơi - Thở ra xẹp bụng. Giúp hạ huyết áp, an thần dễ ngủ.
+          </p>
+        </div>
+
+        <!-- Vòng tròn hoạt họa thở -->
+        <div class="my-8 relative flex items-center justify-center">
+          <div id="breatheVisual" class="w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-teal-500/30 border-4 border-teal-300 flex items-center justify-center transition-all duration-1000 shadow-2xl">
+            <div class="text-center">
+              <span id="breathePhase" class="text-2xl sm:text-3xl font-black tracking-wide block">CHUẨN BỊ</span>
+              <span id="breatheTimer" class="text-4xl font-extrabold text-amber-300 mt-1 block">4s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bộ nút điều khiển -->
+        <div class="w-full space-y-3">
+          <button id="btnStartBreathe" onclick="toggleBreathingGuide()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-lg rounded-2xl shadow-lg transition">
+            <i class="fa-solid fa-play mr-2"></i> BẮT ĐẦU TẬP THỞ
+          </button>
+          <p class="text-xs text-teal-300 font-medium">Khuyên dùng: Thực hiện 5-10 phút trước giờ đi ngủ</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CHUYÊN MỤC MỚI: PHÒNG CHỐNG TÉ NGÃ, LOÃNG XƯƠNG & BẢO VỆ TRÍ NHỚ (ALZHEIMER) ==================== -->
+  <section id="xuongkhop" class="py-12 bg-amber-50/70 border-t border-amber-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-amber-900 font-black text-sm uppercase tracking-wider bg-amber-200 px-3.5 py-1 rounded-full">Phác Đồ Bảo Vệ Kép</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">Phòng Chống Té Ngã Trong Nhà & Giữ Gìn Trí Nhớ Minh Mẫn</h2>
+        <p class="text-slate-700 text-lg mt-2">Một cú ngã trượt chân trong nhà tắm có thể làm gãy cổ xương đùi. Hãy cải tạo ngôi nhà an toàn và tập thể dục cho não bộ mỗi ngày!</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Cột 1: Danh sách kiểm tra ngôi nhà chống té ngã (Checklist tương tác) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-amber-300 shadow-lg">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold">
+              <i class="fa-solid fa-house-medical-circle-check"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-black text-slate-900">1. Kiểm Tra An Toàn Chống Té Ngã (WHO)</h3>
+              <p class="text-sm font-bold text-slate-500">80% tai nạn té ngã ở người già xảy ra tại nhà tắm và cầu thang</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-sm sm:text-base">
+            <label class="flex items-start gap-3 p-3 rounded-xl bg-amber-50/60 border border-amber-200 cursor-pointer hover:bg-amber-100/50 transition">
+              <input type="checkbox" checked class="w-5 h-5 mt-1 accent-emerald-600">
+              <span><strong>Lắp thanh vịn inox chắc chắn</strong> ngay cạnh bồn cầu và khu vực vòi hoa sen tắm đứng.</span>
+            </label>
+            <label class="flex items-start gap-3 p-3 rounded-xl bg-amber-50/60 border border-amber-200 cursor-pointer hover:bg-amber-100/50 transition">
+              <input type="checkbox" checked class="w-5 h-5 mt-1 accent-emerald-600">
+              <span><strong>Trải thảm cao su gai chống trơn trượt</strong> trong sàn nhà tắm; luôn có 1 chiếc ghế nhựa đúc vững chắc để ngồi tắm.</span>
+            </label>
+            <label class="flex items-start gap-3 p-3 rounded-xl bg-amber-50/60 border border-amber-200 cursor-pointer hover:bg-amber-100/50 transition">
+              <input type="checkbox" checked class="w-5 h-5 mt-1 accent-emerald-600">
+              <span><strong>Đèn ngủ cảm biến tự sáng</strong> dọc hành lang từ giường ngủ vào nhà vệ sinh ban đêm.</span>
+            </label>
+            <label class="flex items-start gap-3 p-3 rounded-xl bg-amber-50/60 border border-amber-200 cursor-pointer hover:bg-amber-100/50 transition">
+              <input type="checkbox" checked class="w-5 h-5 mt-1 accent-emerald-600">
+              <span><strong>Dẹp bỏ thảm chùi chân vải mỏng dễ xê dịch</strong>, dây điện vắt ngang lối đi và dép lê đế mòn trơn.</span>
+            </label>
+            <label class="flex items-start gap-3 p-3 rounded-xl bg-amber-50/60 border border-amber-200 cursor-pointer hover:bg-amber-100/50 transition">
+              <input type="checkbox" checked class="w-5 h-5 mt-1 accent-emerald-600">
+              <span><strong>Bộ ba chống loãng xương:</strong> Phơi nắng sớm 15 phút (Vitamin D3) + Ăn thực phẩm giàu Canxi + Tập chịu lực nhẹ.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Cột 2: Bảo vệ não bộ & Chống suy giảm trí nhớ (Alzheimer / Dementia) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-teal-300 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-2xl font-bold">
+                <i class="fa-solid fa-lightbulb"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-black text-teal-950">2. Thể Dục Cho Não Bộ & Ngừa Lẫn Tuổi Già</h3>
+                <p class="text-sm font-bold text-slate-500">Phác đồ kích thích thần kinh từ Viện Lão Khoa Quốc Gia (NIA)</p>
+              </div>
+            </div>
+
+            <div class="space-y-3.5 text-sm sm:text-base">
+              <div class="p-3.5 rounded-xl bg-teal-50 border border-teal-200">
+                <h4 class="font-black text-teal-950">🧠 Bài tập "Thập Chỉ Liên Tâm" (10 Đầu Ngón Tay Nối Với Tim & Não)</h4>
+                <p class="text-slate-700 mt-1">Đan 10 đầu ngón tay vào nhau gõ nhẹ 100 cái, hoặc dùng ngón cái chạm lần lượt từ ngón trỏ đến ngón út rồi ngược lại. Kích thích hàng triệu dây thần kinh vận động tinh trên vỏ não.</p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-teal-50 border border-teal-200">
+                <h4 class="font-black text-teal-950">📖 Đọc sách báo to, đánh cờ hoặc tính nhẩm tiền chợ</h4>
+                <p class="text-slate-700 mt-1">Mỗi ngày đọc thành tiếng 1 trang sách, thuộc lòng 4 câu thơ lục bát hoặc nhớ lại thực đơn mình đã ăn hôm qua giúp củng cố vùng đồi hải mã (trung tâm trí nhớ).</p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200">
+                <h4 class="font-black text-amber-950">👂 Kiểm tra thính lực (Rất quan trọng nhưng hay bị bỏ quên!)</h4>
+                <p class="text-slate-700 mt-1">Nghiên cứu của Ủy ban Y khoa Lancet chứng minh: <strong>Nghe kém tuổi già không được khắc phục làm tăng gấp đôi nguy cơ sa sút trí tuệ</strong> do não bị cô lập âm thanh.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mini-game Rèn luyện phản xạ trí nhớ cho các bác -->
+          <div class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-teal-700 to-emerald-700 text-white flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+              <span class="text-xs uppercase font-bold text-amber-300 block">Bài Tập Phản Xạ Trí Nhớ 10 Giây</span>
+              <p id="brainQuizQuestion" class="font-extrabold text-base">Đố vui rèn não: Lấy 100 trừ đi 7 còn bao nhiêu?</p>
+            </div>
+            <button onclick="nextBrainQuiz()" class="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-xl text-sm shrink-0 shadow">
+              Xem Đáp Án / Câu Khác
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PHẦN 4: GIẤC NGỦ & SINH HOẠT KHOA HỌC ==================== -->
+  <section id="ngunghi" class="py-12 bg-teal-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-teal-300 font-black text-sm uppercase tracking-wider bg-teal-800 px-3.5 py-1 rounded-full">Giấc Vàng Tuổi Thọ</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mt-2">Bí Quyết Ngủ Ngon & Thời Gian Biểu Khoa Học</h2>
+        <p class="text-teal-100 text-lg mt-2">Người cao tuổi thường ngủ ít, khó vào giấc hoặc hay thức giấc nửa đêm. Dưới đây là giải pháp tự nhiên hiệu quả.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Mẹo cải thiện giấc ngủ -->
+        <div class="bg-teal-800/80 p-6 sm:p-8 rounded-3xl border border-teal-700">
+          <h3 class="text-2xl font-black text-amber-300 mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-moon"></i> 4 Mẹo Dân Gian An Toàn Giúp Ngủ Sâu Giấc
+          </h3>
+
+          <div class="space-y-4">
+            <div class="p-4 bg-teal-900/60 rounded-2xl border border-teal-600">
+              <h4 class="font-extrabold text-lg text-white">1. Ngâm chân nước ấm gừng + muối hạt (20h30)</h4>
+              <p class="text-teal-200 text-sm mt-1">Nước ấm khoảng 40 độ C, ngập mắt cá chân trong 15 phút. Giúp dẫn máu từ đầu xuống chân, làm ấm kinh mạch và dễ dàng đi vào giấc ngủ.</p>
+            </div>
+
+            <div class="p-4 bg-teal-900/60 rounded-2xl border border-teal-600">
+              <h4 class="font-extrabold text-lg text-white">2. Không uống trà đặc, cà phê sau 15h chiều</h4>
+              <p class="text-teal-200 text-sm mt-1">Chất cafein đào thải rất chậm ở người già. Buổi tối chỉ nên uống một ngụm trà tim sen loãng, hoa cúc ấm hoặc nước lọc ấm.</p>
+            </div>
+
+            <div class="p-4 bg-teal-900/60 rounded-2xl border border-teal-600">
+              <h4 class="font-extrabold text-lg text-white">3. Giữ ấm ngực, cổ và lòng bàn chân khi ngủ</h4>
+              <p class="text-teal-200 text-sm mt-1">Đêm về sáng nhiệt độ hạ thấp dễ kích hoạt co thắt mạch vành. Hãy mang một đôi tất cotton mỏng và đắp chăn ấm ngang ngực.</p>
+            </div>
+
+            <div class="p-4 bg-teal-900/60 rounded-2xl border border-teal-600">
+              <h4 class="font-extrabold text-lg text-white">4. Không dậy bước ra khỏi giường quá đột ngột</h4>
+              <p class="text-teal-200 text-sm mt-1">Khi thức giấc giữa đêm đi vệ sinh: Nằm yên 1 phút -> Ngồi tại giường thả chân xuống 1 phút -> Mới đứng lên từ từ để tránh tụt huyết áp tư thế.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lịch sinh hoạt biểu mẫu khoa học -->
+        <div class="bg-white text-slate-800 p-6 sm:p-8 rounded-3xl shadow-xl">
+          <h3 class="text-2xl font-black text-teal-950 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-clock text-teal-600"></i> Lịch Trình Sinh Hoạt Lý Tưởng Cho Người 60+
+          </h3>
+
+          <div class="relative border-l-4 border-teal-400 ml-4 space-y-6 py-2">
+            
+            <div class="ml-6 relative">
+              <span class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-amber-400 text-slate-900 font-black flex items-center justify-center text-xs shadow">05:30</span>
+              <h4 class="font-black text-lg text-teal-900">Thức dậy & Uống 1 ly nước ấm</h4>
+              <p class="text-slate-600 text-sm">Xoa nóng hai lòng bàn tay, xoa mặt nhẹ nhàng đánh thức các giác quan trước khi xuống giường.</p>
+            </div>
+
+            <div class="ml-6 relative">
+              <span class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-teal-500 text-white font-black flex items-center justify-center text-xs shadow">06:15</span>
+              <h4 class="font-black text-lg text-teal-900">Tập thể dục & Phơi nắng sớm</h4>
+              <p class="text-slate-600 text-sm">Đi bộ nhẹ 20 phút ngoài trời nắng dịu để tổng hợp Vitamin D tự nhiên cho xương chắc khỏe.</p>
+            </div>
+
+            <div class="ml-6 relative">
+              <span class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-emerald-500 text-white font-black flex items-center justify-center text-xs shadow">07:00</span>
+              <h4 class="font-black text-lg text-teal-900">Ăn sáng đầy đủ & Đo huyết áp</h4>
+              <p class="text-slate-600 text-sm">Cháo yến mạch hoặc phở mềm ít béo. Uống thuốc huyết áp buổi sáng theo đơn bác sĩ.</p>
+            </div>
+
+            <div class="ml-6 relative">
+              <span class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-teal-600 text-white font-black flex items-center justify-center text-xs shadow">12:30</span>
+              <h4 class="font-black text-lg text-teal-900">Nghỉ trưa ngắn (20 - 30 phút)</h4>
+              <p class="text-slate-600 text-sm">Không nên ngủ trưa quá 45 phút để tránh nặng đầu và không gây mất ngủ vào ban đêm.</p>
+            </div>
+
+            <div class="ml-6 relative">
+              <span class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-indigo-600 text-white font-black flex items-center justify-center text-xs shadow">21:30</span>
+              <h4 class="font-black text-lg text-teal-900">Chuẩn bị ngủ & Thư giãn tinh thần</h4>
+              <p class="text-slate-600 text-sm">Tắt tivi, để điện thoại cách xa giường, giữ phòng ngủ tối êm dịu, nhiệt độ phòng 26-27 độ C.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PHẦN 5: THEO DÕI HUYẾT ÁP TƯƠNG TÁC & NGUYÊN TẮC THUỐC ==================== -->
+  <section id="theodoi" class="py-12 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="text-teal-800 font-black text-sm uppercase tracking-wider bg-teal-100 px-3.5 py-1 rounded-full">Sổ Sức Khỏe Gia Đình</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">Theo Dõi Huyết Áp & An Toàn Thuốc Men</h2>
+      <p class="text-slate-700 text-lg mt-2">Huyết áp là "kẻ giết người thầm lặng". Hãy nhập số đo hàng ngày để biết cơ thể mình đang ở mức an toàn hay nguy cơ.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      <!-- CÔNG CỤ TƯƠNG TÁC NHẬP HUYẾT ÁP -->
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-teal-300 shadow-xl">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-2xl font-bold">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <div>
+            <h3 class="text-2xl font-black text-teal-950">Kiểm Tra Trực Tiếp Chỉ Số Huyết Áp</h3>
+            <p class="text-sm font-semibold text-slate-500">Nhập 2 số đo trên máy đo huyết áp của bạn</p>
+          </div>
+        </div>
+
+        <form id="bpForm" onsubmit="event.preventDefault(); analyzeBloodPressure();" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-800 font-extrabold text-base mb-1" for="systolic">
+                Huyết áp Tối Đa (Tâm thu - SYS):
+              </label>
+              <div class="relative">
+                <input type="number" id="systolic" min="50" max="260" placeholder="Ví dụ: 125" required class="w-full text-2xl font-black px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-teal-600 focus:outline-none">
+                <span class="absolute right-3 top-3.5 text-sm font-bold text-slate-400">mmHg</span>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-slate-800 font-extrabold text-base mb-1" for="diastolic">
+                Huyết áp Tối Thiểu (Tâm trương - DIA):
+              </label>
+              <div class="relative">
+                <input type="number" id="diastolic" min="30" max="180" placeholder="Ví dụ: 80" required class="w-full text-2xl font-black px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-teal-600 focus:outline-none">
+                <span class="absolute right-3 top-3.5 text-sm font-bold text-slate-400">mmHg</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 bg-teal-600 hover:bg-teal-700 active:scale-98 text-white font-black text-lg rounded-xl shadow-md transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-calculator"></i> ĐÁNH GIÁ CHỈ SỐ NGAY
+          </button>
+        </form>
+
+        <!-- Khung kết quả phân tích -->
+        <div id="bpResultBox" class="mt-6 p-5 rounded-2xl border-2 hidden transition-all duration-300">
+          <div class="flex items-center gap-3 mb-2">
+            <span id="bpResultIcon" class="text-3xl"></span>
+            <div>
+              <h4 id="bpResultTitle" class="text-xl font-black"></h4>
+              <p id="bpResultDesc" class="text-sm font-medium mt-0.5"></p>
+            </div>
+          </div>
+          <div id="bpAdvice" class="text-sm pt-3 border-t font-semibold"></div>
+        </div>
+
+        <!-- Bảng tiêu chuẩn tham khảo ngắn -->
+        <div class="mt-6 text-xs text-slate-500 space-y-1 bg-slate-50 p-3 rounded-xl">
+          <p><strong>Chuẩn WHO cho người cao tuổi:</strong></p>
+          <p>• Lý tưởng: Dưới 120 / 80 mmHg</p>
+          <p>• Bình thường / Giới hạn: 120 - 139 / 80 - 89 mmHg</p>
+          <p>• Huyết áp cao độ 1: 140 - 159 / 90 - 99 mmHg</p>
+          <p>• Huyết áp rất cao (nguy hiểm): Trên 160 / 100 mmHg</p>
+        </div>
+
+        <!-- MỚI: CÔNG CỤ KIỂM TRA ĐƯỜNG HUYẾT TƯƠNG TÁC -->
+        <div class="mt-8 pt-6 border-t-2 border-teal-100">
+          <h4 class="text-xl font-black text-teal-950 mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-droplet text-rose-500"></i> Kiểm Tra Nhanh Chỉ Số Đường Huyết Tại Nhà
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Thời điểm đo:</label>
+              <select id="glucoseTiming" class="w-full px-3 py-2.5 rounded-xl border-2 border-slate-300 font-bold text-sm focus:border-teal-600 focus:outline-none">
+                <option value="fasting">Lúc đói (Sáng chưa ăn)</option>
+                <option value="afterMeal">Sau ăn 2 tiếng</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Chỉ số máy đo (mmol/L):</label>
+              <input type="number" step="0.1" id="glucoseVal" placeholder="VD: 6.2" class="w-full px-3 py-2 rounded-xl border-2 border-slate-300 font-black text-lg focus:border-teal-600 focus:outline-none">
+            </div>
+            <div class="flex items-end">
+              <button type="button" onclick="analyzeGlucose()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl text-sm shadow transition">
+                Kiểm Tra Đường Huyết
+              </button>
+            </div>
+          </div>
+          <div id="glucoseResultBox" class="mt-3 p-3.5 rounded-xl border hidden text-sm font-bold"></div>
+        </div>
+
+      </div>
+
+      <!-- NGUYÊN TẮC "5 ĐÚNG" KHI UỐNG THUỐC -->
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-amber-300 shadow-xl flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold">
+              <i class="fa-solid fa-pills"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-black text-slate-900">Quy Tắc "5 Đúng" An Toàn Thuốc Men</h3>
+              <p class="text-sm font-bold text-slate-500">Giúp phòng tránh tương tác và ngộ độc thuốc</p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-amber-50/70 rounded-xl border border-amber-200">
+              <i class="fa-solid fa-circle-check text-amber-600 mt-1"></i>
+              <div>
+                <strong class="text-slate-900 font-extrabold text-base block">1. Đúng Người Bệnh</strong>
+                <span class="text-slate-600 text-sm">Tuyệt đối không uống theo đơn của người hàng xóm dù có triệu chứng giống hệt nhau.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-amber-50/70 rounded-xl border border-amber-200">
+              <i class="fa-solid fa-circle-check text-amber-600 mt-1"></i>
+              <div>
+                <strong class="text-slate-900 font-extrabold text-base block">2. Đúng Loại Thuốc</strong>
+                <span class="text-slate-600 text-sm">Đọc kỹ tên và công dụng trước khi uống. Nên chia thuốc vào khay 7 ngày sáng/trưa/tối.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-amber-50/70 rounded-xl border border-amber-200">
+              <i class="fa-solid fa-circle-check text-amber-600 mt-1"></i>
+              <div>
+                <strong class="text-slate-900 font-extrabold text-base block">3. Đúng Liều Lượng</strong>
+                <span class="text-slate-600 text-sm">Không tự tiện bẻ nửa viên thuốc nếu không có rãnh chia hoặc viên bao phim phóng thích chậm.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-amber-50/70 rounded-xl border border-amber-200">
+              <i class="fa-solid fa-circle-check text-amber-600 mt-1"></i>
+              <div>
+                <strong class="text-slate-900 font-extrabold text-base block">4. Đúng Thời Điểm & Đường Dùng</strong>
+                <span class="text-slate-600 text-sm">Thuốc dạ dày trước ăn, thuốc khớp sau ăn no. Luôn uống cùng một cốc nước lọc đầy.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 bg-amber-50/70 rounded-xl border border-amber-200">
+              <i class="fa-solid fa-triangle-exclamation text-rose-600 mt-1"></i>
+              <div>
+                <strong class="text-rose-950 font-extrabold text-base block">5. KHÔNG Tự Ý Bỏ Thuốc Huyết Áp</strong>
+                <span class="text-slate-700 text-sm">Khi thấy huyết áp về bình thường, đó là do thuốc đang có tác dụng. <strong>Bỏ thuốc huyết áp sẽ gây tăng vọt vỡ mạch máu não!</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 p-3 bg-slate-100 rounded-xl text-center">
+          <p class="text-xs text-slate-600">Lời khuyên: Con cháu hãy dán nhãn to chữ nổi trên từng lọ thuốc cho ông bà.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CHUYÊN MỤC MỚI: LỊCH TẦM SOÁT ĐỊNH KỲ & VẮC-XIN BẢO VỆ TUỔI 60+ ==================== -->
+  <section id="tamsoat" class="py-12 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-teal-800 font-black text-sm uppercase tracking-wider bg-teal-100 px-3.5 py-1 rounded-full">Y Học Dự Phòng Quốc Tế</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-teal-950 mt-2">Danh Mục Khám Tầm Soát Định Kỳ & 4 Mũi Vắc-xin Thiết Yếu 60+</h2>
+        <p class="text-slate-700 text-lg mt-2">Phòng bệnh hơn chữa bệnh. Phát hiện sớm các bất thường mạch máu và chủ động miễn dịch giúp người cao tuổi tránh các đợt nằm viện nặng nề.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Bảng Tầm Soát 6 Tháng / 1 Năm -->
+        <div class="bg-teal-50/70 p-6 sm:p-8 rounded-3xl border-2 border-teal-200">
+          <h3 class="text-2xl font-black text-teal-950 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-stethoscope text-teal-600"></i> 6 Hạng Mục Khám Định Kỳ Mỗi 6 - 12 Tháng
+          </h3>
+          <div class="space-y-3 text-sm sm:text-base">
+            <div class="bg-white p-3.5 rounded-xl border border-teal-200 flex items-start gap-3">
+              <span class="w-7 h-7 rounded-full bg-teal-600 text-white font-black flex items-center justify-center shrink-0 text-xs mt-0.5">1</span>
+              <div>
+                <strong class="text-slate-900">Siêu âm Doppler Động mạch cảnh & Tim:</strong>
+                <p class="text-slate-600 text-sm">Phát hiện sớm mảng xơ vữa gây hẹp mạch máu lên não — thủ phạm số 1 gây đột quỵ nhồi máu não.</p>
+              </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-teal-200 flex items-start gap-3">
+              <span class="w-7 h-7 rounded-full bg-teal-600 text-white font-black flex items-center justify-center shrink-0 text-xs mt-0.5">2</span>
+              <div>
+                <strong class="text-slate-900">Xét nghiệm Bộ mỡ máu (LDL-C, Triglyceride) & HbA1c:</strong>
+                <p class="text-slate-600 text-sm">Đánh giá đường huyết trung bình 3 tháng và lượng mỡ xấu bám thành mạch.</p>
+              </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-teal-200 flex items-start gap-3">
+              <span class="w-7 h-7 rounded-full bg-teal-600 text-white font-black flex items-center justify-center shrink-0 text-xs mt-0.5">3</span>
+              <div>
+                <strong class="text-slate-900">Chức năng Thận (eGFR, Creatinine) & Men Gan:</strong>
+                <p class="text-slate-600 text-sm">Cực kỳ quan trọng với các bác đang uống thuốc huyết áp, tiểu đường hoặc thuốc xương khớp dài ngày.</p>
+              </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-teal-200 flex items-start gap-3">
+              <span class="w-7 h-7 rounded-full bg-teal-600 text-white font-black flex items-center justify-center shrink-0 text-xs mt-0.5">4</span>
+              <div>
+                <strong class="text-slate-900">Đo mật độ xương DEXA & Khám đáy mắt:</strong>
+                <p class="text-slate-600 text-sm">Đánh giá mức độ loãng xương cột sống/cổ xương đùi và kiểm tra đục thủy tinh thể, thoái hóa điểm vàng.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Vắc-xin Khuyến Cáo Cho Người Cao Tuổi -->
+        <div class="bg-emerald-50/70 p-6 sm:p-8 rounded-3xl border-2 border-emerald-200 flex flex-col justify-between">
+          <div>
+            <h3 class="text-2xl font-black text-emerald-950 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-syringe text-emerald-600"></i> 4 Loại Vắc-xin Bảo Vệ Lá Phổi & Thần Kinh 60+
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div class="bg-white p-4 rounded-2xl border border-emerald-200">
+                <span class="text-xs font-black uppercase bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">Mỗi năm 1 mũi</span>
+                <h4 class="font-black text-lg text-slate-900 mt-2">1. Vắc-xin Cúm Mùa</h4>
+                <p class="text-slate-600 text-sm mt-1">Giảm tới 40% nguy cơ biến chứng viêm phổi cấp và giảm nguy cơ kích hoạt nhồi máu cơ tim sau nhiễm cúm.</p>
+              </div>
+              <div class="bg-white p-4 rounded-2xl border border-emerald-200">
+                <span class="text-xs font-black uppercase bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full">Bảo vệ phổi dài hạn</span>
+                <h4 class="font-black text-lg text-slate-900 mt-2">2. Vắc-xin Phế Cầu Khuẩn</h4>
+                <p class="text-slate-600 text-sm mt-1">Ngừa viêm phổi nặng, nhiễm khuẩn huyết và viêm màng não do vi khuẩn phế cầu ở người có bệnh nền.</p>
+              </div>
+              <div class="bg-white p-4 rounded-2xl border border-emerald-200">
+                <span class="text-xs font-black uppercase bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Ngừa đau dây thần kinh</span>
+                <h4 class="font-black text-lg text-slate-900 mt-2">3. Vắc-xin Zona Thần Kinh</h4>
+                <p class="text-slate-600 text-sm mt-1">Phòng bệnh giời leo (Zona) gây đau rát bỏng dây thần kinh kéo dài hàng năm trời làm mất ngủ suy kiệt ở người già.</p>
+              </div>
+              <div class="bg-white p-4 rounded-2xl border border-emerald-200">
+                <span class="text-xs font-black uppercase bg-purple-100 text-purple-900 px-2.5 py-0.5 rounded-full">Nhắc lại mỗi 10 năm</span>
+                <h4 class="font-black text-lg text-slate-900 mt-2">4. Bạch Hầu - Ho Gà - Uốn Ván</h4>
+                <p class="text-slate-600 text-sm mt-1">Bảo vệ khi các bác làm vườn, chăm cây cảnh chẳng may bị trầy xước hoặc dẫm phải gai nhọn.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 p-4 bg-white rounded-2xl border-2 border-emerald-400 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-sm">
+              <strong class="text-emerald-950 block">Cần giải đáp về chế độ chăm sóc & lịch khám cho người cao tuổi?</strong>
+              <span class="text-slate-600">Liên hệ trực tiếp Ban Chăm Sóc Sức Khỏe Cộng Đồng 60+</span>
+            </div>
+            <a href="tel:0983212252" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl text-sm shrink-0 shadow flex items-center gap-2">
+              <i class="fa-solid fa-phone"></i> 0983 212 252
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PHẦN 6: GÓC CHIA SẺ TINH THẦN & SỐNG VUI ==================== -->
+  <section id="tinhthan" class="py-12 bg-gradient-to-t from-emerald-50 to-teal-50 border-t border-teal-200">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <span class="text-emerald-800 font-black text-sm uppercase tracking-wider bg-emerald-200 px-3.5 py-1 rounded-full">Tâm Hồn An Lạc</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-teal-950 mt-2">Sống Vui - Sống Khỏe - Sống Có Ích</h2>
+      <p class="text-slate-700 text-lg mt-2">Một nụ cười bằng mười thang thuốc bổ. Tinh thần phấn chấn là lá chắn tự nhiên mạnh mẽ nhất.</p>
+
+      <!-- Khung lời khuyên truyền cảm hứng thay đổi mỗi ngày -->
+      <div class="mt-8 bg-white p-6 sm:p-10 rounded-3xl border-2 border-emerald-300 shadow-xl relative overflow-hidden">
+        <i class="fa-solid fa-quote-left text-6xl text-emerald-100 absolute left-4 top-2 -z-0"></i>
+        
+        <div class="relative z-10">
+          <p id="dailyQuoteText" class="text-xl sm:text-3xl font-extrabold text-teal-900 leading-relaxed italic">
+            "Tuổi già là mùa thu của cuộc đời, không còn cái gay gắt của mùa hạ, mà lắng đọng, vàng rực và bình yên."
+          </p>
+          <span id="dailyQuoteAuthor" class="block mt-4 text-base font-bold text-amber-700">— Cẩm nang dưỡng sinh tâm hồn</span>
+
+          <div class="mt-6 flex flex-wrap justify-center gap-3">
+            <button onclick="changeQuote()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full transition shadow-md flex items-center gap-2">
+              <i class="fa-solid fa-arrows-rotate"></i> Xem Câu Nói Tiếp Theo
+            </button>
+            <button onclick="shareTip()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded-full transition shadow-md flex items-center gap-2">
+              <i class="fa-regular fa-copy"></i> Sao Chép Gửi Con Cháu
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Nguyên tắc tâm lý cho tuổi 60+ -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 text-left">
+        <div class="bg-white p-5 rounded-2xl border border-teal-200">
+          <h4 class="font-black text-lg text-teal-900 mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-face-smile text-amber-500"></i> Buông Bỏ Lo Âu
+          </h4>
+          <p class="text-sm text-slate-600">Con cháu đã lớn và có cuộc đời riêng. Hãy trao quyền tự chủ và tin tưởng vào thế hệ trẻ.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-teal-200">
+          <h4 class="font-black text-lg text-teal-900 mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-users text-teal-600"></i> Giao Lưu Bạn Bè
+          </h4>
+          <p class="text-sm text-slate-600">Tham gia hội cờ tướng, câu lạc bộ dưỡng sinh, thơ ca hưu trí giúp não bộ luôn tươi mới và chống teo não.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-teal-200">
+          <h4 class="font-black text-lg text-teal-900 mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-tree text-emerald-600"></i> Thú Vui Điền Viên
+          </h4>
+          <p class="text-sm text-slate-600">Trồng vài chậu hoa, chăm cây cảnh, nuôi chim cá cảnh giúp tâm hồn hòa hợp cùng thiên nhiên an lành.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CỬA SỔ MODAL CẤP CỨU KHẨN CẤP (SOS MODAL) ==================== -->
+  <div id="emergencyModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full rounded-3xl p-6 sm:p-8 border-4 border-rose-600 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+      
+      <button onclick="closeEmergencyModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xl font-black flex items-center justify-center transition" aria-label="Đóng cửa sổ">
+        &times;
+      </button>
+
+      <div class="text-center">
+        <div class="w-16 h-16 rounded-full bg-rose-100 text-rose-600 text-3xl font-black flex items-center justify-center mx-auto mb-3 animate-pulse">
+          <i class="fa-solid fa-phone-volume"></i>
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-black text-rose-700">GỌI CỨU TRỢ KHẨN CẤP</h3>
+        <p class="text-slate-600 text-sm sm:text-base font-bold mt-1">Chọn số điện thoại bên dưới để bấm gọi ngay:</p>
+      </div>
+
+      <div class="space-y-3 mt-6">
+        <!-- Nút gọi 115 -->
+        <a href="tel:115" class="w-full py-4 px-6 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl flex items-center justify-between font-black text-xl shadow-lg shadow-rose-600/30 transition">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-truck-medical text-2xl"></i>
+            <span>CẤP CỨU Y TẾ TOÀN QUỐC</span>
+          </div>
+          <span class="text-2xl bg-white/20 px-3 py-1 rounded-xl">115</span>
+        </a>
+
+        <!-- Hỗ trợ tư vấn trực tiếp Hotline & Zalo 0983 212 252 -->
+        <div class="p-4 bg-emerald-50 rounded-2xl border-2 border-emerald-400">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-extrabold text-emerald-950 text-sm sm:text-base">Hotline & Zalo Ban Tư Vấn Sức Khỏe:</span>
+            <span class="text-xs bg-emerald-200 text-emerald-900 font-bold px-2 py-0.5 rounded-full">Hỗ trợ nhiệt tình</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+            <a href="tel:0983212252" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl flex items-center justify-center gap-2 font-black text-base transition shadow">
+              <i class="fa-solid fa-phone"></i> Gọi 0983 212 252
+            </a>
+            <a href="https://zalo.me/0983212252" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl flex items-center justify-center gap-2 font-black text-base transition shadow">
+              <i class="fa-solid fa-comment-dots"></i> Chat Zalo Ngay
+            </a>
+          </div>
+        </div>
+
+        <!-- Nút gọi Người Thân (Cấu hình nhanh) -->
+        <div class="p-4 bg-teal-50 rounded-2xl border-2 border-teal-300">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-extrabold text-teal-900 text-sm">Số điện thoại Con / Người Chăm Sóc:</span>
+            <button onclick="editRelativePhone()" class="text-xs font-bold text-teal-700 underline">Đổi số</button>
+          </div>
+          <a id="btnCallRelative" href="tel:0983212252" class="w-full py-3 px-4 bg-teal-700 hover:bg-teal-800 text-white rounded-xl flex items-center justify-between font-black text-lg transition">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-user-shield"></i>
+              <span id="relativeNameLabel">Người Thân / Hỗ Trợ</span>
+            </div>
+            <span id="relativePhoneLabel" class="text-amber-300">0983 212 252</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center">
+        <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+          * Trong lúc xe cấp cứu tới: Đặt bệnh nhân nằm nghiêng, không cho ăn uống bất cứ thứ gì, giữ đầu cao và thông thoáng đường thở.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Thông báo Toast nhỏ góc màn hình -->
+  <div id="toastMessage" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-sm transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-2 border border-slate-700">
+    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toastText">Đã thực hiện xong</span>
+  </div>
+
+  <!-- ==================== CHÂN TRANG (FOOTER) ==================== -->
+  <footer class="bg-slate-900 text-slate-300 py-10 border-t-4 border-teal-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div>
+          <div class="flex items-center gap-2 text-2xl font-black text-white mb-2">
+            <i class="fa-solid fa-heart-pulse text-teal-400"></i> Sống Vui 60+
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Trang thông tin cộng đồng phi lợi nhuận dành riêng cho người cao tuổi Việt Nam và gia đình. Vì một thế hệ ông bà, cha mẹ an nhiên, mạnh khỏe và trường thọ.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-extrabold text-base mb-3">Đường Dây Nóng Khẩn Cấp</h4>
+          <ul class="text-sm space-y-2 font-medium">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-rose-500"></i>
+              <span>Cấp cứu Y Tế: <strong>115</strong></span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-shield text-blue-400"></i>
+              <span>Cảnh sát / Tìm người lạc: <strong>113</strong></span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-fire text-amber-500"></i>
+              <span>Cứu nạn cứu hộ: <strong>114</strong></span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-extrabold text-base mb-3">Ban Quản Trị & Tư Vấn Cộng Đồng</h4>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Hỗ trợ tư vấn cẩm nang, tài liệu chăm sóc sức khỏe dinh dưỡng và luyện tập cho người cao tuổi:
+          </p>
+          <div class="space-y-2">
+            <a href="tel:0983212252" class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-emerald-800/80 hover:bg-emerald-700 text-emerald-100 font-extrabold text-sm transition border border-emerald-600">
+              <i class="fa-solid fa-phone-volume text-emerald-300 text-base"></i>
+              <span>Điện thoại: 0983 212 252 (Bấm gọi)</span>
+            </a>
+            <a href="https://zalo.me/0983212252" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-blue-800/80 hover:bg-blue-700 text-blue-100 font-extrabold text-sm transition border border-blue-600">
+              <i class="fa-solid fa-comment text-blue-300 text-base"></i>
+              <span>Zalo hỗ trợ: 0983.212.252 (Nhắn tin)</span>
+            </a>
+          </div>
+          <div class="mt-4 text-xs text-teal-400 font-bold">
+            Chúc các Bác, các Cô Chú một ngày an vui, dồi dào sức khỏe!
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-800 mt-8 pt-6 text-center text-xs text-slate-500">
+        © 2026 Sống Vui 60+ Cổng Chăm Sóc Sức Khỏe Tuổi Cao Niên. Hotline / Zalo: 0983 212 252.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== WIDGET NỔI LIÊN HỆ NHANH GÓC MÀN HÌNH (GỌI & ZALO 0983 212 252) ==================== -->
+  <aside aria-label="Liên hệ nhanh" class="fixed bottom-6 left-6 z-40 flex flex-col gap-3">
+    <!-- Nút Nhắn Tin Zalo -->
+    <a href="https://zalo.me/0983212252" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white pl-3.5 pr-4 py-2.5 rounded-full shadow-2xl border-2 border-white transition-all transform hover:scale-105 active:scale-95" title="Nhắn tin Zalo với số 0983 212 252">
+      <div class="w-8 h-8 rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-sm shadow">
+        Z
+      </div>
+      <div class="text-left leading-tight">
+        <span class="block text-[11px] font-bold text-blue-100 uppercase tracking-wide">Nhắn Zalo</span>
+        <span class="block text-sm sm:text-base font-black">0983 212 252</span>
+      </div>
+    </a>
+
+    <!-- Nút Bấm Gọi Ngay -->
+    <a href="tel:0983212252" class="group flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white pl-3.5 pr-4 py-2.5 rounded-full shadow-2xl border-2 border-white transition-all transform hover:scale-105 active:scale-95 animate-bounce" title="Bấm gọi ngay số 0983 212 252">
+      <div class="w-8 h-8 rounded-full bg-white text-emerald-700 flex items-center justify-center font-black text-sm shadow">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+      <div class="text-left leading-tight">
+        <span class="block text-[11px] font-bold text-emerald-100 uppercase tracking-wide">Gọi Tư Vấn</span>
+        <span class="block text-sm sm:text-base font-black">0983 212 252</span>
+      </div>
+    </a>
+  </aside>
+
+  <!-- ==================== JAVASCRIPT XỬ LÝ TOÀN BỘ CHỨC NĂNG ==================== -->
+  <script>
+    // -------------------------------------------------------------
+    // 1. QUẢN LÝ TRỢ NĂNG: CỠ CHỮ & TƯƠNG PHẢN CAO
+    // -------------------------------------------------------------
+    function setFontScale(scale) {
+      document.body.classList.remove('font-size-lg', 'font-size-xl');
+      if (scale === 1.15) {
+        document.body.classList.add('font-size-lg');
+      } else if (scale === 1.3) {
+        document.body.classList.add('font-size-xl');
+      }
+      showToast(`Đã đổi cỡ chữ: ${scale === 1 ? 'Vừa' : scale === 1.15 ? 'To' : 'Rất To'}`);
+    }
+
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+      const isHigh = document.body.classList.contains('high-contrast');
+      showToast(isHigh ? "Đã bật chế độ Tương phản cao" : "Đã chuyển về màu bình thường dịu mắt");
+    }
+
+    // -------------------------------------------------------------
+    // 2. TÍNH NĂNG ĐỌC GIỌNG NÓI TIẾNG VIỆT (WEB SPEECH API)
+    // -------------------------------------------------------------
+    let isSpeaking = false;
+    let synth = window.speechSynthesis;
+
+    function toggleReadPage() {
+      if (!('speechSynthesis' in window)) {
+        showToast("Trình duyệt chưa hỗ trợ tính năng đọc giọng nói.");
+        return;
+      }
+
+      if (isSpeaking) {
+        synth.cancel();
+        isSpeaking = false;
+        document.getElementById('speakBtnText').textContent = "Đọc to trang web";
+        showToast("Đã dừng đọc.");
+      } else {
+        const textToRead = "Chào mừng quý bác và cô chú đến với Cổng thông tin Sức Khỏe Người Cao Tuổi. Trang web gồm các mục chính: Cảnh báo khẩn cấp đột quỵ não và tim; Thực đơn dinh dưỡng bảy ngày; Bài tập dưỡng sinh thở sâu; Bí quyết giấc ngủ ngon và Sổ đo kiểm tra huyết áp mỗi ngày.";
+        const utterThis = new SpeechSynthesisUtterance(textToRead);
+        utterThis.lang = 'vi-VN';
+        utterThis.rate = 0.9; // Đọc chậm rãi, rõ ràng cho người lớn tuổi
+        
+        utterThis.onend = function() {
+          isSpeaking = false;
+          document.getElementById('speakBtnText').textContent = "Đọc to trang web";
+        };
+
+        synth.speak(utterThis);
+        isSpeaking = true;
+        document.getElementById('speakBtnText').textContent = "Đang đọc... Bấm dừng";
+        showToast("Đang phát âm thanh đọc trang web...");
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 3. CỬA SỔ KHẨN CẤP (SOS) & ĐỔI SỐ NGƯỜI THÂN
+    // -------------------------------------------------------------
+    function openEmergencyModal() {
+      document.getElementById('emergencyModal').classList.remove('hidden');
+    }
+
+    function closeEmergencyModal() {
+      document.getElementById('emergencyModal').classList.add('hidden');
+    }
+
+    function editRelativePhone() {
+      const newPhone = prompt("Nhập số điện thoại người thân để bấm gọi nhanh:", "0912345678");
+      if (newPhone && newPhone.trim() !== "") {
+        document.getElementById('btnCallRelative').href = "tel:" + newPhone.trim();
+        document.getElementById('relativePhoneLabel').textContent = newPhone.trim();
+        showToast("Đã lưu số điện thoại người thân mới!");
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 4. KIỂM TRA ĐÁNH GIÁ NGUY CƠ ĐỘT QUỴ TẠI CHỖ
+    // -------------------------------------------------------------
+    function assessRisk() {
+      const checkedBoxes = document.querySelectorAll('.check-sym:checked').length;
+      const riskAlert = document.getElementById('riskAlert');
+      if (checkedBoxes >= 1) {
+        riskAlert.classList.remove('hidden');
+      } else {
+        riskAlert.classList.add('hidden');
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 5. DỮ LIỆU & RENDER THỰC ĐƠN 7 NGÀY
+    // -------------------------------------------------------------
+    const weeklyMenus = {
+      2: {
+        breakfast: "Phở gà nạc mềm, thêm nhiều hành lá và rau mùi thơm.",
+        lunch: "Cơm xốp + Cá quả kho gừng nhạt + Canh rau ngót nấu thịt nạc băm.",
+        snack: "1 quả chuối sứ chín + 1 hộp sữa chua không đường.",
+        dinner: "Cháo sườn băm bí đỏ, rắc hạt tiêu nhẹ dễ tiêu hóa."
+      },
+      3: {
+        breakfast: "Cháo yến mạch nấu tôm băm và cà rốt nghiền nhỏ.",
+        lunch: "Cơm mềm + Đậu phụ non sốt cà chua + Canh mồng tơi cua đồng.",
+        snack: "Nửa quả thanh long ruột đỏ mát ruột.",
+        dinner: "Cơm + Ức gà hấp lá chanh + Canh bầu nấu tôm khô mềm."
+      },
+      4: {
+        breakfast: "Bánh cuốn chay thanh đạm rắc chà bông nạc và giá đỗ trần.",
+        lunch: "Cơm mềm + Cá hồi áp chảo nhạt + Canh bí xanh sườn hầm nhừ.",
+        snack: "1 ly sữa đậu nành ấm ít đường + 2 quả óc chó đập giập.",
+        dinner: "Cháo đậu xanh thịt băm ấm bụng, dễ ngủ."
+      },
+      5: {
+        breakfast: "Hủ tiếu mềm nấu thịt nạc và rau xà lách tươi.",
+        lunch: "Cơm xốp + Trứng hấp thịt băm mộc nhĩ + Canh cải ngọt nấu tôm.",
+        snack: "1 miếng đu đủ chín mềm ngọt tự nhiên.",
+        dinner: "Cơm gạo lứt xốp + Tép rang khế ngọt + Canh mướp hương nấu lạc."
+      },
+      6: {
+        breakfast: "Súp gà ngô non nấm hương ấm nóng giàu đạm.",
+        lunch: "Cơm mềm + Cá basa kho tộ vừa ăn + Đĩa rau củ luộc thập cẩm chấm kho quẹt nhạt.",
+        snack: "1 ly nước cam vắt mật ong ấm dịu nhẹ.",
+        dinner: "Cơm + Thịt lợn luộc mềm cuộn rau sống dưa leo + Canh rau dền."
+      },
+      7: {
+        breakfast: "Bánh bao nhân thịt trứng cút ăn kèm 1 ly nước ấm.",
+        lunch: "Cơm xốp + Bò xào cần tây hành tây mềm + Canh chua cá lóc miền Tây thanh mát.",
+        snack: "1 quả táo nhỏ gọt vỏ cắt lát mỏng.",
+        dinner: "Miến gà nấu măng non khô ninh nhừ ấm bụng cuối tuần."
+      },
+      8: {
+        breakfast: "Bún mọc nấu sườn non hầm nhừ thơm mùi mộc nhĩ.",
+        lunch: "Bữa cơm gia đình ấm cúng: Tôm hấp sả + Canh khổ qua nhồi thịt hạ nhiệt + Cải thìa sốt dầu hào.",
+        snack: "1 chén chè hạt sen long nhãn nấu đường phèn thanh mát.",
+        dinner: "Cháo cá chép nấu hành thì là bồi bổ khí huyết, an thần."
+      }
+    };
+
+    function showMenuDay(dayNumber) {
+      // Đổi trạng thái nút bấm
+      document.querySelectorAll('.day-tab').forEach(btn => {
+        btn.classList.remove('bg-amber-600', 'text-white', 'shadow');
+        btn.classList.add('bg-slate-100', 'text-slate-700');
+      });
+      const currentBtn = document.getElementById('tabDay' + dayNumber);
+      if (currentBtn) {
+        currentBtn.classList.remove('bg-slate-100', 'text-slate-700');
+        currentBtn.classList.add('bg-amber-600', 'text-white', 'shadow');
+      }
+
+      const menu = weeklyMenus[dayNumber];
+      const container = document.getElementById('menuDetailCard');
+      container.innerHTML = `
+        <div class="p-4 bg-amber-50/60 rounded-2xl border border-amber-200">
+          <div class="flex items-center gap-2 text-amber-800 font-extrabold text-base mb-2">
+            <i class="fa-solid fa-mug-hot"></i> Bữa Sáng (06:30 - 07:30)
+          </div>
+          <p class="text-slate-800 text-sm font-semibold">${menu.breakfast}</p>
+        </div>
+
+        <div class="p-4 bg-emerald-50/60 rounded-2xl border border-emerald-200">
+          <div class="flex items-center gap-2 text-emerald-800 font-extrabold text-base mb-2">
+            <i class="fa-solid fa-bowl-food"></i> Bữa Trưa (11:30 - 12:30)
+          </div>
+          <p class="text-slate-800 text-sm font-semibold">${menu.lunch}</p>
+        </div>
+
+        <div class="p-4 bg-blue-50/60 rounded-2xl border border-blue-200">
+          <div class="flex items-center gap-2 text-blue-800 font-extrabold text-base mb-2">
+            <i class="fa-solid fa-apple-whole"></i> Bữa Xế Chiều (15:00)
+          </div>
+          <p class="text-slate-800 text-sm font-semibold">${menu.snack}</p>
+        </div>
+
+        <div class="p-4 bg-purple-50/60 rounded-2xl border border-purple-200">
+          <div class="flex items-center gap-2 text-purple-800 font-extrabold text-base mb-2">
+            <i class="fa-solid fa-moon"></i> Bữa Tối (18:30 - 19:30)
+          </div>
+          <p class="text-slate-800 text-sm font-semibold">${menu.dinner}</p>
+        </div>
+      `;
+    }
+
+    // -------------------------------------------------------------
+    // 6. ĐỒNG HỒ ĐẾM NHỊP THỞ DƯỠNG SINH TƯƠNG TÁC
+    // -------------------------------------------------------------
+    let breathingInterval = null;
+    let isBreathingActive = false;
+    let breatheStep = 0; // 0: hít, 1: nín, 2: thở ra
+    let timeLeftInPhase = 4;
+
+    function toggleBreathingGuide() {
+      const btn = document.getElementById('btnStartBreathe');
+      const visual = document.getElementById('breatheVisual');
+      const phase = document.getElementById('breathePhase');
+      const timer = document.getElementById('breatheTimer');
+
+      if (isBreathingActive) {
+        clearInterval(breathingInterval);
+        isBreathingActive = false;
+        btn.innerHTML = '<i class="fa-solid fa-play mr-2"></i> TIẾP TỤC TẬP THỞ';
+        btn.classList.replace('bg-rose-500', 'bg-amber-500');
+        phase.textContent = "TẠM DỪNG";
+        visual.style.transform = "scale(1)";
+        return;
+      }
+
+      isBreathingActive = true;
+      btn.innerHTML = '<i class="fa-solid fa-pause mr-2"></i> TẠM DỪNG BÀI TẬP';
+      btn.classList.replace('bg-amber-500', 'bg-rose-500');
+      
+      timeLeftInPhase = 4;
+      breatheStep = 0;
+      updateBreatheDisplay();
+
+      breathingInterval = setInterval(() => {
+        timeLeftInPhase--;
+        if (timeLeftInPhase <= 0) {
+          breatheStep = (breatheStep + 1) % 3;
+          timeLeftInPhase = 4; // Mỗi pha 4 giây
+          updateBreatheDisplay();
+        } else {
+          timer.textContent = timeLeftInPhase + "s";
+        }
+      }, 1000);
+    }
+
+    function updateBreatheDisplay() {
+      const visual = document.getElementById('breatheVisual');
+      const phase = document.getElementById('breathePhase');
+      const timer = document.getElementById('breatheTimer');
+
+      timer.textContent = timeLeftInPhase + "s";
+
+      if (breatheStep === 0) {
+        phase.textContent = "HÍT VÀO...";
+        visual.style.transform = "scale(1.35)";
+        visual.classList.remove('border-teal-300', 'border-amber-400');
+        visual.classList.add('border-emerald-300');
+      } else if (breatheStep === 1) {
+        phase.textContent = "NÍN THỞ...";
+        visual.classList.remove('border-emerald-300');
+        visual.classList.add('border-amber-400');
+      } else {
+        phase.textContent = "THỞ RA CHẬM...";
+        visual.style.transform = "scale(1)";
+        visual.classList.remove('border-amber-400');
+        visual.classList.add('border-teal-300');
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 7. PHÂN TÍCH CHỈ SỐ HUYẾT ÁP TƯƠNG TÁC
+    // -------------------------------------------------------------
+    function analyzeBloodPressure() {
+      const sys = parseInt(document.getElementById('systolic').value);
+      const dia = parseInt(document.getElementById('diastolic').value);
+      const box = document.getElementById('bpResultBox');
+      const title = document.getElementById('bpResultTitle');
+      const desc = document.getElementById('bpResultDesc');
+      const advice = document.getElementById('bpAdvice');
+      const icon = document.getElementById('bpResultIcon');
+
+      box.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-400', 'text-emerald-950',
+                           'bg-amber-50', 'border-amber-400', 'text-amber-950',
+                           'bg-rose-50', 'border-rose-500', 'text-rose-950',
+                           'bg-blue-50', 'border-blue-400', 'text-blue-950');
+
+      if (sys >= 160 || dia >= 100) {
+        // Huyết áp rất cao
+        box.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-950');
+        icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-rose-600"></i>';
+        title.textContent = `Huyết áp Cao Độ 2 (${sys}/${dia} mmHg) - MỨC NGUY HIỂM`;
+        desc.textContent = "Chỉ số đang ở ngưỡng có thể dẫn tới vỡ mạch máu hoặc nhồi máu cơ tim.";
+        advice.innerHTML = "👉 <strong>Khuyên dùng:</strong> Ngồi nghỉ ngơi tĩnh lặng 15 phút và đo lại. Nếu kèm theo đau đầu, tức ngực, mờ mắt hoặc số đo trên 180 mmHg, hãy thông báo người thân đưa tới bệnh viện ngay!";
+      } else if (sys >= 140 || dia >= 90) {
+        // Huyết áp cao độ 1
+        box.classList.add('bg-amber-50', 'border-amber-400', 'text-amber-950');
+        icon.innerHTML = '<i class="fa-solid fa-bell text-amber-600"></i>';
+        title.textContent = `Huyết áp Cao Độ 1 (${sys}/${dia} mmHg)`;
+        desc.textContent = "Chỉ số huyết áp cao hơn mức bình thường của người lớn tuổi.";
+        advice.innerHTML = "👉 <strong>Khuyên dùng:</strong> Uống đúng đơn thuốc hạ áp của bác sĩ (nếu có), giảm muối tối đa trong bữa ăn, uống một cốc nước ấm và giữ tinh thần thảnh thơi.";
+      } else if (sys < 90 || dia < 60) {
+        // Huyết áp thấp
+        box.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-950');
+        icon.innerHTML = '<i class="fa-solid fa-circle-down text-blue-600"></i>';
+        title.textContent = `Huyết áp Thấp (${sys}/${dia} mmHg)`;
+        desc.textContent = "Máu lên não không đủ có thể gây hoa mắt, chóng mặt hoặc ngã quỵ.";
+        advice.innerHTML = "👉 <strong>Khuyên dùng:</strong> Nằm gối thấp, nâng cao chân nhẹ, uống 1 cốc nước gừng ấm pha chút mật ong hoặc nước canh đậm vị một chút.";
+      } else {
+        // Bình thường / Lý tưởng
+        box.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-950');
+        icon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+        title.textContent = `Huyết áp Lý Tưởng Tuyệt Vời (${sys}/${dia} mmHg)`;
+        desc.textContent = "Chỉ số huyết áp của bác rất ổn định và an toàn.";
+        advice.innerHTML = "👉 <strong>Khuyên dùng:</strong> Tiếp tục duy trì chế độ ăn nhiều rau xanh, đi bộ nhẹ nhàng và ngủ đúng giờ mỗi ngày!";
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 8. CÂU NÓI TRUYỀN CẢM HỨNG TINH THẦN
+    // -------------------------------------------------------------
+    const inspiringQuotes = [
+      { text: "Tuổi già là mùa thu của cuộc đời, không còn cái gay gắt của mùa hạ, mà lắng đọng, vàng rực và bình yên.", author: "Triết lý dưỡng sinh tuổi vàng" },
+      { text: "Tâm an thì thân tự khắc khỏe. Hãy mở lòng đón nhận những điều dung dị quanh mình.", author: "Lời khuyên sức khỏe thường thức" },
+      { text: "Con cháu có phúc của con cháu, người già có an vui của tuổi già. Đừng gánh cả bầu trời trên vai.", author: "Tâm tình tuổi 60+" },
+      { text: "Mỗi sáng thức dậy thấy mình hít thở bình yên, ngắm nhành hoa trước hiên là một ân huệ trọn vẹn.", author: "Góc sống an nhiên" },
+      { text: "Muốn thọ thì bớt giận, muốn khỏe thì bớt ăn mặn, muốn vui thì cười nhiều hơn mỗi ngày.", author: "Dưỡng sinh cổ truyền" }
+    ];
+    let quoteIndex = 0;
+
+    function changeQuote() {
+      quoteIndex = (quoteIndex + 1) % inspiringQuotes.length;
+      document.getElementById('dailyQuoteText').textContent = `"${inspiringQuotes[quoteIndex].text}"`;
+      document.getElementById('dailyQuoteAuthor').textContent = `— ${inspiringQuotes[quoteIndex].author}`;
+      showToast("Đã tải câu nói mới!");
+    }
+
+    function shareTip() {
+      const quote = document.getElementById('dailyQuoteText').textContent;
+      const textToCopy = `${quote} (Chia sẻ từ Cổng Thông Tin Sức Khỏe Người Cao Tuổi 60+)`;
+      
+      // Sử dụng document.execCommand để đảm bảo hoạt động tốt trong iframe
+      const tempInput = document.createElement("textarea");
+      tempInput.value = textToCopy;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      showToast("Đã sao chép lời khuyên! Bác có thể dán gửi Zalo cho con cháu.");
+    }
+
+    // -------------------------------------------------------------
+    // 9. THÔNG BÁO TOAST THÂN THIỆN
+    // -------------------------------------------------------------
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toastMessage');
+      document.getElementById('toastText').textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+
+    // -------------------------------------------------------------
+    // 10. DỮ LIỆU & HIỂN THỊ PHÁC ĐỒ HỘI ĐỒNG Y TẾ THẾ GIỚI
+    // -------------------------------------------------------------
+    const worldCouncilProtocols = {
+      1: {
+        badge: "Hiệp Hội Tim Mạch Hoa Kỳ (AHA) & Tổ Chức Đột Quỵ Thế Giới (WSO)",
+        title: "8 Yếu Tố Vàng Bảo Vệ Tim Mạch & Mạch Máu Não (Life's Essential 8)",
+        summary: "Theo nghiên cứu trên hàng triệu người cao tuổi toàn cầu, kiểm soát tốt 8 yếu tố sau giúp giảm tới 80% nguy cơ tai biến mạch máu não và nhồi máu cơ tim cấp:",
+        points: [
+          "1. Kiểm soát Huyết áp mục tiêu dưới 130/80 mmHg (đo sáng sau khi thức dậy và tối trước khi nghỉ).",
+          "2. Giữ chỉ số Mỡ máu xấu (LDL-Cholesterol) ở ngưỡng an toàn để ngăn mảng xơ vữa bong tróc gây tắc mạch.",
+          "3. Duy trì Đường huyết lúc đói ổn định (4.4 - 7.0 mmol/L); tránh ăn đồ ngọt tinh luyện vào buổi tối.",
+          "4. Quy tắc '3 Phút Vàng' khi thức dậy: Nằm mở mắt 1 phút -> Ngồi dậy tựa lưng 1 phút -> Thả chân xuống sàn 1 phút rồi mới đứng đi.",
+          "5. Cảnh giác cao độ khi thời tiết chuyển lạnh đột ngột: Mặc ấm, đội mũ len che thóp đầu và quàng khăn giữ ấm cổ khi ra ngoài sáng sớm."
+        ]
+      },
+      2: {
+        badge: "Trường Y Khoa Harvard & Trung Tâm Nghiên Cứu Tuổi Thọ Okinawa (Nhật Bản)",
+        title: "Chế Độ Ăn Địa Trung Hải Kết Hợp Dưỡng Sinh Á Đông",
+        summary: "Bí quyết giúp người cao tuổi Nhật Bản và vùng Địa Trung Hải có tuổi thọ khỏe mạnh cao nhất thế giới mà rất ít mắc bệnh tim mạch:",
+        points: [
+          "1. Thay thế mỡ động vật bằng Dầu thực vật tốt (dầu ô liu, dầu mè/vừng, dầu đậu nành) và các loại hạt mềm (óc chó, hạnh nhân, hạt sen, vừng đen).",
+          "2. Ăn cá ít nhất 3 bữa/tuần (cá thu, cá hồi, cá trích, cá cơm) giàu Omega-3 tự nhiên giúp làm sạch lòng mạch máu.",
+          "3. Bổ sung thực phẩm lên men tự nhiên tốt cho hệ vi sinh đường ruột như Sữa chua không đường, đậu phụ, súp miso nhạt.",
+          "4. Nhai kỹ mỗi miếng ăn từ 20 - 30 lần: Giúp tiết enzyme Amylase tiêu hóa tinh bột ngay tại khoang miệng, giảm tải 50% gánh nặng cho dạ dày."
+        ]
+      },
+      3: {
+        badge: "Viện Lão Khoa Quốc Gia Hoa Kỳ (NIA) & Hiệp Hội Alzheimer Thế Giới",
+        title: "Phác Đồ MIND: Bảo Tồn Trí Nhớ & Ngăn Ngừa Teo Não Tuổi Già",
+        summary: "Não bộ người trên 60 tuổi vẫn có khả năng tạo lập các kết nối thần kinh mới (Neuroplasticity) nếu được nuôi dưỡng và kích thích đúng cách:",
+        points: [
+          "1. Ngủ đủ giấc sâu ban đêm (6 - 7 tiếng): Trong lúc ngủ sâu, hệ thống 'Glymphatic' của não sẽ mở ra để rửa trôi các mảng protein Beta-amyloid gây bệnh Alzheimer.",
+          "2. Không để bản thân rơi vào cô đơn: Trò chuyện cùng con cháu, sinh hoạt câu lạc bộ tổ dân phố giúp giảm 50% nguy cơ trầm cảm và lú lẫn.",
+          "3. Bảo vệ thính giác và thị giác: Khám mắt, đeo kính đúng độ và sử dụng máy trợ thính nếu nghe kém để não luôn nhận đủ tín hiệu ngoại cảnh.",
+          "4. Tập các động tác phối hợp hai bán cầu não: Vừa đi bộ chậm vừa đếm số lùi, hoặc tập vẩy tay dưỡng sinh kết hợp hít thở."
+        ]
+      },
+      4: {
+        badge: "Tổ Chức Y Tế Thế Giới (WHO) - Chương Trình Chăm Sóc Tích Hợp Người Cao Tuổi (ICOPE)",
+        title: "Chống Mất Khối Cơ (Sarcopenia) & Phác Đồ Vận Động An Toàn Khớp",
+        summary: "Sau tuổi 60, mỗi năm cơ thể mất đi 1-2% khối lượng cơ bắp nếu không vận động, dẫn đến yếu chân và dễ té ngã gãy xương:",
+        points: [
+          "1. Kết hợp 3 loại hình vận động: Đi bộ bền (tốt cho tim phổi) + Tập thăng bằng (đứng 1 chân vịn ghế) + Tập kháng lực nhẹ (nâng chai nước suối nhỏ 500ml).",
+          "2. Bảo vệ sụn khớp gối: Hạn chế leo cầu thang nhiều tầng liên tục, không ngồi xổm, không bê vác vật nặng quá 3-5kg ở tư thế cúi gập lưng.",
+          "3. Tắm nắng sớm 15-20 phút mỗi ngày (trước 8h30 sáng) kết hợp bổ sung đủ Đạm và Canxi để xương cốt đặc chắc.",
+          "4. Luôn mang giày thể thao đế mềm chống trượt, ôm vừa cổ chân khi đi tập thể dục ngoài công viên."
+        ]
+      },
+      5: {
+        badge: "Hiệp Hội Lão Khoa Hoa Kỳ (AGS) - Tiêu Chuẩn Beers Về An Toàn Dược Phẩm",
+        title: "Kiểm Soát Đa Dược (Polypharmacy) & Tránh Tương Tác Thuốc Nguy Hiểm",
+        summary: "Người cao tuổi thường mắc đồng thời nhiều bệnh mãn tính (Huyết áp, Tiểu đường, Mỡ máu, Đau khớp). Hội đồng Dược lâm sàng khuyến cáo:",
+        points: [
+          "1. Tuyệt đối thận trọng với các thuốc giảm đau xương khớp tự mua (nhóm NSAIDs hoặc thuốc tễ trộn Corticoid): Gây xuất huyết dạ dày, giữ muối nước làm tăng huyết áp và suy thận cấp.",
+          "2. Không tự ý dùng thuốc an thần, gây ngủ mạnh kéo dài: Làm người già lơ mơ vào buổi sáng, gây trượt ngã gãy xương khi đi vệ sinh đêm.",
+          "3. Không uống thuốc tây chung với nước trà đặc, sữa, nước ép bưởi chùm hoặc rượu bia vì làm biến đổi hoàn toàn dược tính của thuốc.",
+          "4. Lập 'Sổ Thuốc Gia Đình': Ghi rõ tên thuốc, hàm lượng, giờ uống và mang theo toàn bộ vỏ thuốc đang dùng mỗi lần đi khám bác sĩ."
+        ]
+      }
+    };
+
+    function selectCouncilTab(tabIndex) {
+      document.querySelectorAll('.council-tab').forEach((btn, idx) => {
+        if (idx + 1 === tabIndex) {
+          btn.className = "council-tab p-4 rounded-2xl bg-amber-400 text-slate-950 font-black text-left transition shadow-lg flex flex-col justify-between border-2 border-white";
+        } else {
+          btn.className = "council-tab p-4 rounded-2xl bg-teal-950/60 hover:bg-teal-950 text-teal-100 font-bold text-left transition flex flex-col justify-between border border-teal-600";
+        }
+      });
+
+      const data = worldCouncilProtocols[tabIndex];
+      const box = document.getElementById('councilDetailBox');
+      box.innerHTML = `
+        <div class="border-b border-slate-200 pb-4 mb-4">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">${data.badge}</span>
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-2">${data.title}</h3>
+          <p class="text-slate-600 text-sm sm:text-base mt-1 font-medium">${data.summary}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          ${data.points.map(pt => `
+            <div class="p-3.5 rounded-xl bg-teal-50/60 border border-teal-200 flex items-start gap-2.5">
+              <i class="fa-solid fa-circle-check text-teal-600 mt-1 shrink-0"></i>
+              <span class="text-slate-800 text-sm sm:text-base font-semibold leading-snug">${pt}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // -------------------------------------------------------------
+    // 11. PHÂN TÍCH ĐƯỜNG HUYẾT TẠI NHÀ (MMOL/L)
+    // -------------------------------------------------------------
+    function analyzeGlucose() {
+      const timing = document.getElementById('glucoseTiming').value;
+      const val = parseFloat(document.getElementById('glucoseVal').value);
+      const box = document.getElementById('glucoseResultBox');
+
+      if (isNaN(val) || val <= 0) {
+        showToast("Vui lòng nhập chỉ số đường huyết hợp lệ (ví dụ: 5.8)");
+        return;
+      }
+
+      box.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-400', 'text-emerald-950',
+                           'bg-amber-50', 'border-amber-400', 'text-amber-950',
+                           'bg-rose-50', 'border-rose-500', 'text-rose-950');
+
+      if (val < 3.9) {
+        box.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-950');
+        box.innerHTML = `⚠️ <strong>HẠ ĐƯỜNG HUYẾT NGUY HIỂM (${val} mmol/L):</strong> Có thể gây vã mồ hôi, run tay chân, hôn mê! Hãy cho uống ngay nửa cốc nước đường ấm, sữa có đường hoặc ngậm 2 viên kẹo ngọt rồi kiểm tra lại sau 15 phút.`;
+      } else if (timing === 'fasting') {
+        if (val <= 7.0) {
+          box.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-950');
+          box.innerHTML = `✅ <strong>Đường huyết lúc đói TỐT (${val} mmol/L):</strong> Chỉ số nằm trong ngưỡng an toàn lý tưởng cho người cao tuổi. Hãy duy trì chế độ ăn và tập luyện hiện tại.`;
+        } else if (val <= 9.0) {
+          box.classList.add('bg-amber-50', 'border-amber-400', 'text-amber-950');
+          box.innerHTML = `🔔 <strong>Đường huyết lúc đói HƠI CAO (${val} mmol/L):</strong> Cần giảm bớt cơm trắng buổi tối, tăng cường rau xanh luộc và uống thuốc tiểu đường đúng đơn bác sĩ.`;
+        } else {
+          box.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-950');
+          box.innerHTML = `🚨 <strong>Đường huyết lúc đói RẤT CAO (${val} mmol/L):</strong> Uống nhiều nước lọc ấm, không tự ý tăng gấp đôi liều thuốc và liên hệ bác sĩ để điều chỉnh phác đồ.`;
+        }
+      } else {
+        // Sau ăn 2 tiếng
+        if (val <= 10.0) {
+          box.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-950');
+          box.innerHTML = `✅ <strong>Đường huyết sau ăn 2 giờ ĐẠT CHUẨN (${val} mmol/L):</strong> Khả năng chuyển hóa đường sau bữa ăn của bác rất tốt!`;
+        } else {
+          box.classList.add('bg-amber-50', 'border-amber-400', 'text-amber-950');
+          box.innerHTML = `🔔 <strong>Đường huyết sau ăn CAO (${val} mmol/L):</strong> Mẹo y khoa: Trong bữa ăn hãy ăn 1 bát rau xanh và thức ăn trước, ăn cơm sau cùng và đi bộ nhẹ nhàng 15 phút sau ăn 30 phút để hạ đường huyết tự nhiên.`;
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 12. BÀI TẬP ĐỐ VUI RÈN LUYỆN PHẢN XẠ TRÍ NHỚ
+    // -------------------------------------------------------------
+    const brainQuizzes = [
+      "Đố vui rèn não: Lấy 100 trừ đi 7 còn 93. Trừ tiếp đi 7 còn bao nhiêu? (Đáp án: 86)",
+      "Bài tập ngôn ngữ: Hãy kể tên 5 loại quả có màu đỏ hoặc vàng trong vòng 15 giây!",
+      "Bài tập hồi ức: Hôm qua bữa trưa bác đã ăn những món gì? Hãy kể lại cho người bên cạnh nghe!",
+      "Đố vui dân gian: 'Một cây làm chẳng nên non, Ba cây chụm lại...' câu tiếp theo là gì?",
+      "Vận động tinh: Hãy dùng tay trái chải đầu hoặc cầm đũa gắp thức ăn vài lần để kích thích bán cầu não phải!"
+    ];
+    let quizIdx = 0;
+    function nextBrainQuiz() {
+      quizIdx = (quizIdx + 1) % brainQuizzes.length;
+      document.getElementById('brainQuizQuestion').textContent = brainQuizzes[quizIdx];
+      showToast("Hãy suy nghĩ và trả lời thành tiếng nhé!");
+    }
+
+    // -------------------------------------------------------------
+    // 13. DỮ LIỆU & HIỂN THỊ THÀNH TỰU Y SINH HỌC, DƯỢC HỌC CHÍNH THỐNG
+    // -------------------------------------------------------------
+    const biomedicalBreakthroughs = [
+      {
+        id: 1,
+        category: "neuro",
+        domainBadge: "Dược Học Thần Kinh & Bệnh Học Alzheimer",
+        domainColor: "bg-amber-100 text-amber-900 border-amber-300",
+        title: "Kháng Thể Đơn Dòng (Lecanemab & Donanemab) Quét Sạch Mảng Bám Độc Tố Não & Xét Nghiệm Máu p-tau217",
+        mechanism: "Trước đây, bệnh suy giảm trí nhớ Alzheimer chỉ có thuốc điều trị triệu chứng tạm thời. Hiện nay, ngành dược sinh học đã phát minh ra kháng thể đơn dòng (Lecanemab, Donanemab) đi vào não gắn trực tiếp và dọn dẹp các mảng protein độc hại Beta-amyloid. Đồng thời, xét nghiệm máu định lượng dấu ấn sinh học p-tau217 giúp phát hiện sớm bệnh Alzheimer với độ chính xác trên 90% mà không cần chọc dịch não tủy đau đớn.",
+        benefitForSeniors: "Làm chậm tới 27% - 35% tốc độ suy giảm nhận thức ở giai đoạn khởi phát nhẹ, giúp các bác kéo dài nhiều năm sống minh mẫn, tự chăm sóc bản thân bên con cháu.",
+        sourceCitation: "Nguồn chính thống: Cục Quản lý Thực phẩm & Dược phẩm Hoa Kỳ (FDA phê duyệt 2023-2024); Tạp chí Y học New England (NEJM - Nghiên cứu CLARITY-AD) & JAMA (Nghiên cứu TRAILBLAZER-ALZ 2)."
+      },
+      {
+        id: 2,
+        category: "neuro",
+        domainBadge: "Điều Trị Cấp Cứu Đột Quỵ Não",
+        domainColor: "bg-rose-100 text-rose-900 border-rose-300",
+        title: "Thuốc Tiêu Sợi Huyết Thế Hệ Mới (Tenecteplase) & Kéo Dài 'Giờ Vàng' Lấy Huyết Khối Cơ Học Lên 24 Giờ",
+        mechanism: "Trong cấp cứu đột quỵ nhồi máu não, thuốc tiêu sợi huyết thế hệ mới Tenecteplase chỉ cần tiêm tĩnh mạch 1 liều duy nhất trong 5 giây (thay vì phải truyền kéo dài 60 phút như thuốc cũ Alteplase), giúp tái thông mạch máu nhanh hơn. Đặc biệt, nhờ phần mềm Trí tuệ nhân tạo (AI RAPID) phân tích vùng não còn cứu được trên phim chụp tưới máu, các bác sĩ có thể luồn ống thông lấy cục máu đông (Mechanical Thrombectomy) cứu sống bệnh nhân ngay cả khi đã qua 6 đến 24 giờ từ lúc khởi phát.",
+        benefitForSeniors: "Giúp những người cao tuổi bị đột quỵ trong lúc ngủ ban đêm (không rõ giờ khởi phát chính xác) vẫn còn cơ hội được can thiệp thoát khỏi cảnh liệt nửa người.",
+        sourceCitation: "Nguồn chính thống: Tạp chí The Lancet (Nghiên cứu AcT); Tạp chí NEJM (Nghiên cứu DAWN & DEFUSE-3); Hướng dẫn của Hội Đột Quỵ Thế Giới (WSO) & AHA/ASA."
+      },
+      {
+        id: 3,
+        category: "cardio",
+        domainBadge: "Dược Học Tim - Thận - Chuyển Hóa",
+        domainColor: "bg-teal-100 text-teal-900 border-teal-300",
+        title: "Nhóm Thuốc Ức Chế SGLT2 (Dapagliflozin / Empagliflozin) & Chủ Vận GLP-1: 'Mũi Tên Trúng 3 Đích'",
+        mechanism: "Khởi đầu là thuốc điều trị tiểu đường, nhóm ức chế kênh đồng vận chuyển Natri-Glucose (SGLT2i) đã tạo nên cuộc cách mạng y khoa khi chứng minh khả năng bảo vệ đồng thời cả Tim và Thận ngay cả ở người không bị tiểu đường. Thuốc giúp đào thải đường và muối dư thừa qua nước tiểu, giảm áp lực lọc cầu thận, chống xơ hóa cơ tim. Bên cạnh đó, hoạt chất Semaglutide (GLP-1 RA) giúp giảm tới 20% nguy cơ nhồi máu cơ tim và đột quỵ ở người thừa cân có bệnh tim mạch.",
+        benefitForSeniors: "Giảm trên 30% tỷ lệ phải nhập viện cấp cứu vì suy tim sung huyết và làm chậm đáng kể tiến triển suy thận mạn tính phải chạy thận nhân tạo ở tuổi già.",
+        sourceCitation: "Nguồn chính thống: Tạp chí NEJM (Các thử nghiệm lâm sàng DAPA-HF, EMPEROR-Preserved, EMPA-KIDNEY, SELECT); Khuyến cáo loại IA của Hội Tim Mạch Châu Âu (ESC) & Hoa Kỳ (AHA)."
+      },
+      {
+        id: 4,
+        category: "cardio",
+        domainBadge: "Can Thiệp Tim Mạch Ít Xâm Lấn & Công Nghệ Gen",
+        domainColor: "bg-indigo-100 text-indigo-900 border-indigo-300",
+        title: "Thay Van Động Mạch Chủ Qua Da (TAVI) Không Cần Mổ Mở Ngực & Thuốc Nhắm Trúng Đích RNA (Inclisiran) Hạ Mỡ Máu",
+        mechanism: "Người trên 75 tuổi bị hẹp khít van tim trước kia rất sợ phẫu thuật cưa xương ức mở lồng ngực vì sức yếu. Công nghệ TAVI (Transcatheter Aortic Valve Implantation) cho phép đưa van tim sinh học mới qua một đường luồn nhỏ ở mạch máu đùi lên tim mà không cần mở ngực. Ngoài ra, công nghệ dược học siRNA (Inclisiran) bất hoạt gen PCSK9 tại gan chỉ cần tiêm dưới da 2 mũi/năm giúp giảm hơn 50% mỡ máu xấu LDL-C.",
+        benefitForSeniors: "Người cao tuổi thay van tim chỉ cần gây tê tại chỗ, tỉnh táo hoàn toàn, sau 2-3 ngày đã có thể đi lại nhẹ nhàng; giải quyết bài toán hay quên uống thuốc mỡ máu hàng ngày.",
+        sourceCitation: "Nguồn chính thống: Tạp chí NEJM (Chuỗi nghiên cứu PARTNER 3); Cơ quan Dược phẩm Châu Âu (EMA) & FDA Hoa Kỳ (Nghiên cứu ORION-10 & ORION-11)."
+      },
+      {
+        id: 5,
+        category: "gero",
+        domainBadge: "Công Nghệ Sinh Học & Cơ Xương Khớp",
+        domainColor: "bg-emerald-100 text-emerald-900 border-emerald-300",
+        title: "Kháng Thể Kép Tạo Xương Mới (Romosozumab) & Vắc-xin Công Nghệ Mới (RSV, Shingrix) Bảo Vệ Miễn Dịch Lão Khoa",
+        mechanism: "Khác với các thuốc chống loãng xương thế hệ cũ chỉ ngăn hủy xương, kháng thể đơn dòng Romosozumab ức chế protein Sclerostin mang lại tác dụng kép: vừa kích thích tạo cốt bào đắp thêm xương mới, vừa ức chế hủy cốt bào. Trong lĩnh vực miễn dịch lão khoa, thế hệ vắc-xin tái tổ hợp có chất bổ trợ (như Shingrix ngừa Zona và vắc-xin ngừa virus hợp bào hô hấp RSV) giúp vượt qua hiện tượng 'lão hóa hệ miễn dịch' (Immunosenescence).",
+        benefitForSeniors: "Giảm tới 73% nguy cơ gãy lún đốt sống ở phụ nữ sau mãn kinh và các cụ ông loãng xương nặng; hiệu quả bảo vệ trên 90% trước chứng đau thần kinh sau Zona ở người trên 70 tuổi.",
+        sourceCitation: "Nguồn chính thống: Tạp chí NEJM (Nghiên cứu FRAME & ARCH về Romosozumab; Nghiên cứu ZOE-70 về vắc-xin tái tổ hợp); Trung tâm Kiểm soát Bệnh tật Hoa Kỳ (CDC)."
+      },
+      {
+        id: 6,
+        category: "gero",
+        domainBadge: "Y Sinh Học Lão Hóa (Geroscience)",
+        domainColor: "bg-purple-100 text-purple-900 border-purple-300",
+        title: "Liệu Pháp Dọn Dẹp Tế Bào Già (Senolytics), Kích Hoạt Tự Thực Bào (Autophagy) & Y Học Kỹ Thuật Số Cảnh Báo Rung Nhĩ",
+        mechanism: "Bệnh học hiện đại xác định nguyên nhân gốc rễ gây lão hóa là sự tích tụ các 'tế bào xác sống' (Senescent cells - tế bào đã ngừng phân chia nhưng không chết mà tiết ra chất gây viêm mạn tính). Các nghiên cứu về hoạt chất Senolytics tự nhiên (như Fisetin trong dâu tây, Quercetin trong hành tây/táo) kết hợp cơ chế Tự thực bào (Autophagy - giải Nobel Y học) giúp cơ thể tự dọn sạch rác tế bào. Song song đó, cảm biến quang học PPG trên đồng hồ thông minh đã được chuẩn hóa y tế để phát hiện sớm cơn Rung nhĩ (Atrial Fibrillation) thầm lặng.",
+        benefitForSeniors: "Giảm tình trạng viêm khớp mạn tính, trẻ hóa mạch máu và phát hiện sớm rối loạn nhịp tim để phòng ngừa cục máu đông bắn từ tim lên não.",
+        sourceCitation: "Nguồn chính thống: Tạp chí Nature Medicine & Mayo Clinic (Nghiên cứu về Senolytics của GS. James Kirkland); Giải Nobel Sinh lý học và Y học (GS. Yoshinori Ohsumi); Nghiên cứu Apple Heart & Fitbit Heart Study (NEJM)."
+      }
+    ];
+
+    function filterBioBreakthroughs(category) {
+      // Cập nhật giao diện nút lọc
+      document.querySelectorAll('.bio-filter-btn').forEach(btn => {
+        btn.className = "bio-filter-btn px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base bg-slate-100 hover:bg-teal-50 text-slate-700 border border-slate-300 transition flex items-center gap-2";
+      });
+
+      const activeBtnMap = {
+        'all': 'btnBioAll',
+        'neuro': 'btnBioNeuro',
+        'cardio': 'btnBioCardio',
+        'gero': 'btnBioGero'
+      };
+      const activeBtn = document.getElementById(activeBtnMap[category]);
+      if (activeBtn) {
+        activeBtn.className = "bio-filter-btn px-4 py-2.5 rounded-xl font-black text-sm sm:text-base bg-teal-700 text-white shadow-md transition flex items-center gap-2";
+      }
+
+      const filtered = category === 'all'
+        ? biomedicalBreakthroughs
+        : biomedicalBreakthroughs.filter(item => item.category === category);
+
+      const grid = document.getElementById('bioCardsGrid');
+      grid.innerHTML = filtered.map(item => `
+        <article class="bg-slate-50/80 hover:bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-teal-400 transition shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-black uppercase px-3 py-1 rounded-full border ${item.domainColor}">
+                ${item.domainBadge}
+              </span>
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md">
+                <i class="fa-solid fa-certificate"></i> Đã kiểm chứng
+              </span>
+            </div>
+
+            <h3 class="text-xl font-black text-slate-900 leading-snug mb-3">
+              ${item.title}
+            </h3>
+
+            <div class="space-y-2.5 text-sm sm:text-base">
+              <p class="text-slate-700 leading-relaxed">
+                <strong class="text-teal-900"><i class="fa-solid fa-flask text-teal-600 mr-1"></i> Cơ chế khoa học:</strong> ${item.mechanism}
+              </p>
+              <div class="p-3 rounded-xl bg-emerald-50/90 border border-emerald-200 text-slate-800">
+                <strong class="text-emerald-950 block mb-0.5"><i class="fa-solid fa-heart-circle-check text-emerald-600 mr-1"></i> Giá trị thực tiễn cho người 60+:</strong>
+                <span>${item.benefitForSeniors}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-200 flex items-start gap-2 text-xs text-slate-600 font-semibold bg-white p-2.5 rounded-xl border">
+            <i class="fa-solid fa-building-columns text-amber-600 text-sm mt-0.5 shrink-0"></i>
+            <span>${item.sourceCitation}</span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Khởi tạo trang: Hiển thị thực đơn Thứ Hai, Tab 1 Hội Đồng Y Khoa và Danh sách Thành Tựu Y Sinh học
+    window.addEventListener('DOMContentLoaded', () => {
+      showMenuDay(2);
+      selectCouncilTab(1);
+      filterBioBreakthroughs('all');
+    });
+  </script>
+</body>
+</html>

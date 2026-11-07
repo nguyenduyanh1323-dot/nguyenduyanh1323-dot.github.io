@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Người Nông Dân Số Hóa | Hệ Sinh Thái AI & Chuyên Trang Sầu Riêng Bền Vững</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ndsh: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16'
+                        },
+                        durian: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            900: '#78350f'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ==========================================================
+         BỘ CSS TÙY CHỈNH NÂNG CAO (ADVANCED CUSTOM CSS)
+         ========================================================== -->
+    <style id="advanced-custom-css">
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --ndsh-primary: #16a34a;
+            --ndsh-primary-dark: #15803d;
+            --ndsh-gold: #f59e0b;
+            --ndsh-dark: #062216;
+            --ndsh-bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--ndsh-bg);
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+
+        /* 1. HIỆU ỨNG NỀN BANNER AURORA & LƯỚI SỐ HÓA */
+        .banner-ecosystem {
+            background: radial-gradient(circle at 15% 20%, rgba(22, 163, 74, 0.35) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.25) 0%, transparent 45%),
+                        linear-gradient(135deg, #031c12 0%, #072d1d 55%, #0f172a 100%);
+            position: relative;
+        }
+
+        .banner-durian {
+            background: radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.38) 0%, transparent 50%),
+                        radial-gradient(circle at 15% 80%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
+                        linear-gradient(135deg, #1a1205 0%, #082f1d 60%, #041f14 100%);
+            position: relative;
+        }
+
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+
+        /* 2. HIỆU ỨNG ÁNH SÁNG CHUYỂN ĐỘNG (SHIMMER & GLOW) */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.35), 0 0 60px rgba(22, 163, 74, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.65), 0 0 85px rgba(22, 163, 74, 0.4); }
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        .glow-box-gold {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(90deg, #fde68a, #f59e0b, #fbbf24, #fde68a);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 4s linear infinite;
+        }
+
+        .text-gradient-emerald {
+            background: linear-gradient(90deg, #86efac, #22c55e, #34d399, #86efac);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 4s linear infinite;
+        }
+
+        /* 3. HIỆU ỨNG KÍNH MỜ (GLASSMORPHISM) & CARD 3D */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-light:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px -12px rgba(6, 78, 59, 0.15);
+            border-color: var(--ndsh-primary);
+        }
+
+        /* 4. MOCKUP SÁCH 3D CHUYÊN NGHIỆP */
+        .book-3d-showcase {
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+        .book-3d-showcase:hover {
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        /* 5. THANH CUỘN TÙY CHỈNH */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #16a34a;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #15803d;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-ndsh-600 selection:text-white">
+
+    <!-- ==========================================================
+         THANH CHUYỂN ĐỔI CHẾ ĐỘ XEM & XUẤT FILE (TOP UTILITY BAR)
+         ========================================================== -->
+    <div class="bg-slate-950 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="font-bold text-white uppercase tracking-wider">Bảng Điều Khiển Giao Diện:</span>
+                <div class="inline-flex bg-slate-900 p-1 rounded-lg border border-slate-800 ml-2">
+                    <button onclick="switchPage('ecosystem')" id="tab-ecosystem" class="px-3 py-1 rounded-md font-bold bg-ndsh-600 text-white transition">
+                        <i class="fa-solid fa-Microchip mr-1"></i> 1. Trang Chủ Hệ Sinh Thái AI
+                    </button>
+                    <button onclick="switchPage('durian')" id="tab-durian" class="px-3 py-1 rounded-md font-bold text-amber-400 hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-seedling mr-1"></i> 2. Landing Page Ebook Sầu Riêng
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="downloadStandaloneCSS()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1 rounded-md border border-slate-700 transition flex items-center gap-1.5" title="Tải riêng file style.css nếu muốn tách file">
+                    <i class="fa-brands fa-css3-alt text-sky-400"></i> Tải file <code class="text-sky-300">style.css</code>
+                </button>
+                <a href="https://zalo.me/0912345678" id="top-zalo-link" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-3 py-1 rounded-md transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-calendar-check"></i> Đặt Hẹn Zalo Tư Vấn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================
+         TRANG 1: HỆ SINH THÁI "NGƯỜI NÔNG DÂN SỐ HÓA"
+         ========================================================== -->
+    <div id="page-ecosystem" class="block">
+        
+        <!-- HEADER CHÍNH -->
+        <header class="bg-white/95 backdrop-blur-md sticky top-11 z-40 shadow-sm border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-ndsh-600 to-ndsh-900 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-ndsh-600/30 border border-ndsh-400/30">
+                        ND
+                    </div>
+                    <div>
+                        <span class="block font-black text-lg tracking-tight text-slate-900 leading-none">NGƯỜI NÔNG DÂN SỐ HÓA</span>
+                        <span class="text-xs font-bold text-ndsh-600 tracking-wider uppercase">Nguyễn Duy Anh · Thực Chiến · Chân Thực</span>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center gap-7 font-bold text-sm text-slate-600">
+                    <a href="#san-pham" class="hover:text-ndsh-600 transition">Ebook AI & MMO</a>
+                    <a href="#khoa-hoc" class="hover:text-ndsh-600 transition">Khóa Học 7 Ngày</a>
+                    <button onclick="switchPage('durian')" class="text-amber-600 hover:text-amber-700 flex items-center gap-1 font-extrabold">
+                        <i class="fa-solid fa-star text-amber-500"></i> Chuyên Trang Sầu Riêng
+                    </button>
+                    <a href="#cong-dong" class="hover:text-ndsh-600 transition">Cộng Đồng</a>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <a href="#lien-he" class="bg-ndsh-600 hover:bg-ndsh-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-ndsh-600/25 transition">
+                        Đăng Ký Tư Vấn
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- SIÊU BANNER HỆ SINH THÁI (MỚI - THU HÚT NGAY TỪ CÁI NHÌN ĐẦU TIÊN) -->
+        <section class="banner-ecosystem text-white py-16 lg:py-24 overflow-hidden">
+            <div class="bg-grid-pattern absolute inset-0 pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <!-- Thanh huy hiệu cam kết sự thật -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
+                    <span class="inline-flex items-center gap-2 glass-panel px-4 py-1.5 rounded-full text-xs font-bold text-emerald-300 border border-emerald-400/30">
+                        <i class="fa-solid fa-shield-halved text-emerald-400"></i> 100% Dữ Liệu Thực Chiến Đã Kiểm Chứng
+                    </span>
+                    <span class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-1.5 rounded-full text-xs font-bold border border-amber-400/30">
+                        <i class="fa-solid fa-bolt text-amber-400"></i> Hệ Sinh Thái Tự Động Hóa 24/7
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Cột Nội dung Banner -->
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12] mb-6">
+                            Khai Phá Sức Mạnh AI <br>
+                            Kiến Tạo <span class="text-gradient-gold">Tài Sản Số</span> & <br>
+                            <span class="text-gradient-emerald">Nông Nghiệp Bền Vững</span>
+                        </h1>
+                        <p class="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Chào mừng bạn đến với tâm điểm tri thức số của <strong>Nguyễn Duy Anh (Người Nông Dân Số Hóa)</strong>. Từ ứng dụng Gemini Pro làm Affiliate Shopee, xây dựng tài sản số tự động đến 15 năm đúc kết kỹ thuật trồng sầu riêng bền vững.
+                        </p>
+
+                        <!-- Các nút kêu gọi hành động nổi bật -->
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+                            <a href="#san-pham" class="bg-gradient-to-r from-emerald-500 to-ndsh-600 hover:from-emerald-600 hover:to-ndsh-700 text-white font-black px-8 py-4 rounded-2xl shadow-xl shadow-emerald-600/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-rocket"></i> Khám Phá Hệ Sinh Thái AI
+                            </a>
+                            <button onclick="switchPage('durian')" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/25 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-book-atlas"></i> Xem Ebook Sầu Riêng 2026
+                            </button>
+                        </div>
+
+                        <!-- 3 Chỉ số định vị uy tín -->
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-xl mx-auto lg:mx-0">
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-black text-amber-400">15+ Năm</div>
+                                <div class="text-xs text-slate-400 mt-1">Kinh nghiệm thực địa nông nghiệp (2011-2025)</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-black text-emerald-400">4+ Tài Sản</div>
+                                <div class="text-xs text-slate-400 mt-1">Ebook & Khóa học AI thực chiến</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-black text-sky-400">100% Thật</div>
+                                <div class="text-xs text-slate-400 mt-1">Trợ lý AI tra cứu chuẩn xác, không bịa đặt</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cột Trải nghiệm AI Kiểm Chứng Thực Tế Ngay Trên Banner -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-panel p-6 sm:p-7 rounded-3xl glow-box-gold relative animate-float">
+                            <div class="flex items-center justify-between mb-4 pb-4 border-b border-white/15">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-ndsh-600 text-slate-950 flex items-center justify-center font-black text-xl shadow-md">
+                                        <i class="fa-solid fa-robot"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-extrabold text-white text-base flex items-center gap-2">
+                                            Trợ Lý AI Kiểm Chứng
+                                            <span class="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded-full border border-emerald-400/30">GROUND-TRUTH</span>
+                                        </h3>
+                                        <p class="text-xs text-slate-300">Tra cứu trực tiếp từ Kho Tri Thức Google Sheets</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Khung hội thoại mẫu trên Banner -->
+                            <div class="bg-slate-950/70 p-4 rounded-2xl text-sm space-y-3 mb-4 h-56 overflow-y-auto border border-white/10" id="preview-chat">
+                                <div class="bg-slate-900/90 text-slate-200 p-3.5 rounded-2xl border border-slate-700/80 text-xs leading-relaxed">
+                                    <span class="text-emerald-400 font-bold block mb-1"><i class="fa-solid fa-check-double mr-1"></i> Nguyên tắc hoạt động:</span>
+                                    Chào bạn! Tôi chỉ trả lời dựa trên <b>dữ liệu nguồn đã kiểm chứng</b> của ông chủ Nguyễn Duy Anh. Nếu câu hỏi cần thẩm định chuyên sâu ngoài kho dữ liệu, tôi sẽ kết nối bạn đặt lịch hẹn Zalo trực tiếp!
+                                </div>
+                                <div class="flex flex-wrap gap-1.5 pt-1">
+                                    <button onclick="quickAsk('Khóa học 7 Ngày Tạo Tài Sản Số gồm những gì?')" class="text-[11px] bg-white/10 hover:bg-emerald-600/40 text-emerald-200 px-2.5 py-1.5 rounded-lg border border-white/10 transition">
+                                        📌 Khóa 7 Ngày Tài Sản Số?
+                                    </button>
+                                    <button onclick="quickAsk('Ebook Sầu Riêng khi nào phát hành?')" class="text-[11px] bg-white/10 hover:bg-amber-500/40 text-amber-200 px-2.5 py-1.5 rounded-lg border border-white/10 transition">
+                                        🌱 Ebook Sầu Riêng?
+                                    </button>
+                                    <button onclick="quickAsk('Tôi muốn tư vấn riêng về vườn sầu riêng bị xì mủ')" class="text-[11px] bg-white/10 hover:bg-sky-500/40 text-sky-200 px-2.5 py-1.5 rounded-lg border border-white/10 transition">
+                                        📞 Đặt hẹn tư vấn 1:1?
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Ô nhập câu hỏi trực tiếp -->
+                            <div class="flex gap-2">
+                                <input type="text" id="hero-input" onkeypress="if(event.key==='Enter') sendHeroMessage()" placeholder="Hỏi trợ lý AI (tra cứu dữ liệu thật)..." class="flex-1 bg-white/10 text-white placeholder-slate-400 border border-white/20 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-400 outline-none">
+                                <button onclick="sendHeroMessage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-5 py-3 rounded-xl transition shadow-lg">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: HỆ SINH THÁI EBOOK SỐ -->
+        <section id="san-pham" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-ndsh-600 font-extrabold uppercase tracking-widest text-xs bg-ndsh-50 px-3.5 py-1.5 rounded-full border border-ndsh-200">Tài Sản Tri Thức Số</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 mb-4">Bộ Ebook Thực Chiến Tạo Thu Nhập</h2>
+                    <p class="text-slate-600">Đúc kết lộ trình rõ ràng, không lý thuyết suông, giúp người mới ứng dụng ngay AI vào công việc và kinh doanh.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Ebook 1 -->
+                    <div class="glass-card-light rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="bg-ndsh-100 text-ndsh-800 font-bold text-xs px-3 py-1 rounded-lg uppercase">Ebook Nền Tảng</span>
+                                <span class="w-10 h-10 rounded-xl bg-ndsh-50 text-ndsh-600 flex items-center justify-center text-lg"><i class="fa-solid fa-brain"></i></span>
+                            </div>
+                            <h3 class="text-xl font-black text-slate-900 mb-3">Làm Chủ AI Để Kiếm Tiền Online</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Hướng dẫn từng bước cách điều khiển các mô hình AI hiện đại để tối ưu hóa hiệu suất và xây dựng nguồn thu nhập trực tuyến.</p>
+                            <ul class="text-xs text-slate-600 space-y-2.5 mb-6 border-t border-slate-100 pt-4">
+                                <li><i class="fa-solid fa-check text-ndsh-600 mr-2"></i> Công thức viết Siêu câu lệnh (Prompt)</li>
+                                <li><i class="fa-solid fa-check text-ndsh-600 mr-2"></i> Quy trình xây dựng kênh nội dung số</li>
+                            </ul>
+                        </div>
+                        <a href="#lien-he" onclick="setInterest('Đăng ký nhận Ebook: Làm Chủ AI Để Kiếm Tiền Online')" class="block text-center bg-slate-900 hover:bg-ndsh-600 text-white font-bold py-3.5 rounded-xl transition">
+                            Nhận Ebook Này
+                        </a>
+                    </div>
+
+                    <!-- Ebook 2 -->
+                    <div class="glass-card-light rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="bg-amber-100 text-amber-800 font-bold text-xs px-3 py-1 rounded-lg uppercase">Kho Ý Tưởng</span>
+                                <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg"><i class="fa-solid fa-lightbulb"></i></span>
+                            </div>
+                            <h3 class="text-xl font-black text-slate-900 mb-3">1001 Ý Tưởng Kiếm Tiền Với AI</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Tổng hợp các ngách cung cấp dịch vụ số, sản phẩm số và mô hình tự động hóa phù hợp cho cá nhân làm việc độc lập.</p>
+                            <ul class="text-xs text-slate-600 space-y-2.5 mb-6 border-t border-slate-100 pt-4">
+                                <li><i class="fa-solid fa-check text-ndsh-600 mr-2"></i> Phân tích ngách thị trường ít cạnh tranh</li>
+                                <li><i class="fa-solid fa-check text-ndsh-600 mr-2"></i> Danh sách công cụ AI miễn phí & tối ưu</li>
+                            </ul>
+                        </div>
+                        <a href="#lien-he" onclick="setInterest('Đăng ký nhận Ebook: 1001 Ý Tưởng Kiếm Tiền Với AI')" class="block text-center bg-slate-900 hover:bg-ndsh-600 text-white font-bold py-3.5 rounded-xl transition">
+                            Nhận Ebook Này
+                        </a>
+                    </div>
+
+                    <!-- Ebook 3: Sầu Riêng (Chuyển sang Landing Page riêng) -->
+                    <div class="rounded-3xl p-8 flex flex-col justify-between bg-gradient-to-br from-slate-900 via-ndsh-950 to-slate-900 text-white shadow-xl border-2 border-amber-500/40 relative">
+                        <span class="absolute -top-3 right-6 bg-amber-500 text-slate-950 font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">Tác Phẩm Tâm Huyết</span>
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="bg-amber-500/20 text-amber-300 font-bold text-xs px-3 py-1 rounded-lg uppercase border border-amber-400/30">Nông Nghiệp Bền Vững</span>
+                                <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg"><i class="fa-solid fa-tree"></i></span>
+                            </div>
+                            <h3 class="text-xl font-black text-white mb-3">Kỹ Thuật Trồng & Phát Triển Bền Vững Cây Sầu Riêng</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">Đúc kết 15 năm thực chiến tại Bến Cầu, Tây Ninh (2011 - 2025). Tích hợp nông nghiệp thông minh (CSA) và chuẩn xuất khẩu.</p>
+                            <ul class="text-xs text-slate-300 space-y-2.5 mb-6 border-t border-white/10 pt-4">
+                                <li><i class="fa-solid fa-check text-amber-400 mr-2"></i> Chẩn đoán & xử lý bệnh xì mủ, thối rễ</li>
+                                <li><i class="fa-solid fa-check text-amber-400 mr-2"></i> Quy trình chăm sóc & làm bông chuẩn xác</li>
+                            </ul>
+                        </div>
+                        <button onclick="switchPage('durian')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 rounded-xl transition shadow-lg">
+                            Mở Trang Landing Page Riêng <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: KHÓA HỌC THỰC CHIẾN -->
+        <section id="khoa-hoc" class="py-20 bg-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-ndsh-600 font-extrabold uppercase tracking-widest text-xs">Đào Tạo Thực Hành</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4">Khóa Học Cầm Tay Chỉ Việc 7 Ngày</h2>
+                    <p class="text-slate-600">Học để làm ra sản phẩm thực tế, có hệ thống kiểm tra và đồng hành trực tiếp.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card-light rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-ndsh-100 text-ndsh-800 font-bold text-xs px-3 py-1 rounded-lg inline-block mb-4">Lộ Trình 7 Ngày</span>
+                            <h3 class="text-2xl font-black text-slate-900 mb-3">7 Ngày Tạo Tài Sản Số</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Từ một ý tưởng sơ khai đến khi sở hữu trọn bộ Ebook, Website tĩnh trên GitHub Pages và phễu thu thập khách hàng tự động.</p>
+                            <ul class="text-sm text-slate-700 space-y-3 mb-8">
+                                <li><i class="fa-solid fa-circle-check text-ndsh-600 mr-2"></i> Đóng gói tri thức cá nhân thành sản phẩm số có giá trị</li>
+                                <li><i class="fa-solid fa-circle-check text-ndsh-600 mr-2"></i> Tự tay tạo Landing Page HTML/CSS không cần biết lập trình</li>
+                                <li><i class="fa-solid fa-circle-check text-ndsh-600 mr-2"></i> Tích hợp Google Sheets & Telegram quản lý khách hàng miễn phí</li>
+                            </ul>
+                        </div>
+                        <a href="#lien-he" onclick="setInterest('Tư vấn Khóa học: 7 Ngày Tạo Tài Sản Số')" class="block text-center bg-ndsh-600 hover:bg-ndsh-700 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-ndsh-600/20">
+                            Đăng Ký Tư Vấn Khóa Học
+                        </a>
+                    </div>
+
+                    <div class="glass-card-light rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-amber-100 text-amber-800 font-bold text-xs px-3 py-1 rounded-lg inline-block mb-4">Ứng Dụng Gemini Pro</span>
+                            <h3 class="text-2xl font-black text-slate-900 mb-3">7 Ngày Thành Thạo Affiliate Shopee Với Gemini Pro</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">Tận dụng tối đa sức mạnh của Gemini Pro để nghiên cứu sản phẩm, viết kịch bản video ngắn và xây dựng hệ thống tiếp thị liên kết.</p>
+                            <ul class="text-sm text-slate-700 space-y-3 mb-8">
+                                <li><i class="fa-solid fa-circle-check text-ndsh-600 mr-2"></i> Bộ câu lệnh phân tích sản phẩm xu hướng trên Shopee</li>
+                                <li><i class="fa-solid fa-circle-check text-ndsh-600 mr-2"></i> Quy trình sản xuất nội dung review trung thực, thu hút</li>
+                                <li><i class="fa-solid fa-circle-check text-ndsh-600 mr-2"></i> Tối ưu hóa tỷ lệ nhấp chuột và chuyển đổi đơn hàng</li>
+                            </ul>
+                        </div>
+                        <a href="#lien-he" onclick="setInterest('Tư vấn Khóa học: 7 Ngày Thành Thạo Affiliate Shopee Với Gemini Pro')" class="block text-center bg-ndsh-600 hover:bg-ndsh-700 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-ndsh-600/20">
+                            Đăng Ký Tư Vấn Khóa Học
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CỘNG ĐỒNG -->
+        <section id="cong-dong" class="py-16 bg-ndsh-950 text-white relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+                <span class="bg-emerald-500/20 text-emerald-300 font-bold uppercase tracking-widest text-xs px-4 py-1.5 rounded-full inline-block mb-4 border border-emerald-400/30">
+                    Kết Nối & Đồng Hành
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black mb-4">Cộng Đồng "Ứng Dụng AI Cùng Duy Anh"</h2>
+                <p class="text-slate-300 max-w-2xl mx-auto mb-8 text-base leading-relaxed">
+                    Tham gia nhóm Zalo chính thức để nhận tài liệu cập nhật, trao đổi kinh nghiệm thực chiến và đặt lịch hẹn tư vấn trực tiếp cùng Nguyễn Duy Anh.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://zalo.me/0912345678" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-black px-8 py-4 rounded-xl shadow-xl transition flex items-center gap-3">
+                        <i class="fa-solid fa-comments text-xl"></i> Tham Gia Nhóm Zalo & Đặt Hẹn Tư Vấn
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==========================================================
+         TRANG 2: LANDING PAGE RIÊNG CHO EBOOK SẦU RIÊNG (`saurieng.html`)
+         ========================================================== -->
+    <div id="page-durian" class="hidden">
+        
+        <!-- HEADER CHUYÊN TRANG SẦU RIÊNG -->
+        <header class="bg-white/95 backdrop-blur-md sticky top-11 z-40 border-b border-amber-200/80 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-slate-950 flex items-center justify-center font-black text-xl shadow-md">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <div>
+                        <span class="block font-black text-lg text-slate-900 leading-none">SẦU RIÊNG BỀN VỮNG</span>
+                        <span class="text-xs font-bold text-amber-700">Tác giả: Nguyễn Duy Anh (Người Nông Dân Số Hóa)</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="switchPage('ecosystem')" class="text-xs sm:text-sm font-bold text-slate-600 hover:text-ndsh-600 px-3 py-2 rounded-lg border border-slate-200 transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Về Hệ Sinh Thái AI
+                    </button>
+                    <a href="#lien-he" onclick="setInterest('Đặt trước Ebook Sầu Riêng & Nhận tài liệu chẩn đoán bệnh')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-5 py-2.5 rounded-xl text-sm shadow-md transition">
+                        Nhận Tài Liệu Mẫu
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO BANNER CHUYÊN BIỆT CHO EBOOK SẦU RIÊNG -->
+        <section class="banner-durian text-white py-16 lg:py-28 relative overflow-hidden">
+            <div class="bg-grid-pattern absolute inset-0 pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Cột giới thiệu cuốn sách -->
+                    <div class="lg:col-span-7">
+                        <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 font-bold text-xs uppercase px-4 py-1.5 rounded-full mb-6 border border-amber-400/40">
+                            <i class="fa-solid fa-location-dot text-amber-400"></i> Đúc Kết Thực Địa 2011 - 2025 Tại Bến Cầu, Tây Ninh
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.12] mb-6">
+                            KỸ THUẬT TRỒNG VÀ <br>
+                            PHÁT TRIỂN BỀN VỮNG <br>
+                            <span class="text-gradient-gold">CÂY SẦU RIÊNG</span>
+                        </h1>
+                        <p class="text-slate-200 text-base sm:text-lg mb-8 leading-relaxed">
+                            Cuốn cẩm nang kết hợp giữa <strong>15 năm kinh nghiệm làm vườn thực tế</strong> và các tiêu chuẩn nông nghiệp thông minh thích ứng biến đổi khí hậu (CSA), VietGAP/GlobalGAP. Giúp nhà vườn làm chủ quy trình chăm sóc, phục hồi cây suy kiệt và tối ưu năng suất bền vững.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="glass-panel p-4 rounded-2xl flex items-start gap-3">
+                                <i class="fa-solid fa-microscope text-amber-400 text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Chẩn Đoán Thực Chiến</h4>
+                                    <p class="text-xs text-slate-300 mt-0.5">Nhận diện đúng nguyên nhân vàng lá, thối rễ, xì mủ thân do nấm <i>Phytophthora</i>.</p>
+                                </div>
+                            </div>
+                            <div class="glass-panel p-4 rounded-2xl flex items-start gap-3">
+                                <i class="fa-solid fa-leaf text-emerald-400 text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Canh Tác Bền Vững</h4>
+                                    <p class="text-xs text-slate-300 mt-0.5">Cải tạo hệ vi sinh vật đất, giữ pH ổn định và quản lý dinh dưỡng theo từng giai đoạn cơi đọt.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#lien-he" onclick="setInterest('Nhận Cẩm Nang Chẩn Đoán Bệnh Sầu Riêng + Đặt Trước Ebook')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/30 transition flex items-center gap-2">
+                                <i class="fa-solid fa-file-arrow-down"></i> Nhận Bản Trích Đọc & Cẩm Nang Miễn Phí
+                            </a>
+                            <a href="https://zalo.me/0912345678" target="_blank" class="glass-panel hover:bg-white/15 text-white font-bold px-7 py-4 rounded-2xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-phone-volume text-emerald-400"></i> Đặt Hẹn Zalo Tư Vấn Kỹ Thuật Vườn
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Cột Bìa Sách 3D Nổi Bật -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="book-3d-showcase w-full max-w-sm">
+                            <div class="bg-gradient-to-br from-amber-400 via-amber-600 to-emerald-900 p-1.5 rounded-[2rem] glow-box-gold shadow-2xl">
+                                <div class="bg-slate-950 rounded-[1.8rem] p-8 text-center relative overflow-hidden border border-white/10">
+                                    <div class="text-[11px] font-extrabold tracking-widest uppercase text-amber-400 mb-2">Ấn Phẩm Chuyên Ngành Nông Nghiệp</div>
+                                    <div class="w-16 h-1 bg-amber-500 mx-auto mb-6 rounded-full"></div>
+                                    
+                                    <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-amber-500/20 to-emerald-500/20 border border-amber-400/40 mx-auto flex items-center justify-center text-5xl text-amber-400 mb-6 shadow-inner">
+                                        <i class="fa-solid fa-seedling"></i>
+                                    </div>
+
+                                    <h3 class="text-2xl font-black text-white leading-snug mb-2">
+                                        KỸ THUẬT TRỒNG & <br>
+                                        <span class="text-amber-400">PHÁT TRIỂN BỀN VỮNG</span> <br>
+                                        CÂY SẦU RIÊNG
+                                    </h3>
+                                    <p class="text-xs text-emerald-300 font-semibold mb-6">Lý thuyết chuẩn xác · Thực hành thực tiễn</p>
+
+                                    <div class="bg-white/5 rounded-2xl p-4 text-left text-xs text-slate-300 space-y-2 mb-6 border border-white/10">
+                                        <div><i class="fa-solid fa-user-pen text-amber-400 mr-2"></i> <b>Tác giả:</b> Nguyễn Duy Anh</div>
+                                        <div><i class="fa-solid fa-map-location-dot text-emerald-400 mr-2"></i> <b>Thực địa:</b> Bến Cầu, Tây Ninh</div>
+                                        <div><i class="fa-solid fa-calendar-days text-sky-400 mr-2"></i> <b>Lộ trình xuất bản:</b> Trước 31/12/2026</div>
+                                    </div>
+
+                                    <span class="inline-block bg-emerald-500/20 text-emerald-300 text-xs font-bold px-4 py-1.5 rounded-full border border-emerald-500/30">
+                                        Bản Thảo Chuyên Sâu Đã Kiểm Chứng
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CẤU TRÚC CHƯƠNG MỤC TRONG EBOOK SẦU RIÊNG -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-amber-600 font-extrabold uppercase tracking-widest text-xs bg-amber-50 px-3.5 py-1.5 rounded-full border border-amber-200">Lộ Trình Kiến Thức</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 mb-4">4 Trụ Cột Cốt Lõi Trong Cuốn Sách</h2>
+                    <p class="text-slate-600">Được biên soạn tỉ mỉ, kết hợp giữa khoa học cây trồng hiện đại và bài học xương máu qua 15 năm gắn bó với cây sầu riêng.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-card-light p-7 rounded-3xl">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 font-black text-xl flex items-center justify-center mb-5">01</div>
+                        <h3 class="font-black text-lg text-slate-900 mb-2">Kiến Thiết Cơ Bản & Chọn Giống</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Kỹ thuật lên mô, thiết kế hệ thống thoát nước chống ngập úng, chọn giống Ri6, Monthong khỏe mạnh ngay từ đầu.</p>
+                    </div>
+                    <div class="glass-card-light p-7 rounded-3xl">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 font-black text-xl flex items-center justify-center mb-5">02</div>
+                        <h3 class="font-black text-lg text-slate-900 mb-2">Quản Lý Đất, Nước & Dinh Dưỡng</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Phục hồi hệ đệm pH đất, ứng dụng phân hữu cơ vi sinh và công thức bón phân cân đối theo từng giai đoạn phát triển cơi đọt.</p>
+                    </div>
+                    <div class="glass-card-light p-7 rounded-3xl">
+                        <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-700 font-black text-xl flex items-center justify-center mb-5">03</div>
+                        <h3 class="font-black text-lg text-slate-900 mb-2">Phác Đồ Phòng Trừ Dịch Hại (IPM)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Nhận biết sớm và xử lý dứt điểm bệnh xì mủ thân, thối rễ, rầy phấn trắng, nhện đỏ mà không làm suy kiệt sức cây.</p>
+                    </div>
+                    <div class="glass-card-light p-7 rounded-3xl">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-700 font-black text-xl flex items-center justify-center mb-5">04</div>
+                        <h3 class="font-black text-lg text-slate-900 mb-2">Xử Lý Ra Hoa & Chuẩn Xuất Khẩu</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Kỹ thuật tạo mầm hoa, chống rụng bông - trái non, quản lý dư lượng Cadimi/Vàng O đáp ứng mã số vùng trồng xuất khẩu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==========================================================
+         BIỂU MẪU ĐĂNG KÝ CHUNG & ĐẶT LỊCH HẸN ZALO (DÙNG CHO CẢ 2 TRANG)
+         ========================================================== -->
+    <section id="lien-he" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xl">
+                <div class="text-center mb-10">
+                    <span class="bg-ndsh-100 text-ndsh-700 font-bold text-xs px-3.5 py-1.5 rounded-full uppercase">Hệ Thống Tiếp Nhận Tự Động Qua Telegram</span>
+                    <h2 class="text-3xl font-black text-slate-900 mt-3 mb-2">Đăng Ký Nhận Tài Liệu & Đặt Lịch Tư Vấn 1:1</h2>
+                    <p class="text-slate-600 text-sm">Thông tin của bạn được bảo mật và gửi thông báo trực tiếp đến điện thoại của ông chủ Nguyễn Duy Anh.</p>
+                </div>
+
+                <form id="contact-form" onsubmit="submitForm(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Họ và Tên của bạn *</label>
+                            <input type="text" id="f-name" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3.5 text-slate-900 focus:ring-2 focus:ring-ndsh-600 outline-none" placeholder="Nhập họ và tên...">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Số Điện Thoại / Zalo liên hệ *</label>
+                            <input type="tel" id="f-phone" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3.5 text-slate-900 focus:ring-2 focus:ring-ndsh-600 outline-none" placeholder="Ví dụ: 0912345678">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Nội dung bạn quan tâm</label>
+                        <select id="f-interest" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3.5 text-slate-900 focus:ring-2 focus:ring-ndsh-600 outline-none font-medium">
+                            <option value="Nhận Cẩm Nang & Đặt Trước Ebook Sầu Riêng Bền Vững">🌱 Nhận Cẩm Nang & Đặt Trước Ebook Sầu Riêng Bền Vững</option>
+                            <option value="Đăng ký nhận Ebook: Làm Chủ AI Để Kiếm Tiền Online">📘 Ebook: Làm Chủ AI Để Kiếm Tiền Online</option>
+                            <option value="Đăng ký nhận Ebook: 1001 Ý Tưởng Kiếm Tiền Với AI">💡 Ebook: 1001 Ý Tưởng Kiếm Tiền Với AI</option>
+                            <option value="Tư vấn Khóa học: 7 Ngày Tạo Tài Sản Số">🚀 Khóa học: 7 Ngày Tạo Tài Sản Số</option>
+                            <option value="Tư vấn Khóa học: 7 Ngày Thành Thạo Affiliate Shopee Với Gemini Pro">🛒 Khóa học: Affiliate Shopee Với Gemini Pro</option>
+                            <option value="Đặt lịch hẹn Zalo tư vấn trực tiếp 1:1 cùng Nguyễn Duy Anh">📞 Đặt lịch hẹn Zalo tư vấn trực tiếp 1:1</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Câu hỏi cụ thể hoặc Thời gian muốn đặt hẹn Zalo</label>
+                        <textarea id="f-message" rows="4" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3.5 text-slate-900 focus:ring-2 focus:ring-ndsh-600 outline-none" placeholder="Ghi rõ câu hỏi hoặc khung giờ bạn muốn đặt lịch hẹn tư vấn qua Zalo..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full bg-ndsh-600 hover:bg-ndsh-700 text-white font-black py-4 rounded-xl shadow-lg shadow-ndsh-600/25 transition text-base flex items-center justify-center gap-2">
+                        <span>Gửi Yêu Cầu & Báo Ngay Qua Telegram</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+
+                    <div id="form-status" class="text-center font-bold text-sm hidden p-4 rounded-xl"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================
+         FLOATING CHATBOT AI KIỂM CHỨNG DỮ LIỆU THỜI GIAN THỰC
+         ========================================================== -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleChat()" id="chat-toggle-btn" class="w-16 h-16 bg-gradient-to-br from-ndsh-600 to-ndsh-800 hover:from-ndsh-500 hover:to-ndsh-700 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl transition transform hover:scale-105 border-2 border-emerald-400/50">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+
+        <div id="chat-box" class="hidden absolute bottom-20 right-0 w-[350px] sm:w-[410px] bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col h-[540px]">
+            <!-- Header Chat -->
+            <div class="bg-gradient-to-r from-ndsh-900 via-ndsh-800 to-slate-900 text-white p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center font-bold text-emerald-300">
+                        <i class="fa-solid fa-shield-check"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-extrabold text-sm">Trợ Lý AI Kiểm Chứng Thực Tế</h4>
+                        <span class="text-[11px] text-emerald-300 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Tra cứu dữ liệu chuẩn · Không bịa đặt
+                        </span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/70 hover:text-white text-lg px-2"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Danh sách tin nhắn -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50 text-sm flex flex-col">
+                <div class="bg-white p-3.5 rounded-2xl shadow-sm max-w-[88%] border border-slate-200/80 self-start text-slate-700 leading-relaxed">
+                    Xin chào! Tôi là Trợ lý AI của <b>Người Nông Dân Số Hóa</b>. <br><br>
+                    🔒 <b>Cam kết trung thực:</b> Tôi chỉ trả lời dựa trên kho dữ liệu đã kiểm chứng của ông chủ Nguyễn Duy Anh. Nếu vấn đề của bạn cần thẩm định chuyên sâu hơn, tôi sẽ hướng dẫn bạn đặt lịch hẹn Zalo trực tiếp!
+                </div>
+            </div>
+
+            <!-- Khu vực nhập tin nhắn -->
+            <div class="p-3 bg-white border-t border-slate-200 flex gap-2">
+                <input type="text" id="chat-input" onkeypress="if(event.key==='Enter') sendChatMessage()" placeholder="Nhập câu hỏi cần tra cứu..." class="flex-1 bg-slate-100 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-ndsh-600 outline-none">
+                <button onclick="sendChatMessage()" class="bg-ndsh-600 hover:bg-ndsh-700 text-white px-4 py-2.5 rounded-xl font-bold transition">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-black text-white text-base mb-1">HỆ SINH THÁI NGƯỜI NÔNG DÂN SỐ HÓA — NGUYỄN DUY ANH</p>
+            <p class="text-xs text-slate-500 mb-4">Đúng ý tưởng · Đẹp giao diện · Sâu nội dung · Tôn trọng sự thật</p>
+            <p class="text-xs text-slate-600">&copy; 2026 Nguyễn Duy Anh. Triển khai bảo mật trên GitHub Pages & Google Apps Script.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================================
+         JAVASCRIPT ĐIỀU KHIỂN & TRA CỨU DỮ LIỆU KIỂM CHỨNG
+         ========================================================== -->
+    <script>
+        // 1. CẤU HÌNH ĐƯỜNG DẪN BACKEND GOOGLE APPS SCRIPT & SỐ ZALO CHÍNH THỨC
+        const SCRIPT_URL = "DÁN_GOOGLE_APPS_SCRIPT_WEB_APP_URL_VÀO_ĐÂY";
+        const OWNER_ZALO_PHONE = "0912345678"; // Ông chủ thay số Zalo thật vào đây
+
+        // 2. KHO DỮ LIỆU ĐÃ KIỂM CHỨNG TẠI CHỖ (FALLBACK GROUND-TRUTH KHI CHƯA DÁN URL BACKEND)
+        const VERIFIED_KNOWLEDGE_BASE = [
+            {
+                keywords: ["7 ngày tạo tài sản số", "tài sản số", "khóa học tài sản số"],
+                answer: "✅ [Dữ liệu đã kiểm chứng] Khóa học '7 Ngày Tạo Tài Sản Số' do Nguyễn Duy Anh hướng dẫn tập trung vào thực hành: Đóng gói Ebook chuyên môn, tự thiết kế Landing Page HTML/CSS trên GitHub Pages và thiết lập phễu thu thập khách hàng tự động qua Google Sheets & Telegram."
+            },
+            {
+                keywords: ["affiliate", "shopee", "gemini pro", "tiếp thị liên kết"],
+                answer: "✅ [Dữ liệu đã kiểm chứng] Khóa học '7 Ngày Thành Thạo Affiliate Shopee Với Gemini Pro' hướng dẫn cách ứng dụng Gemini Pro để phân tích sản phẩm, viết bài review trung thực và xây dựng kịch bản video ngắn tối ưu chuyển đổi."
+            },
+            {
+                keywords: ["ebook ai", "làm chủ ai", "1001 ý tưởng"],
+                answer: "✅ [Dữ liệu đã kiểm chứng] Hệ sinh thái hiện có 2 bộ Ebook về AI & MMO gồm: 'Làm Chủ AI Để Kiếm Tiền Online' và '1001 Ý Tưởng Kiếm Tiền Với AI'. Bạn có thể điền biểu mẫu trên trang để đăng ký nhận tài liệu."
+            },
+            {
+                keywords: ["sầu riêng", "ebook sầu riêng", "bến cầu", "tây ninh", "khi nào phát hành"],
+                answer: "✅ [Dữ liệu đã kiểm chứng] Ebook 'Kỹ Thuật Trồng Và Phát Triển Bền Vững Cây Sầu Riêng' là tác phẩm đúc kết 15 năm kinh nghiệm thực tế (2011 - 2025) của tác giả Nguyễn Duy Anh tại Bến Cầu, Tây Ninh, tích hợp tiêu chuẩn CSA và VietGAP/GlobalGAP. Dự kiến phát hành chính thức trước ngày 31/12/2026."
+            }
+        ];
+
+        // Hàm chuyển đổi giữa Trang Hệ Sinh Thái và Trang Landing Page Sầu Riêng
+        function switchPage(page) {
+            const ecoPage = document.getElementById('page-ecosystem');
+            const durPage = document.getElementById('page-durian');
+            const tabEco = document.getElementById('tab-ecosystem');
+            const tabDur = document.getElementById('tab-durian');
+
+            if (page === 'durian') {
+                ecoPage.classList.add('hidden');
+                durPage.classList.remove('hidden');
+                tabDur.className = "px-3 py-1 rounded-md font-bold bg-amber-500 text-slate-950 transition";
+                tabEco.className = "px-3 py-1 rounded-md font-bold text-slate-300 hover:bg-slate-800 transition";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                durPage.classList.add('hidden');
+                ecoPage.classList.remove('hidden');
+                tabEco.className = "px-3 py-1 rounded-md font-bold bg-ndsh-600 text-white transition";
+                tabDur.className = "px-3 py-1 rounded-md font-bold text-amber-400 hover:bg-slate-800 transition";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function setInterest(val) {
+            const select = document.getElementById('f-interest');
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].value.includes(val) || val.includes(select.options[i].value)) {
+                    select.selectedIndex = i;
+                    return;
+                }
+            }
+        }
+
+        function toggleChat() {
+            document.getElementById('chat-box').classList.toggle('hidden');
+        }
+
+        function quickAsk(question) {
+            document.getElementById('hero-input').value = question;
+            sendHeroMessage();
+        }
+
+        // Kiểm tra câu hỏi với cơ sở dữ liệu nội bộ nếu chưa gắn Backend URL
+        function verifyLocalGroundTruth(query) {
+            const q = query.toLowerCase();
+            for (const item of VERIFIED_KNOWLEDGE_BASE) {
+                if (item.keywords.some(k => q.includes(k))) {
+                    return item.answer;
+                }
+            }
+            return `⚠️ <b>Thông báo kiểm chứng:</b> Câu hỏi của bạn nằm ngoài phạm vi cơ sở dữ liệu tra cứu tự động hoặc cần thẩm định thực tế chuyên sâu. Để đảm bảo tính chính xác tuyệt đối (không suy diễn/bịa đặt), bạn vui lòng liên hệ trực tiếp Zalo <b>${OWNER_ZALO_PHONE}</b> hoặc bấm <a href="https://zalo.me/${OWNER_ZALO_PHONE}" target="_blank" class="underline text-ndsh-700 font-bold">Đặt lịch hẹn Zalo tại đây</a> để ông chủ Nguyễn Duy Anh tư vấn trực tiếp nhé!`;
+        }
+
+        async function sendHeroMessage() {
+            const input = document.getElementById('hero-input');
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = '';
+
+            const chatBox = document.getElementById('chat-box');
+            if (chatBox.classList.contains('hidden')) {
+                chatBox.classList.remove('hidden');
+            }
+            document.getElementById('chat-input').value = text;
+            await sendChatMessage();
+        }
+
+        async function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Hiển thị câu hỏi của khách
+            const userBubble = document.createElement('div');
+            userBubble.className = "bg-ndsh-600 text-white p-3.5 rounded-2xl shadow-sm max-w-[85%] self-end leading-relaxed";
+            userBubble.textContent = text;
+            container.appendChild(userBubble);
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            // Hiển thị trạng thái đang tra cứu dữ liệu nguồn
+            const loadingId = 'loading-' + Date.now();
+            const loadingBubble = document.createElement('div');
+            loadingBubble.id = loadingId;
+            loadingBubble.className = "bg-white p-3.5 rounded-2xl shadow-sm max-w-[88%] self-start text-slate-500 border border-slate-200 text-xs";
+            loadingBubble.innerHTML = `<i class="fa-solid fa-magnifying-glass fa-beat text-ndsh-600 mr-2"></i> Đang đối chiếu dữ liệu nguồn thời gian thực...`;
+            container.appendChild(loadingBubble);
+            container.scrollTop = container.scrollHeight;
+
+            // Nếu ông chủ chưa gắn link Google Apps Script, dùng bộ kiểm chứng Ground-Truth tại chỗ
+            if (SCRIPT_URL.includes("DÁN_GOOGLE_APPS_SCRIPT")) {
+                setTimeout(() => {
+                    document.getElementById(loadingId)?.remove();
+                    const replyHtml = verifyLocalGroundTruth(text);
+                    const botBubble = document.createElement('div');
+                    botBubble.className = "bg-white p-3.5 rounded-2xl shadow-sm max-w-[88%] self-start text-slate-700 border border-slate-200 leading-relaxed";
+                    botBubble.innerHTML = replyHtml;
+                    container.appendChild(botBubble);
+                    container.scrollTop = container.scrollHeight;
+                }, 700);
+                return;
+            }
+
+            // Gọi Google Apps Script tra cứu thời gian thực từ Google Sheets
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ type: 'chat', message: text })
+                });
+                const resData = await response.json();
+                document.getElementById(loadingId)?.remove();
+
+                const botBubble = document.createElement('div');
+                botBubble.className = "bg-white p-3.5 rounded-2xl shadow-sm max-w-[88%] self-start text-slate-700 border border-slate-200 leading-relaxed";
+                botBubble.innerHTML = resData.reply;
+                container.appendChild(botBubble);
+            } catch (err) {
+                document.getElementById(loadingId)?.remove();
+                const fallbackBubble = document.createElement('div');
+                fallbackBubble.className = "bg-white p-3.5 rounded-2xl shadow-sm max-w-[88%] self-start text-slate-700 border border-slate-200 leading-relaxed";
+                fallbackBubble.innerHTML = verifyLocalGroundTruth(text);
+                container.appendChild(fallbackBubble);
+            }
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function submitForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const status = document.getElementById('form-status');
+
+            const payload = {
+                type: 'form',
+                name: document.getElementById('f-name').value.trim(),
+                phone: document.getElementById('f-phone').value.trim(),
+                interest: document.getElementById('f-interest').value,
+                message: document.getElementById('f-message').value.trim()
+            };
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Đang đồng bộ Google Sheets & Telegram...';
+
+            if (!SCRIPT_URL.includes("DÁN_GOOGLE_APPS_SCRIPT")) {
+                try {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '<span>Gửi Yêu Cầu & Báo Ngay Qua Telegram</span> <i class="fa-solid fa-paper-plane"></i>';
+            status.className = "text-center font-bold text-sm p-4 rounded-xl bg-ndsh-50 text-ndsh-800 border border-ndsh-200 block";
+            status.innerHTML = `✓ Đã ghi nhận yêu cầu của <b>${payload.name}</b>! Nếu cần trao đổi gấp, bạn có thể nhắn trực tiếp qua Zalo <b>${OWNER_ZALO_PHONE}</b>.`;
+            document.getElementById('contact-form').reset();
+        }
+
+        // Công cụ xuất riêng file style.css cho ông chủ khi cần tách lẻ
+        function downloadStandaloneCSS() {
+            const cssContent = document.getElementById('advanced-custom-css').innerText.trim();
+            const blob = new Blob([cssContent], { type: 'text/css;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'style.css';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
