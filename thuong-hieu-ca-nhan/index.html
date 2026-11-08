@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyễn Duy Anh (KTCS xAI) — Thương Hiệu Cá Nhân & Hệ Sinh Thái Dự Án Công Nghệ AI</title>
+  <meta name="description" content="Trang thương hiệu cá nhân chính thức của Nguyễn Duy Anh — Nhà sáng lập Hệ Sinh Thái Kiến Tạo Đời Mới xAI, chuyên gia giải pháp Website AI, Nông Nghiệp Số, Y Học Dưỡng Sinh và Đào Tạo Thực Chiến." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.16), transparent 40%),
+                  radial-gradient(circle at 90% 35%, rgba(245, 158, 11, 0.14), transparent 40%),
+                  radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.12), transparent 45%),
+                  #070c18;
+      color: #f8fafc;
+      min-height: 100vh;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.65);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.25);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #34d399 0%, #fbbf24 55%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glow-badge {
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 glass border-b border-slate-800/80 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-amber-500 flex items-center justify-center text-slate-950 font-extrabold text-lg shadow-lg">
+          DA
+        </div>
+        <div>
+          <span class="font-extrabold text-white tracking-tight block leading-none">NGUYỄN DUY ANH</span>
+          <span class="text-xs text-emerald-400 font-semibold tracking-wider">KIẾN TẠO ĐỜI MỚI xAI</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-300">
+        <a href="#gioi-thieu" class="hover:text-emerald-400 transition">Tầm Nhìn</a>
+        <a href="#linh-vuc" class="hover:text-emerald-400 transition">Năng Lực Cốt Lõi</a>
+        <a href="#du-an" class="hover:text-emerald-400 transition">Hệ Sinh Thái Dự Án</a>
+        <a href="#cong-nghe" class="hover:text-emerald-400 transition">Hạ Tầng Đồng Bộ</a>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <a href="https://nguyenduyanh1323-dot.github.io/"
+           class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-emerald-500/30 text-xs md:text-sm font-bold flex items-center gap-2 transition">
+          <i class="fa-solid fa-gauge-high"></i> Trung Tâm Quản Trị
+        </a>
+        <a href="https://github.com/nguyenduyanh1323-dot" target="_blank"
+           class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs md:text-sm font-bold flex items-center gap-2 shadow-lg transition">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="gioi-thieu" class="relative pt-14 pb-20 px-6 overflow-hidden">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 glow-badge">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          THƯƠNG HIỆU CÁ NHÂN & HỆ SINH THÁI CÔNG NGHỆ SỐ
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+          Kiến Tạo Giải Pháp Số <br />
+          <span class="text-gradient">Ứng Dụng AI Thực Chiến</span>
+        </h1>
+
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+          Xin chào, tôi là <strong class="text-white">Nguyễn Duy Anh</strong> — Nhà sáng lập sáng kiến <strong class="text-amber-300">Kiến Tạo Đời Mới xAI</strong>. Tôi nghiên cứu, thiết kế và triển khai các hệ sinh thái Website thông minh tích hợp Trí Tuệ Nhân Tạo (AI), đưa công nghệ phục vụ trực tiếp cho Nông Nghiệp Bền Vững, Chăm Sóc Sức Khỏe Đông Y, Đời Sống Người Cao Tuổi và Đào Tạo Chuyển Đổi Số.
+        </p>
+
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#du-an"
+             class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-extrabold text-sm flex items-center gap-2.5 shadow-xl">
+            <i class="fa-solid fa-rocket"></i> Khám Phá 6 Dự Án Chủ Lực
+          </a>
+          <a href="https://nguyenduyanh1323-dot.github.io/"
+             class="px-6 py-3.5 rounded-2xl glass hover:bg-slate-800/90 text-white font-bold text-sm flex items-center gap-2.5 border border-slate-700">
+            <i class="fa-solid fa-layer-group text-amber-400"></i> Mở Bảng Điều Khiển Trung Tâm
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80">
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">7+</div>
+            <div class="text-xs text-slate-400 mt-1">Chuyên trang Web & AI đang hoạt động</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">100%</div>
+            <div class="text-xs text-slate-400 mt-1">Đồng bộ Cloud GitHub PC & Laptop</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-sky-400">24/7</div>
+            <div class="text-xs text-slate-400 mt-1">Hệ thống vận hành trên GitHub Pages</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Highlight Card -->
+      <div class="lg:col-span-5">
+        <div class="glass-card rounded-3xl p-8 border border-emerald-500/30 relative">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-amber-400 p-0.5 shadow-xl">
+              <div class="w-full h-full bg-slate-950 rounded-2xl flex items-center justify-center text-3xl font-black text-gradient">
+                NDA
+              </div>
+            </div>
+            <div>
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                Founder & AI Builder
+              </span>
+              <h2 class="text-2xl font-extrabold text-white mt-1">Nguyễn Duy Anh</h2>
+              <p class="text-xs text-slate-400">@nguyenduyanh1323-dot • Việt Nam</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-sm text-slate-300 mb-6">
+            <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start gap-3">
+              <i class="fa-solid fa-wand-magic-sparkles text-emerald-400 mt-1"></i>
+              <div>
+                <strong class="text-white block">Triết lý hành động</strong>
+                Biến những ý tưởng phức tạp thành các ứng dụng web trực quan, dễ dùng và tạo giá trị thực tế ngay lập tức cho cộng đồng.
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start gap-3">
+              <i class="fa-solid fa-microchip text-amber-400 mt-1"></i>
+              <div>
+                <strong class="text-white block">Công nghệ chủ đạo</strong>
+                AI Agentic Coding, Giao diện Web Hiện Đại (HTML5, TailwindCSS, JS), Tư vấn AI tự động & Quản trị CRM, GitHub Cloud.
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-slate-400">
+            <span><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Đã xác thực GitHub CLI</span>
+            <a href="https://github.com/nguyenduyanh1323-dot" target="_blank" class="text-emerald-400 hover:underline font-bold">
+              Xem Hồ Sơ GitHub →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Core Pillars Section -->
+  <section id="linh-vuc" class="py-16 px-6 bg-slate-950/50 border-y border-slate-800/70">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Lĩnh Vực Tiên Phong</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-2">4 Trụ Cột Sáng Tạo Trong Hệ Sinh Thái</h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3">
+          Mỗi dự án công nghệ đều được thiết kế chuyên biệt cho từng nhóm người dùng với trải nghiệm tối ưu nhất.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Nông Nghiệp Số Hóa AI</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Ứng dụng AI chẩn đoán bệnh cây trồng, chuẩn hóa quy trình canh tác sầu riêng bền vững và hỗ trợ nhà nông làm chủ kỹ thuật.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Đông Y & Dưỡng Sinh Số</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Tích hợp Bác sĩ AI tư vấn 24/7, đặt lịch trị liệu cổ vai gáy, ngâm tắm thảo dược và hệ thống quản trị khách hàng (CRM) tự động.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-300 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Chăm Sóc Sức Khỏe 60+</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Thiết kế giao diện chữ to, độ tương phản cao, dễ thao tác cho người cao tuổi kết hợp bài tập vận động và dinh dưỡng khoa học.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Đào Tạo AI & Tâm Thức 4D</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Cẩm nang thực hành viết siêu câu lệnh tạo Website và trình chiếu bài giảng đa chiều có thuyết minh giọng đọc trực quan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Showcase -->
+  <section id="du-an" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Portfolio Thực Chiến</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-2">Danh Mục Các Dự Án Công Nghệ Tiêu Biểu</h2>
+          <p class="text-slate-300 text-sm sm:text-base mt-2">
+            Toàn bộ dự án đã được xuất bản trực tiếp lên GitHub Pages và kết nối đồng bộ về Trung Tâm Quản Trị.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterProjects('all')" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white">Tất cả (6)</button>
+          <button onclick="filterProjects('spa')" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-teal-300">Đông Y & Spa (2 Repo Riêng)</button>
+          <button onclick="filterProjects('ai-edu')" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-amber-300">Nông Nghiệp & Đào Tạo (4)</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <div data-cat="ai-edu" class="project-item glass-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">Nông Nghiệp AI</span>
+              <span class="text-xs text-slate-400 font-mono">/nguoi-nong-dan-so-hoa</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Người Nông Dân Số Hóa — Chuyên Trang Sầu Riêng Bền Vững</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+              Giải pháp công nghệ đồng hành cùng nhà vườn: chẩn đoán sâu bệnh bằng AI, lịch trình chăm sóc sầu riêng và nhật ký canh tác số.
+            </p>
+          </div>
+          <a href="https://nguyenduyanh1323-dot.github.io/nguoi-nong-dan-so-hoa/" target="_blank"
+             class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Trải Nghiệm Dự Án
+          </a>
+        </div>
+
+        <!-- Project 2 -->
+        <div data-cat="spa" class="project-item glass-card rounded-2xl p-6 flex flex-col justify-between border border-teal-500/40">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-300">Repo Riêng: Website-SPA</span>
+              <span class="text-xs text-teal-300 font-semibold">Bản Xanh Ngọc</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">An Lạc Y Đường — Spa Dưỡng Sinh Trị Liệu Đông Y (Bản 1)</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+              Hệ thống website dưỡng sinh cao cấp tích hợp Bác sĩ AI tư vấn triệu chứng 24/7, đặt lịch trị liệu và bảng quản trị CRM thông minh.
+            </p>
+          </div>
+          <a href="https://nguyenduyanh1323-dot.github.io/Website-SPA/" target="_blank"
+             class="w-full py-2.5 px-4 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở Website-SPA
+          </a>
+        </div>
+
+        <!-- Project 3 -->
+        <div data-cat="spa" class="project-item glass-card rounded-2xl p-6 flex flex-col justify-between border border-amber-500/40">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300">Repo Riêng: Website-SPA2</span>
+              <span class="text-xs text-amber-300 font-semibold">Bản V4 Kem Sữa</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">An Lạc Y Đường — Phiên Bản V4 Kem Sữa Hoàng Gia</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+              Thiết kế giao diện tông Kem Sữa Hoàng Gia thanh lịch, giữ trọn vẹn động cơ AI chẩn đoán dưỡng sinh và quản lý lịch hẹn khách hàng.
+            </p>
+          </div>
+          <a href="https://nguyenduyanh1323-dot.github.io/Website-SPA2/" target="_blank"
+             class="w-full py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Mở Website-SPA2
+          </a>
+        </div>
+
+        <!-- Project 4 -->
+        <div data-cat="ai-edu" class="project-item glass-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300">Sức Khỏe Cộng Đồng</span>
+              <span class="text-xs text-slate-400 font-mono">/song-vui-song-khoe-60</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Sống Vui - Sống Khỏe 60+ | Cổng Chăm Sóc Sức Khỏe</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+              Không gian số thân thiện dành riêng cho tuổi vàng 60+: hướng dẫn dưỡng sinh, chế độ dinh dưỡng và kiểm tra sức khỏe hàng ngày.
+            </p>
+          </div>
+          <a href="https://nguyenduyanh1323-dot.github.io/song-vui-song-khoe-60/" target="_blank"
+             class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Trải Nghiệm Dự Án
+          </a>
+        </div>
+
+        <!-- Project 5 -->
+        <div data-cat="ai-edu" class="project-item glass-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">EdTech 4D V08</span>
+              <span class="text-xs text-slate-400 font-mono">/chuyen-co-a388-4d</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Bản Chỉ Huy Tâm Thức Siêu Chuyên Cơ A388 — 16 Chặng 4D</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+              Ứng dụng trình chiếu bài giảng tương tác 16 chặng hành trình nâng tầm nhận thức với hiệu ứng âm thanh, giọng đọc và 4 giao diện.
+            </p>
+          </div>
+          <a href="https://nguyenduyanh1323-dot.github.io/chuyen-co-a388-4d/" target="_blank"
+             class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Trải Nghiệm Dự Án
+          </a>
+        </div>
+
+        <!-- Project 6 -->
+        <div data-cat="ai-edu" class="project-item glass-card rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300">Đào Tạo AI Web</span>
+              <span class="text-xs text-slate-400 font-mono">/cam-nang-skill-web</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Cẩm Nang Skill Tạo Website — Kiến Tạo Đời Mới xAI</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+              Tài liệu hướng dẫn từng bước giúp học viên làm chủ kỹ năng viết câu lệnh AI để tự thiết kế và xuất bản website lên Internet.
+            </p>
+          </div>
+          <a href="https://nguyenduyanh1323-dot.github.io/cam-nang-skill-web/" target="_blank"
+             class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Trải Nghiệm Dự Án
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cloud Sync Architecture Section -->
+  <section id="cong-nghe" class="py-16 px-6 bg-slate-900/40 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto glass-card rounded-3xl p-8 md:p-10 border border-emerald-500/30">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-3">
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">
+            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> HẠ TẦNG ĐỒNG BỘ ĐA THIẾT BỊ (PC & LAPTOP)
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+            Kết Nối Trực Tiếp Tài Khoản GitHub @nguyenduyanh1323-dot
+          </h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Toàn bộ mã nguồn của Hệ Sinh Thái Website được quản lý tập trung qua Git, GitHub CLI và xuất bản tự động qua GitHub Pages, cho phép làm việc liền mạch mọi lúc mọi nơi giữa máy tính để bàn (PC) và Laptop.
+          </p>
+        </div>
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+          <a href="https://nguyenduyanh1323-dot.github.io/"
+             class="px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg">
+            <i class="fa-solid fa-house-laptop"></i> Về Trang Trung Tâm Quản Trị
+          </a>
+          <a href="https://github.com/nguyenduyanh1323-dot?tab=repositories" target="_blank"
+             class="px-5 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm text-center flex items-center justify-center gap-2 border border-slate-700">
+            <i class="fa-brands fa-github"></i> Mở Danh Sách Repositories
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 text-center text-xs sm:text-sm text-slate-400 border-t border-slate-800/80">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        © 2026 <strong class="text-white">Nguyễn Duy Anh (Kiến Tạo Đời Mới xAI)</strong>. Đã xuất bản trên GitHub Pages.
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://nguyenduyanh1323-dot.github.io/" class="hover:text-emerald-400">Trung Tâm Quản Trị</a>
+        <span>•</span>
+        <a href="https://github.com/nguyenduyanh1323-dot" target="_blank" class="hover:text-emerald-400">GitHub @nguyenduyanh1323-dot</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterProjects(cat) {
+      document.querySelectorAll('.project-item').forEach(el => {
+        if (cat === 'all' || el.dataset.cat === cat) {
+          el.style.display = 'flex';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
