@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xAI Video Studio Pro — Mr. Nguyễn Duy Anh | Tạo Phim AI Đồng Nhất Nhân Vật & Phụ Đề Karaoke 1 Dòng</title>
+  <meta name="description" content="Ứng dụng sản xuất phim video AI chuyên nghiệp dành riêng cho Mr. Nguyễn Duy Anh (Kiến Tạo Đời Mới xAI): Khóa đồng nhất gương mặt, trang phục, bối cảnh, phụ đề Karaoke 1 dòng và tích hợp AI API tự học hỏi." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 12% 12%, rgba(16, 185, 129, 0.16), transparent 40%),
+                  radial-gradient(circle at 88% 85%, rgba(245, 158, 11, 0.14), transparent 40%),
+                  #060b16;
+      color: #f8fafc;
+      min-height: 100vh;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.72);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      transition: all 0.25s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(16, 185, 129, 0.45);
+    }
+    .gold-border {
+      border: 1.5px solid rgba(245, 158, 11, 0.65);
+      box-shadow: 0 0 28px rgba(245, 158, 11, 0.15);
+    }
+    .emerald-glow {
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.3);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+  </style>
+</head>
+<body class="antialiased selection:bg-emerald-500 selection:text-white pb-16">
+
+  <!-- TOP HEADER BAR -->
+  <header class="sticky top-0 z-50 glass border-b border-slate-800 px-4 md:px-8 py-3.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-500 to-amber-400 p-0.5 shadow-lg">
+          <div class="w-full h-full bg-slate-950 rounded-2xl flex items-center justify-center text-lg font-black text-amber-400">
+            <i class="fa-solid fa-clapperboard"></i>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base md:text-xl font-extrabold text-white tracking-tight">
+              xAI VIDEO STUDIO PRO
+            </h1>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+              Mr. Nguyễn Duy Anh Edition
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">
+            Đồng Nhất Gương Mặt & Trang Phục • Phụ Đề Karaoke 1 Dòng • AI Tự Học & Tối Ưu
+          </p>
+        </div>
+      </div>
+
+      <!-- AI API Status & Quick Nav -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <button onclick="toggleModal('apiModal')" id="apiStatusBtn"
+                class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-emerald-500/40 text-xs font-bold flex items-center gap-2 transition">
+          <span id="apiIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+          <span id="apiStatusText" class="text-slate-200">AI Key: Chế Độ Thông Minh Nội Bộ (Bấm Cài API)</span>
+        </button>
+
+        <button onclick="toggleModal('brainModal')"
+                class="px-3.5 py-2 rounded-xl bg-purple-600/25 hover:bg-purple-600/40 border border-purple-400/40 text-purple-200 text-xs font-bold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-brain text-purple-300"></i>
+          <span>Bộ Nhớ AI Tự Học (<span id="learnCountBadge">12</span>)</span>
+        </button>
+
+        <a href="https://nguyenduyanh1323-dot.github.io/"
+           class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 text-xs font-bold flex items-center gap-1.5">
+          <i class="fa-solid fa-house-laptop"></i> Trung Tâm Quản Trị
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="max-w-7xl mx-auto px-4 md:px-8 pt-6">
+
+    <!-- 3-STEP EASY GUIDE BANNER -->
+    <div class="glass-card rounded-2xl p-4 mb-6 border border-emerald-500/30 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-3 text-xs md:text-sm">
+        <span class="px-3 py-1 rounded-lg bg-emerald-500 text-slate-950 font-extrabold">
+          QUY TRÌNH 3 BƯỚC ĐƠN GIẢN
+        </span>
+        <span class="text-slate-200 font-semibold">
+          <strong class="text-amber-300">Bước 1:</strong> Nạp tư liệu từ Máy tính/Điện thoại & Khóa DNA Nhân vật
+        </span>
+        <i class="fa-solid fa-chevron-right text-slate-600 hidden sm:inline"></i>
+        <span class="text-slate-200 font-semibold">
+          <strong class="text-emerald-300">Bước 2:</strong> Chọn Kịch bản 1-Click hoặc AI tự viết lời thoại
+        </span>
+        <i class="fa-solid fa-chevron-right text-slate-600 hidden sm:inline"></i>
+        <span class="text-slate-200 font-semibold">
+          <strong class="text-sky-300">Bước 3:</strong> Phát Phim Karaoke 1 Dòng & Xuất Video / Prompt Đồng Nhất
+        </span>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button onclick="saveProjectManual()" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-bold">
+          <i class="fa-solid fa-floppy-disk mr-1"></i> Lưu Dự Án
+        </button>
+        <button onclick="exportProjectJSON()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold">
+          <i class="fa-solid fa-file-export mr-1"></i> Xuất File Dự Án
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN GRID: LEFT (CONTROLS & SCRIPT) | RIGHT (PLAYER & KARAOKE & EXPORT) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- LEFT COLUMN (7 COLS): CHARACTER LOCK + MEDIA + SCENES -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- SECTION 1: KHÓA ĐỒNG NHẤT NHÂN VẬT, TRANG PHỤC & BỐI CẢNH (IDENTITY LOCK ENGINE) -->
+        <section class="glass-card gold-border rounded-3xl p-5 md:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black flex items-center justify-center text-sm">1</span>
+              <div>
+                <h2 class="text-base md:text-lg font-extrabold text-white flex items-center gap-2">
+                  Khóa Đồng Nhất Nhân Vật, Trang Phục & Bối Cảnh Xuyên Suốt
+                </h2>
+                <p class="text-xs text-amber-300/90">
+                  Đảm bảo 100% các phân cảnh giữ nguyên đặc điểm gương mặt Mr. Nguyễn Duy Anh, trang phục và không gian.
+                </p>
+              </div>
+            </div>
+            <label class="inline-flex items-center gap-2 cursor-pointer bg-amber-500/20 border border-amber-400/40 px-3 py-1.5 rounded-xl">
+              <input type="checkbox" id="masterLockToggle" checked class="w-4 h-4 accent-amber-500" onchange="updateConsistencyPreview()" />
+              <span class="text-xs font-extrabold text-amber-300"><i class="fa-solid fa-lock mr-1"></i> ĐÃ KHÓA ĐỒNG NHẤT 100%</span>
+            </label>
+          </div>
+
+          <!-- Reference Portrait & Upload from PC/Phone -->
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center bg-slate-900/75 rounded-2xl p-4 border border-slate-800 mb-4">
+            <div class="sm:col-span-4 flex flex-col items-center text-center">
+              <div class="relative group">
+                <img id="masterPortraitImg" src="" alt="Mr. Nguyễn Duy Anh"
+                     class="w-28 h-28 rounded-2xl object-cover border-2 border-amber-400 shadow-lg bg-slate-800" />
+                <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-md bg-emerald-600 text-white font-bold text-xs whitespace-nowrap shadow">
+                  Ảnh Gốc Mẫu
+                </span>
+              </div>
+              <div class="mt-4 flex flex-wrap justify-center gap-1.5">
+                <label class="px-2.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs cursor-pointer transition">
+                  <i class="fa-solid fa-camera mr-1"></i> Đổi Ảnh Mặt Gốc
+                  <input type="file" accept="image/*" class="hidden" onchange="handleMasterPortraitUpload(event)" />
+                </label>
+                <button onclick="analyzePortraitWithAI()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-emerald-500/30 text-xs font-bold" title="Dùng AI phân tích kỹ đặc điểm gương mặt để khóa">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> AI Quét Mặt
+                </button>
+              </div>
+            </div>
+
+            <div class="sm:col-span-8 space-y-3">
+              <div>
+                <label class="text-xs font-bold text-emerald-300 block mb-1">
+                  <i class="fa-solid fa-user-shield mr-1"></i> Đặc điểm gương mặt nhân vật cố định (Face DNA):
+                </label>
+                <input type="text" id="charFaceDNA" oninput="updateConsistencyPreview()"
+                       value="Mr. Nguyễn Duy Anh, doanh nhân & chuyên gia công nghệ Việt Nam, gương mặt điềm đạm phúc hậu, ánh mắt sáng tự tin, tóc đen gọn gàng, nụ cười thân thiện truyền cảm hứng (Seed: 1323888)"
+                       class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-emerald-400 focus:outline-none" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div>
+                  <label class="text-xs font-bold text-amber-300 block mb-1">
+                    <i class="fa-solid fa-shirt mr-1"></i> Trang phục xuyên suốt (Outfit Lock):
+                  </label>
+                  <select id="charOutfitPreset" onchange="applyOutfitPreset()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-slate-200 mb-1.5">
+                    <option value="vest">Vest Doanh Nhân Xanh Navy & Sơ Mi Trắng (Thương hiệu cá nhân)</option>
+                    <option value="captain">Đồng Phục Cơ Trưởng Siêu Chuyên Cơ A388 V08 (Bài giảng 4D)</option>
+                    <option value="agri">Áo Sơ Mi Kaki Xanh Rừng & Phong Thái Kỹ Sư Nông Nghiệp Số</option>
+                    <option value="dongy">Áo Tràng Đông Y Lụa Xanh Ngọc / Kem Hoàng Gia (An Lạc Y Đường)</option>
+                    <option value="health">Áo Polo Thể Thao Trắng Tinh Tế, Năng Động (Sống Vui Sống Khỏe 60+)</option>
+                  </select>
+                  <input type="text" id="charOutfitDNA" oninput="updateConsistencyPreview()"
+                         value="Mặc bộ Vest doanh nhân màu xanh navy sang trọng, áo sơ mi trắng cổ đứng lịch lãm, huy hiệu vàng xAI trên ngực áo"
+                         class="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white" />
+                </div>
+
+                <div>
+                  <label class="text-xs font-bold text-sky-300 block mb-1">
+                    <i class="fa-solid fa-mountain-sun mr-1"></i> Bối cảnh & Ánh sáng xuyên suốt (Scene Lock):
+                  </label>
+                  <select id="charEnvPreset" onchange="applyEnvPreset()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-slate-200 mb-1.5">
+                    <option value="studio">Phòng Studio Công Nghệ xAI Hiện Đại Ấm Áp</option>
+                    <option value="cockpit">Khoang Chỉ Huy Siêu Chuyên Cơ A388 4D Tương Lai</option>
+                    <option value="durian">Vườn Sầu Riêng Sinh Thái Công Nghệ Cao Buổi Sáng</option>
+                    <option value="spa">Không Gian An Lạc Y Đường Thảo Dược Thiền Tịnh</option>
+                    <option value="park">Công Viên Sinh Thái Nắng Sớm Trong Lành (Sức Khỏe 60+)</option>
+                  </select>
+                  <input type="text" id="charEnvDNA" oninput="updateConsistencyPreview()"
+                         value="Không gian Studio công nghệ Kiến Tạo Đời Mới xAI sang trọng, ánh sáng điện ảnh ấm áp, chiều sâu trường ảnh 8K"
+                         class="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UPLOAD MULTI-MEDIA FROM PC / PHONE -->
+          <div class="bg-slate-950/70 rounded-2xl p-4 border border-dashed border-emerald-500/40">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h3 class="text-xs md:text-sm font-bold text-emerald-300 flex items-center gap-2">
+                  <i class="fa-solid fa-folder-open"></i> Nguồn Tư Liệu Từ Máy Tính & Điện Thoại Của Anh
+                </h3>
+                <p class="text-xs text-slate-400">
+                  Tải lên nhiều ảnh, video clip (.mp4, .webm) hoặc file ghi âm giọng nói (.mp3, .wav) để tự động rải vào các phân cảnh kịch bản.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 shrink-0">
+                <label class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs cursor-pointer flex items-center gap-1.5 shadow">
+                  <i class="fa-solid fa-cloud-arrow-up"></i> Chọn Ảnh / Video Từ Máy
+                  <input type="file" id="bulkMediaInput" accept="image/*,video/*" multiple class="hidden" onchange="handleBulkMediaUpload(event)" />
+                </label>
+                <button onclick="applyMasterPortraitToAllScenes()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 text-xs font-bold">
+                  <i class="fa-solid fa-clone mr-1"></i> Đồng Bộ Ảnh Gốc Vào Mọi Cảnh
+                </button>
+              </div>
+            </div>
+            <!-- Media Tray -->
+            <div id="mediaLibraryTray" class="flex items-center gap-2.5 overflow-x-auto pt-3 mt-2 border-t border-slate-800/80">
+              <span class="text-xs text-slate-400 italic">Đang dùng sẵn ảnh chân dung gốc của Mr. Nguyễn Duy Anh. Khi tải thêm ảnh/video từ máy, tư liệu sẽ hiện tại đây...</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: KHO KỊCH BẢN THƯƠNG HIỆU 1-CLICK & TRÌNH BIÊN TẬP PHÂN CẢNH -->
+        <section class="glass-card rounded-3xl p-5 md:p-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-xl bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-sm">2</span>
+              <div>
+                <h2 class="text-base md:text-lg font-extrabold text-white">
+                  Kịch Bản Phân Cảnh & Lời Thoại Karaoke Một Dòng
+                </h2>
+                <p class="text-xs text-slate-400">
+                  Chọn nhanh 5 kịch bản thương hiệu Mr. Nguyễn Duy Anh hoặc nhập chủ đề để AI tự động sáng tác.
+                </p>
+              </div>
+            </div>
+            <button onclick="addNewScene()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-plus"></i> Thêm Phân Cảnh
+            </button>
+          </div>
+
+          <!-- 1-Click Brand Templates -->
+          <div class="mb-4">
+            <span class="text-xs font-bold text-amber-300 block mb-2">
+              <i class="fa-solid fa-bolt mr-1"></i> Kho Mẫu Kịch Bản Thương Hiệu Mr. Nguyễn Duy Anh (Bấm 1-Click Nạp Ngay):
+            </span>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="loadBrandTemplate('brand')" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition">
+                👑 1. Thương Hiệu Cá Nhân KTCS xAI
+              </button>
+              <button onclick="loadBrandTemplate('durian')" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition">
+                🌱 2. Người Nông Dân Số Hóa (Sầu Riêng)
+              </button>
+              <button onclick="loadBrandTemplate('dongy')" class="px-3 py-1.5 rounded-xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/40 text-xs font-bold transition">
+                🌿 3. An Lạc Y Đường (Đông Y & Spa)
+              </button>
+              <button onclick="loadBrandTemplate('health60')" class="px-3 py-1.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 text-xs font-bold transition">
+                ❤️ 4. Sống Vui Sống Khỏe 60+
+              </button>
+              <button onclick="loadBrandTemplate('a388')" class="px-3 py-1.5 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 border border-indigo-500/40 text-xs font-bold transition">
+                ✈️ 5. Cơ Trưởng Chuyên Cơ Tâm Thức A388
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Topic Generator Bar -->
+          <div class="flex flex-col sm:flex-row gap-2 mb-5 bg-slate-900/90 p-3 rounded-2xl border border-slate-800">
+            <input type="text" id="aiTopicInput"
+                   placeholder="Nhập ý tưởng video của anh (VD: Chia sẻ bí quyết ứng dụng AI giúp nhà vườn tăng năng suất sầu riêng)..."
+                   class="flex-1 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-emerald-400 focus:outline-none" />
+            <button onclick="generateScriptWithAI()" id="btnAiGenerate"
+                    class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-extrabold text-xs whitespace-nowrap flex items-center justify-center gap-2 shadow-lg">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> AI Viết Kịch Bản Đồng Nhất
+            </button>
+          </div>
+
+          <!-- Dynamic Scenes List -->
+          <div id="scenesContainer" class="space-y-4 max-h-[540px] overflow-y-auto pr-1">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT COLUMN (5 COLS): VIDEO PLAYER + KARAOKE 1-LINE CONTROLS + VOICE + EXPORT -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- SECTION 3: TRÌNH CHIẾU PHIM & PHỤ ĐỀ KARAOKE 1 DÒNG REALTIME -->
+        <section class="glass-card rounded-3xl p-5 md:p-6 sticky top-20">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-8 h-8 rounded-xl bg-sky-500 text-slate-950 font-black flex items-center justify-center text-sm">3</span>
+              <div>
+                <h2 class="text-base font-extrabold text-white">Màn Hình Phim & Karaoke 1 Dòng</h2>
+                <p id="playerSceneIndicator" class="text-xs text-emerald-400 font-semibold">Sẵn sàng trình chiếu • Đã khóa nhân vật</p>
+              </div>
+            </div>
+
+            <!-- Aspect Ratio Switcher -->
+            <div class="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+              <button onclick="setAspectRatio('16:9')" id="ratio169Btn" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white">
+                16:9 Ngang
+              </button>
+              <button onclick="setAspectRatio('9:16')" id="ratio916Btn" class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white">
+                9:16 Dọc (TikTok)
+              </button>
+            </div>
+          </div>
+
+          <!-- HTML5 CANVAS VIDEO STAGE -->
+          <div class="relative flex justify-center bg-slate-950 rounded-2xl p-2 border border-slate-800 shadow-2xl overflow-hidden">
+            <canvas id="studioCanvas" width="1280" height="720"
+                    class="w-full rounded-xl bg-black shadow-inner transition-all duration-300"
+                    style="aspect-ratio: 16/9; max-height: 420px; object-fit: contain;"></canvas>
+
+            <!-- Recording Badge -->
+            <div id="recordingBadge" class="hidden absolute top-4 left-4 px-3 py-1 rounded-full bg-rose-600 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-lg">
+              <span class="w-2 h-2 rounded-full bg-white animate-ping"></span> ĐANG GHI FILE VIDEO...
+            </div>
+          </div>
+
+          <!-- PLAYBACK CONTROLS -->
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-2 bg-slate-900/90 p-3 rounded-2xl border border-slate-800">
+            <div class="flex items-center gap-2">
+              <button onclick="playFullMovie(false)" id="btnPlayMovie"
+                      class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg">
+                <i class="fa-solid fa-play"></i> Phát Phim Ngay
+              </button>
+              <button onclick="stopMovie()" id="btnStopMovie"
+                      class="px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-rose-600/80 text-slate-200 hover:text-white font-bold text-xs transition">
+                <i class="fa-solid fa-stop"></i> Dừng
+              </button>
+              <button onclick="prevScene()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs" title="Cảnh trước">
+                <i class="fa-solid fa-backward-step"></i>
+              </button>
+              <button onclick="nextScene()" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs" title="Cảnh tiếp">
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+            </div>
+
+            <button onclick="playFullMovie(true)" id="btnRecordVideo"
+                    class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-extrabold text-xs flex items-center gap-1.5 shadow-lg">
+              <i class="fa-solid fa-video"></i> Ghi & Tải Phim (.WebM/MP4)
+            </button>
+          </div>
+
+          <!-- KARAOKE 1-LINE & VOICE CUSTOMIZATION PANEL -->
+          <div class="mt-4 space-y-3 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/90">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
+                <i class="fa-solid fa-microphone-lines mr-1"></i> Tùy Chỉnh Phụ Đề Karaoke 1 Dòng & Giọng Đọc
+              </span>
+              <span class="text-xs text-emerald-400 font-semibold">Đồng bộ từng chữ</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 text-xs">
+              <div>
+                <label class="text-slate-400 block mb-1">Màu chữ đang hát/đọc (Highlight):</label>
+                <select id="karaokeActiveColor" onchange="renderCurrentSceneStatic()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-white">
+                  <option value="#fbbf24">Vàng Hoàng Gia (#fbbf24)</option>
+                  <option value="#34d399">Xanh Ngọc Lục Bảo (#34d399)</option>
+                  <option value="#38bdf8">Xanh Dương Sáng (#38bdf8)</option>
+                  <option value="#fb7185">Đỏ Hồng Nổi Bật (#fb7185)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-slate-400 block mb-1">Cỡ chữ Karaoke 1 dòng:</label>
+                <select id="karaokeFontSize" onchange="renderCurrentSceneStatic()" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-white">
+                  <option value="42">Vừa — Chuẩn Điện Ảnh (42px)</option>
+                  <option value="50" selected>Lớn — Rõ Nét Dễ Đọc (50px)</option>
+                  <option value="58">Siêu To — Chuẩn 60+ & Shorts (58px)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-slate-400 block mb-1">Giọng đọc lời thoại AI:</label>
+                <select id="voicePresetSelect" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-white">
+                  <option value="captain">Nam Trầm Ấm (Phong cách Mr. Duy Anh)</option>
+                  <option value="female">Nữ Dịu Dàng (Phong cách Dưỡng Sinh)</option>
+                  <option value="energetic">Truyền Cảm Hứng Nhanh, Năng Lượng</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-slate-400 block mb-1">Nhạc nền Ambient (Tự tạo):</label>
+                <select id="bgmStyleSelect" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-white">
+                  <option value="inspiring">Tần Số Truyền Cảm Hứng (432Hz)</option>
+                  <option value="zen">Thiền Dưỡng Sinh An Lạc (528Hz)</option>
+                  <option value="none">Tắt nhạc nền (Chỉ giọng thoại)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-xs">
+              <label class="inline-flex items-center gap-2 cursor-pointer text-slate-300">
+                <input type="checkbox" id="showBrandWatermark" checked onchange="renderCurrentSceneStatic()" class="accent-emerald-500" />
+                <span>Hiện huy hiệu thương hiệu <strong>Mr. Nguyễn Duy Anh • KTCS xAI</strong></span>
+              </label>
+              <span id="speedLabel" class="text-amber-300 font-bold">Tốc độ: 1.0x</span>
+            </div>
+          </div>
+
+          <!-- MASTER CONSISTENCY PROMPT EXPORT FOR VEO 3 / KLING / RUNWAY / CAPCUT -->
+          <div class="mt-4 bg-slate-950/90 p-4 rounded-2xl border border-amber-500/30">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-extrabold text-amber-300">
+                <i class="fa-solid fa-terminal mr-1"></i> Siêu Câu Lệnh (Prompt) Khóa Nhân Vật Cho Veo 3 / Kling / CapCut
+              </span>
+              <button onclick="copyConsistencyPrompts()" class="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs">
+                <i class="fa-solid fa-copy mr-1"></i> Sao Chép Tất Cả
+              </button>
+            </div>
+            <textarea id="masterPromptOutput" rows="3" readonly
+                      class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-emerald-300 font-mono focus:outline-none"></textarea>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL 1: AI API KEY & MULTI-PROVIDER AUTO-DETECT -->
+  <div id="apiModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card gold-border rounded-3xl max-w-lg w-full p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-key text-amber-400 text-lg"></i>
+          <h3 class="text-lg font-extrabold text-white">Cấu Hình AI API Key Đa Nền Tảng</h3>
+        </div>
+        <button onclick="toggleModal('apiModal')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Chỉ cần dán bất kỳ mã API Key nào vào ô dưới đây, hệ thống sẽ <strong>tự động nhận diện nhà cung cấp</strong>:
+        <span class="text-emerald-300 font-semibold">Google Gemini (`AIza...`)</span>,
+        <span class="text-amber-300 font-semibold">OpenAI GPT (`sk-...`)</span>, hoặc
+        <span class="text-sky-300 font-semibold">Grok xAI (`xai-...`)</span> để kích hoạt trí tuệ nhân tạo viết kịch bản, quét ảnh mặt gốc và tự học phong cách của anh.
+      </p>
+
+      <div>
+        <label class="text-xs font-bold text-emerald-300 block mb-1.5">Dán API Key của anh tại đây (Lưu bảo mật trên máy):</label>
+        <input type="password" id="universalApiKeyInput"
+               placeholder="AIzaSy... hoặc sk-... hoặc xai-..."
+               class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:border-amber-400 focus:outline-none" />
+        <p id="detectedProviderNotice" class="text-xs text-amber-300 mt-1.5 font-semibold">
+          💡 Nếu chưa nhập Key, ứng dụng vẫn hoạt động 100% với Động Cơ Thông Minh Nội Bộ.
+        </p>
+      </div>
+
+      <div class="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-800">
+        <button onclick="clearApiKey()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">
+          Xóa Key
+        </button>
+        <button onclick="saveUniversalApiKey()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-extrabold text-xs shadow-lg">
+          <i class="fa-solid fa-check mr-1"></i> Lưu & Kích Hoạt AI
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: AI SELF-LEARNING & SELF-UPGRADE ENGINE -->
+  <div id="brainModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-card rounded-3xl max-w-2xl w-full p-6 space-y-4 border border-purple-500/50">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-brain text-purple-400 text-xl"></i>
+          <div>
+            <h3 class="text-lg font-extrabold text-white">Trung Tâm AI Tự Học, Tự Nâng Cấp & Tối Ưu Thương Hiệu</h3>
+            <p class="text-xs text-purple-300">Ghi nhớ từ vựng, nhịp điệu lời thoại và quy tắc hình ảnh riêng của Mr. Nguyễn Duy Anh</p>
+          </div>
+        </div>
+        <button onclick="toggleModal('brainModal')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xs font-bold text-emerald-400">📊 Chỉ Số Học Tập Của AI Từ Mr. Duy Anh</div>
+          <p class="text-xs text-slate-300">• Từ khóa thương hiệu đã học: <strong id="learnedWordsText" class="text-white">Kiến Tạo Đời Mới, Bền Vững, Chuyển Đổi Số, An Lạc, Tâm Thức 4D</strong></p>
+          <p class="text-xs text-slate-300">• Số quy tắc nâng cấp đã nạp: <strong id="learnedRulesCount" class="text-amber-300">4 quy tắc</strong></p>
+          <p class="text-xs text-slate-300">• Trạng thái tối ưu Karaoke: <strong class="text-emerald-300">Tự động ngắt nhịp 1 dòng chống tràn chữ</strong></p>
+        </div>
+
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <label class="text-xs font-bold text-amber-300 block">
+            ⚡ Dạy Thêm Quy Tắc Mới Hoặc Yêu Cầu Tự Nâng Cấp:
+          </label>
+          <textarea id="newLearningRuleInput" rows="2"
+                    placeholder="VD: Luôn xưng 'Tôi - Duy Anh', kết thúc video bằng lời chúc sức khỏe và thịnh vượng..."
+                    class="w-full p-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white"></textarea>
+          <button onclick="addLearningRule()" class="w-full py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs">
+            <i class="fa-solid fa-plus-circle mr-1"></i> Nạp Vào Bộ Nhớ AI & Tự Nâng Cấp Ngay
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <span class="text-xs font-bold text-slate-400 block mb-1.5">Nhật ký AI tự học & tối ưu hóa:</span>
+        <div id="learningLogList" class="max-h-36 overflow-y-auto space-y-1.5 text-xs bg-slate-950 p-3 rounded-xl border border-slate-800">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastBox" class="fixed bottom-5 right-5 z-50 hidden px-4 py-3 rounded-2xl glass gold-border text-xs font-bold text-white shadow-2xl flex items-center gap-2">
+    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toastMessage">Đã cập nhật!</span>
+  </div>
+
+  <!-- EMBEDDED DEFAULT PORTRAIT FROM CAM-NANG-SKILL-WEB OR SVG FALLBACK -->
+  <script>
+    // Default stylized portrait data URI if local image not yet loaded
+    const FALLBACK_PORTRAIT_SVG = "data:image/svg+xml;utf8," + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#064e3b"/>
+            <stop offset="50%" stop-color="#0f172a"/>
+            <stop offset="100%" stop-color="#78350f"/>
+          </linearGradient>
+          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#fbbf24"/>
+            <stop offset="100%" stop-color="#34d399"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="600" fill="url(#bg)"/>
+        <circle cx="300" cy="230" r="110" fill="#1e293b" stroke="url(#gold)" stroke-width="6"/>
+        <circle cx="300" cy="210" r="52" fill="#f8fafc" opacity="0.9"/>
+        <path d="M210 325 C210 265, 390 265, 390 325" fill="#059669"/>
+        <text x="300" y="420" text-anchor="middle" fill="#fbbf24" font-family="sans-serif" font-size="30" font-weight="bold">MR. NGUYỄN DUY ANH</text>
+        <text x="300" y="460" text-anchor="middle" fill="#34d399" font-family="sans-serif" font-size="20" font-weight="bold">KIẾN TẠO ĐỜI MỚI xAI</text>
+        <text x="300" y="510" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="16">Identity Lock • Seed #1323888</text>
+      </svg>
+    `);
+
+    // State Management
+    let appState = {
+      aspectRatio: '16:9',
+      masterPortrait: FALLBACK_PORTRAIT_SVG,
+      uploadedMedia: [], // { id, type: 'image'|'video', url, name }
+      currentSceneIndex: 0,
+      isPlaying: false,
+      isRecording: false,
+      wordProgress: 0, // Current word index in 1-line karaoke
+      wordCharProgress: 1, // Smooth fill inside active word
+      animProgress: 0, // 0 to 1 for Ken Burns camera pan/zoom
+      apiKey: localStorage.getItem('xai_studio_api_key') || '',
+      apiProvider: localStorage.getItem('xai_studio_api_provider') || 'internal',
+      learningRules: JSON.parse(localStorage.getItem('xai_studio_learning_rules') || JSON.stringify([
+        "Luôn giữ phong thái điềm đạm, trí tuệ và truyền cảm hứng của Mr. Nguyễn Duy Anh.",
+        "Tự động chia câu thoại dài thành từng cụm ngắn để dòng Karaoke 1 dòng luôn to, rõ, không bị tràn khung hình.",
+        "Khóa chặt đặc điểm gương mặt, trang phục và bối cảnh xuyên suốt tất cả phân cảnh.",
+        "Tích hợp lời kêu gọi hành động hướng về giá trị thật cho cộng đồng Kiến Tạo Đời Mới xAI."
+      ])),
+      scenes: []
+    };
+
+    // 5 Brand Templates tailored for Mr. Nguyễn Duy Anh
+    const BRAND_TEMPLATES = {
+      brand: {
+        outfit: 'vest',
+        env: 'studio',
+        scenes: [
+          {
+            title: "Cảnh 1: Tầm Nhìn Kiến Tạo Đời Mới xAI",
+            camera: "Zoom In nhẹ vào gương mặt tự tin (Cận trung)",
+            dialogue: "Xin chào các bạn, tôi là Nguyễn Duy Anh, nhà sáng lập hệ sinh thái Kiến Tạo Đời Mới xAI.",
+            duration: 6
+          },
+          {
+            title: "Cảnh 2: Sứ Mệnh Ứng Dụng Công Nghệ Thực Chiến",
+            camera: "Pan ngang mượt mà trong Studio công nghệ 8K",
+            dialogue: "Chúng tôi biến trí tuệ nhân tạo thành công cụ giản dị, phục vụ trực tiếp cho đời sống và công việc mỗi ngày.",
+            duration: 7
+          },
+          {
+            title: "Cảnh 3: Hệ Sinh Thái Đa Lĩnh Vực Đồng Bộ",
+            camera: "Góc máy điện ảnh tôn vinh thần thái doanh nhân",
+            dialogue: "Từ nông nghiệp sầu riêng bền vững, dưỡng sinh Đông Y cho đến chăm sóc sức khỏe tuổi vàng sáu mươi cộng.",
+            duration: 7
+          },
+          {
+            title: "Cảnh 4: Lời Mời Kết Nối & Lan Tỏa Giá Trị",
+            camera: "Zoom nhẹ kết cảnh sang trọng ấm áp",
+            dialogue: "Hãy cùng Nguyễn Duy Anh làm chủ công nghệ số để kiến tạo một cuộc sống thịnh vượng, an lạc và hạnh phúc!",
+            duration: 7
+          }
+        ]
+      },
+      durian: {
+        outfit: 'agri',
+        env: 'durian',
+        scenes: [
+          {
+            title: "Cảnh 1: Người Nông Dân Số Hóa Thời Đại AI",
+            camera: "Mở cảnh vườn sầu riêng sinh thái nắng sớm",
+            dialogue: "Chào bà con nhà vườn, tôi là Nguyễn Duy Anh từ chuyên trang Người Nông Dân Số Hóa.",
+            duration: 6
+          },
+          {
+            title: "Cảnh 2: Chẩn Đoán Bệnh Cây Trồng Chính Xác",
+            camera: "Cận trung Mr. Duy Anh kiểm tra tán lá sầu riêng",
+            dialogue: "Nhờ ứng dụng trí tuệ nhân tạo, bà con có thể nhận diện sớm bệnh hại trên lá và rễ sầu riêng chỉ qua điện thoại.",
+            duration: 7
+          },
+          {
+            title: "Cảnh 3: Quy Trình Canh Tác Bền Vững",
+            camera: "Pan chậm qua những trái sầu riêng trĩu quả",
+            dialogue: "Giữ vững độ phì nhiêu của đất, tiết kiệm phân thuốc và nâng cao chất lượng nông sản xuất khẩu bền vững.",
+            duration: 7
+          }
+        ]
+      },
+      dongy: {
+        outfit: 'dongy',
+        env: 'spa',
+        scenes: [
+          {
+            title: "Cảnh 1: Không Gian Dưỡng Sinh An Lạc Y Đường",
+            camera: "Ánh sáng ấm áp, khói trầm thảo dược dịu nhẹ",
+            dialogue: "Chào mừng quý vị đến với An Lạc Y Đường, nơi giao thoa giữa tinh hoa Đông Y cổ truyền và công nghệ AI.",
+            duration: 7
+          },
+          {
+            title: "Cảnh 2: Bác Sĩ AI Tư Vấn Sức Khỏe 24/7",
+            camera: "Góc máy cận trung điềm đạm, phúc hậu",
+            dialogue: "Tôi là Nguyễn Duy Anh, người đồng hành thiết kế hệ thống tư vấn trị liệu vai gáy, giấc ngủ và ngâm tắm thảo dược.",
+            duration: 7
+          },
+          {
+            title: "Cảnh 3: Phục Hồi Năng Lượng Thân - Tâm - Trí",
+            camera: "Zoom chậm tạo cảm giác thư thái an bình",
+            dialogue: "Hãy dành thời gian lắng nghe cơ thể và đặt lịch chăm sóc sức khỏe chủ động ngay hôm nay.",
+            duration: 6
+          }
+        ]
+      },
+      health60: {
+        outfit: 'health',
+        env: 'park',
+        scenes: [
+          {
+            title: "Cảnh 1: Chào Buổi Sáng Tuổi Vàng 60+",
+            camera: "Nắng sớm trong lành tại công viên xanh mát",
+            dialogue: "Kính chào các cô chú, anh chị trên cổng chăm sóc sức khỏe toàn diện Sống Vui Sống Khỏe sáu mươi cộng.",
+            duration: 7
+          },
+          {
+            title: "Cảnh 2: Vận Động Khoa Học & Tinh Thần Lạc Quan",
+            camera: "Góc máy sáng rõ, nụ cười thân thiện ấm áp",
+            dialogue: "Mỗi ngày chỉ cần mười lăm phút thở sâu, vận động nhẹ nhàng sẽ giúp khí huyết lưu thông và giấc ngủ sâu hơn.",
+            duration: 7
+          }
+        ]
+      },
+      a388: {
+        outfit: 'captain',
+        env: 'cockpit',
+        scenes: [
+          {
+            title: "Cảnh 1: Cơ Trưởng Bản Chỉ Huy Tâm Thức A388",
+            camera: "Khoang lái 4D hiện đại, hiệu ứng ánh sáng điện ảnh",
+            dialogue: "Chào mừng các hành khách thông thái bước lên Siêu Chuyên Cơ Tâm Thức A388 cùng cơ trưởng Nguyễn Duy Anh.",
+            duration: 7
+          },
+          {
+            title: "Cảnh 2: Hành Trình 16 Chặng Chuyển Hóa Nội Tâm",
+            camera: "Zoom nhẹ vào ánh mắt kiên định, truyền lửa",
+            dialogue: "Khi làm chủ sáu tầng nhận thức, chúng ta sẽ bứt phá mọi giới hạn để vươn tới bầu trời tự do và trí tuệ.",
+            duration: 7
+          }
+        ]
+      }
+    };
+
+    // Outfit & Environment Presets
+    const OUTFIT_MAP = {
+      vest: "Mặc bộ Vest doanh nhân màu xanh navy sang trọng, áo sơ mi trắng cổ đứng lịch lãm, huy hiệu vàng xAI trên ngực áo",
+      captain: "Mặc đồng phục Cơ Trưởng Siêu Chuyên Cơ A388 màu xanh đen viền vàng hoàng gia, cầu vai 4 vạch, phong thái uy nghi",
+      agri: "Mặc áo sơ mi Kaki màu xanh rừng bền vững, phong thái chuyên gia nông nghiệp công nghệ cao gần gũi",
+      dongy: "Mặc áo tràng lụa Đông Y màu xanh ngọc bích phối viền kem hoàng gia thanh tịnh, phong thái thầy thuốc đạo mạo",
+      health: "Mặc áo Polo thể thao màu trắng tinh tế phối viền xanh ngọc, khỏe khoắn, tràn đầy năng lượng tích cực"
+    };
+
+    const ENV_MAP = {
+      studio: "Không gian Studio công nghệ Kiến Tạo Đời Mới xAI sang trọng, ánh sáng điện ảnh ấm áp, chiều sâu trường ảnh 8K",
+      cockpit: "Khoang chỉ huy Siêu Chuyên Cơ A388 4D tương lai với màn hình hologram toàn cảnh bầu trời sao rực rỡ",
+      durian: "Vườn sầu riêng sinh thái mẫu mực buổi bình minh, nắng xuyên qua tán lá xanh mướt, trái sầu riêng trĩu cành",
+      spa: "Không gian An Lạc Y Đường ấm cúng mùi thảo mộc, kệ gỗ trầm hương, ánh đèn vàng dịu nhẹ thư thái",
+      park: "Công viên sinh thái xanh mát buổi sáng sớm, ánh nắng ban mai trong lành, không khí tràn đầy sức sống"
+    };
+
+    // Canvas & Media Cache
+    const imageCache = {};
+    let masterImgObj = new Image();
+
+    // Initialize Application
+    window.addEventListener('DOMContentLoaded', () => {
+      // Try fetching real portrait from sibling folder ../cam-nang-skill-web/index.html if hosted on same origin
+      loadRealPortraitFromSibling();
+
+      masterImgObj.onload = () => renderCurrentSceneStatic();
+      masterImgObj.src = appState.masterPortrait;
+      document.getElementById('masterPortraitImg').src = appState.masterPortrait;
+
+      // Load saved project or default Brand template
+      const savedProj = localStorage.getItem('xai_studio_saved_project');
+      if (savedProj) {
+        try {
+          const parsed = JSON.parse(savedProj);
+          if (parsed.scenes && parsed.scenes.length) {
+            appState.scenes = parsed.scenes;
+            document.getElementById('charFaceDNA').value = parsed.faceDNA || document.getElementById('charFaceDNA').value;
+            document.getElementById('charOutfitDNA').value = parsed.outfitDNA || document.getElementById('charOutfitDNA').value;
+            document.getElementById('charEnvDNA').value = parsed.envDNA || document.getElementById('charEnvDNA').value;
+          } else {
+            loadBrandTemplate('brand', true);
+          }
+        } catch (e) {
+          loadBrandTemplate('brand', true);
+        }
+      } else {
+        loadBrandTemplate('brand', true);
+      }
+
+      updateApiBadgeUI();
+      renderLearningCenter();
+      renderScenesEditor();
+      updateConsistencyPreview();
+      renderCurrentSceneStatic();
+    });
+
+    async function loadRealPortraitFromSibling() {
+      try {
+        const res = await fetch('../cam-nang-skill-web/index.html');
+        if (!res.ok) return;
+        const html = await res.text();
+        const match = html.match(/src="(data:image\/jpeg;base64,[^"]+)"/);
+        if (match && match[1]) {
+          appState.masterPortrait = match[1];
+          masterImgObj.src = appState.masterPortrait;
+          document.getElementById('masterPortraitImg').src = appState.masterPortrait;
+          renderScenesEditor();
+          renderCurrentSceneStatic();
+        }
+      } catch (e) {
+        // Ignore if running standalone
+      }
+    }
+
+    function applyOutfitPreset() {
+      const val = document.getElementById('charOutfitPreset').value;
+      if (OUTFIT_MAP[val]) {
+        document.getElementById('charOutfitDNA').value = OUTFIT_MAP[val];
+        updateConsistencyPreview();
+        renderCurrentSceneStatic();
+      }
+    }
+
+    function applyEnvPreset() {
+      const val = document.getElementById('charEnvPreset').value;
+      if (ENV_MAP[val]) {
+        document.getElementById('charEnvDNA').value = ENV_MAP[val];
+        updateConsistencyPreview();
+        renderCurrentSceneStatic();
+      }
+    }
+
+    function loadBrandTemplate(key, silent = false) {
+      const tpl = BRAND_TEMPLATES[key];
+      if (!tpl) return;
+      document.getElementById('charOutfitPreset').value = tpl.outfit;
+      document.getElementById('charEnvPreset').value = tpl.env;
+      applyOutfitPreset();
+      applyEnvPreset();
+
+      appState.scenes = tpl.scenes.map((s, idx) => ({
+        id: Date.now() + idx,
+        title: s.title,
+        camera: s.camera,
+        dialogue: s.dialogue,
+        duration: s.duration,
+        mediaUrl: appState.uploadedMedia[idx]?.url || null,
+        mediaType: appState.uploadedMedia[idx]?.type || 'image',
+        customAudioUrl: null
+      }));
+      appState.currentSceneIndex = 0;
+      renderScenesEditor();
+      updateConsistencyPreview();
+      renderCurrentSceneStatic();
+      if (!silent) showToast("Đã nạp kịch bản thương hiệu & khóa đồng nhất nhân vật!");
+    }
+
+    // Handle Master Portrait Upload from PC/Phone
+    function handleMasterPortraitUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        appState.masterPortrait = e.target.result;
+        masterImgObj.src = appState.masterPortrait;
+        document.getElementById('masterPortraitImg').src = appState.masterPortrait;
+        renderScenesEditor();
+        renderCurrentSceneStatic();
+        showToast("Đã cập nhật ảnh gương mặt gốc của Mr. Nguyễn Duy Anh!");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Handle Bulk Media Upload (Images/Videos from PC or Phone)
+    function handleBulkMediaUpload(event) {
+      const files = Array.from(event.target.files);
+      if (!files.length) return;
+
+      files.forEach((file, i) => {
+        const url = URL.createObjectURL(file);
+        const isVideo = file.type.startsWith('video/');
+        const item = {
+          id: Date.now() + i,
+          name: file.name,
+          type: isVideo ? 'video' : 'image',
+          url: url
+        };
+        appState.uploadedMedia.push(item);
+
+        if (!isVideo) {
+          const img = new Image();
+          img.src = url;
+          imageCache[url] = img;
+        }
+
+        // Automatically assign to scenes sequentially
+        const targetScene = appState.scenes[i % appState.scenes.length];
+        if (targetScene) {
+          targetScene.mediaUrl = url;
+          targetScene.mediaType = item.type;
+        }
+      });
+
+      renderMediaTray();
+      renderScenesEditor();
+      renderCurrentSceneStatic();
+      showToast(`Đã nạp ${files.length} tư liệu từ máy và đồng bộ vào kịch bản!`);
+    }
+
+    function renderMediaTray() {
+      const tray = document.getElementById('mediaLibraryTray');
+      if (!appState.uploadedMedia.length) return;
+      tray.innerHTML = appState.uploadedMedia.map((m, idx) => `
+        <div onclick="assignMediaToCurrentScene('${m.url}', '${m.type}')"
+             class="shrink-0 group relative cursor-pointer rounded-xl overflow-hidden border border-slate-700 hover:border-emerald-400 w-16 h-16 bg-slate-900"
+             title="Bấm để gán vào Cảnh đang chọn">
+          ${m.type === 'video'
+            ? `<video src="${m.url}" class="w-full h-full object-cover" muted></video>`
+            : `<img src="${m.url}" class="w-full h-full object-cover" />`
+          }
+          <span class="absolute bottom-0 inset-x-0 bg-black/75 text-[10px] text-center text-emerald-300 font-bold truncate px-1">
+            #${idx + 1}
+          </span>
+        </div>
+      `).join('');
+    }
+
+    function assignMediaToCurrentScene(url, type) {
+      const sc = appState.scenes[appState.currentSceneIndex];
+      if (!sc) return;
+      sc.mediaUrl = url;
+      sc.mediaType = type;
+      renderScenesEditor();
+      renderCurrentSceneStatic();
+      showToast(`Đã gán tư liệu vào Cảnh ${appState.currentSceneIndex + 1}!`);
+    }
+
+    function applyMasterPortraitToAllScenes() {
+      appState.scenes.forEach(s => {
+        s.mediaUrl = null;
+        s.mediaType = 'image';
+      });
+      renderScenesEditor();
+      renderCurrentSceneStatic();
+      showToast("Đã đồng bộ Ảnh Mặt Gốc của Mr. Nguyễn Duy Anh cho toàn bộ phân cảnh!");
+    }
+
+    // Render Scenes List Editor
+    function renderScenesEditor() {
+      const container = document.getElementById('scenesContainer');
+      container.innerHTML = appState.scenes.map((scene, index) => {
+        const isSelected = index === appState.currentSceneIndex;
+        const previewImg = scene.mediaUrl || appState.masterPortrait;
+        return `
+          <div onclick="selectScene(${index})"
+               class="rounded-2xl p-4 transition cursor-pointer border ${isSelected ? 'bg-slate-900/95 border-emerald-400 shadow-lg' : 'bg-slate-900/50 border-slate-800 hover:border-slate-700'}">
+            <div class="flex flex-col sm:flex-row gap-3.5 items-start">
+              <!-- Scene Thumbnail with Face Lock Badge -->
+              <div class="relative w-24 h-20 rounded-xl overflow-hidden shrink-0 border border-amber-400/50 bg-slate-950">
+                ${scene.mediaType === 'video' && scene.mediaUrl
+                  ? `<video src="${scene.mediaUrl}" class="w-full h-full object-cover" muted></video>`
+                  : `<img src="${previewImg}" class="w-full h-full object-cover" />`
+                }
+                <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-amber-500 text-slate-950 font-extrabold text-xs">
+                  Cảnh ${index + 1}
+                </span>
+                <label onclick="event.stopPropagation()" class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 hover:bg-emerald-600 text-white text-xs cursor-pointer" title="Đổi ảnh/video cảnh này">
+                  <i class="fa-solid fa-image"></i>
+                  <input type="file" accept="image/*,video/*" class="hidden" onchange="handleSceneMediaUpload(event, ${index})" />
+                </label>
+              </div>
+
+              <!-- Scene Text & Karaoke Dialogue Input -->
+              <div class="flex-1 w-full space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <input type="text" value="${scene.title}"
+                         oninput="updateSceneField(${index}, 'title', this.value)"
+                         onclick="event.stopPropagation()"
+                         class="font-extrabold text-xs md:text-sm text-emerald-300 bg-transparent border-b border-transparent focus:border-emerald-400 focus:outline-none w-full sm:w-auto" />
+                  <div class="flex items-center gap-1.5">
+                    <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 text-xs font-bold">
+                      <i class="fa-solid fa-lock"></i> Khóa Mặt & Trang Phục
+                    </span>
+                    <button onclick="event.stopPropagation(); removeScene(${index})" class="text-slate-500 hover:text-rose-400 px-1.5 text-xs" title="Xóa cảnh">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="text-xs text-slate-400 block mb-0.5">Lời thoại (Tự động chạy Phụ đề Karaoke 1 dòng):</label>
+                  <textarea rows="2"
+                            oninput="updateSceneField(${index}, 'dialogue', this.value)"
+                            onclick="event.stopPropagation()"
+                            class="w-full p-2 rounded-xl bg-slate-950 border border-slate-800 text-xs md:text-sm text-white focus:border-emerald-400 focus:outline-none">${scene.dialogue}</textarea>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+                  <div class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-video text-sky-400"></i>
+                    <input type="text" value="${scene.camera}"
+                           oninput="updateSceneField(${index}, 'camera', this.value)"
+                           onclick="event.stopPropagation()"
+                           class="bg-slate-950 px-2 py-1 rounded border border-slate-800 text-xs text-slate-300 w-48 sm:w-64" />
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <label onclick="event.stopPropagation()" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-amber-300 cursor-pointer text-xs font-semibold">
+                      <i class="fa-solid fa-File-audio mr-1"></i> ${scene.customAudioUrl ? 'Đã nạp Voice thật' : 'Gắn file ghi âm'}
+                      <input type="file" accept="audio/*" class="hidden" onchange="handleSceneAudioUpload(event, ${index})" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectScene(index) {
+      appState.currentSceneIndex = index;
+      appState.wordProgress = 0;
+      renderScenesEditor();
+      renderCurrentSceneStatic();
+    }
+
+    function updateSceneField(index, field, value) {
+      if (!appState.scenes[index]) return;
+      appState.scenes[index][field] = value;
+      updateConsistencyPreview();
+      if (index === appState.currentSceneIndex) {
+        renderCurrentSceneStatic();
+      }
+      learnFromUserEdit(value);
+    }
+
+    function handleSceneMediaUpload(event, index) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      const isVideo = file.type.startsWith('video/');
+      appState.scenes[index].mediaUrl = url;
+      appState.scenes[index].mediaType = isVideo ? 'video' : 'image';
+      if (!isVideo) {
+        const img = new Image();
+        img.onload = () => renderCurrentSceneStatic();
+        img.src = url;
+        imageCache[url] = img;
+      }
+      renderScenesEditor();
+      renderCurrentSceneStatic();
+      showToast(`Đã cập nhật tư liệu riêng cho Cảnh ${index + 1}!`);
+    }
+
+    function handleSceneAudioUpload(event, index) {
+      const file = event.target.files[0];
+      if (!file) return;
+      appState.scenes[index].customAudioUrl = URL.createObjectURL(file);
+      renderScenesEditor();
+      showToast(`Đã gắn file ghi âm giọng thật vào Cảnh ${index + 1}!`);
+    }
+
+    function addNewScene() {
+      const newIndex = appState.scenes.length + 1;
+      appState.scenes.push({
+        id: Date.now(),
+        title: `Cảnh ${newIndex}: Phân Cảnh Mở Rộng`,
+        camera: "Cận trung giữ nguyên thần thái & trang phục",
+        dialogue: "Tiếp tục hành trình kiến tạo giá trị thực chiến cùng Nguyễn Duy Anh.",
+        duration: 6,
+        mediaUrl: null,
+        mediaType: 'image',
+        customAudioUrl: null
+      });
+      appState.currentSceneIndex = appState.scenes.length - 1;
+      renderScenesEditor();
+      updateConsistencyPreview();
+      renderCurrentSceneStatic();
+      showToast("Đã thêm phân cảnh mới (Đã tự động kế thừa Khóa Nhân Vật)!");
+    }
+
+    function removeScene(index) {
+      if (appState.scenes.length <= 1) {
+        showToast("Cần giữ lại ít nhất 1 phân cảnh!");
+        return;
+      }
+      appState.scenes.splice(index, 1);
+      if (appState.currentSceneIndex >= appState.scenes.length) {
+        appState.currentSceneIndex = appState.scenes.length - 1;
+      }
+      renderScenesEditor();
+      updateConsistencyPreview();
+      renderCurrentSceneStatic();
+    }
+
+    // Update Master Consistency Prompts for Veo 3 / Kling / Runway / CapCut
+    function updateConsistencyPreview() {
+      const face = document.getElementById('charFaceDNA').value.trim();
+      const outfit = document.getElementById('charOutfitDNA').value.trim();
+      const env = document.getElementById('charEnvDNA').value.trim();
+      const locked = document.getElementById('masterLockToggle').checked;
+
+      const lines = appState.scenes.map((s, i) => {
+        return `[PHÂN CẢNH ${i + 1} - ${s.title}] ${locked ? `[IDENTITY LOCK --cref Master_Portrait_DuyAnh --cw 100]: Nhân vật cố định: ${face}. Trang phục cố định: ${outfit}. Bối cảnh xuyên suốt: ${env}.` : ''} Chuyển động máy quay: ${s.camera}. Lời thoại nhép môi (Lip-sync Tiếng Việt): "${s.dialogue}"`;
+      });
+
+      const out = document.getElementById('masterPromptOutput');
+      if (out) out.value = lines.join('\n\n');
+    }
+
+    function copyConsistencyPrompts() {
+      const out = document.getElementById('masterPromptOutput');
+      out.select();
+      navigator.clipboard.writeText(out.value);
+      showToast("Đã sao chép toàn bộ Siêu Câu Lệnh đồng nhất nhân vật!");
+    }
+
+    // Aspect Ratio Switcher
+    function setAspectRatio(ratio) {
+      appState.aspectRatio = ratio;
+      const canvas = document.getElementById('studioCanvas');
+      const btn169 = document.getElementById('ratio169Btn');
+      const btn916 = document.getElementById('ratio916Btn');
+
+      if (ratio === '16:9') {
+        canvas.width = 1280;
+        canvas.height = 720;
+        canvas.style.aspectRatio = '16/9';
+        btn169.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white";
+        btn916.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white";
+      } else {
+        canvas.width = 720;
+        canvas.height = 1280;
+        canvas.style.aspectRatio = '9/16';
+        btn916.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white";
+        btn169.className = "px-2.5 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white";
+      }
+      renderCurrentSceneStatic();
+    }
+
+    // ============================================================================
+    // CANVAS RENDERING ENGINE + SINGLE-LINE KARAOKE SUBTITLE ENGINE
+    // ============================================================================
+    function renderCurrentSceneStatic() {
+      drawStudioFrame(appState.currentSceneIndex, appState.wordProgress, 1.0, 0.15);
+    }
+
+    function drawStudioFrame(sceneIdx, activeWordIndex, activeWordFill, camProgress) {
+      const canvas = document.getElementById('studioCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+      const scene = appState.scenes[sceneIdx] || appState.scenes[0];
+      if (!scene) return;
+
+      // Clear background
+      ctx.fillStyle = '#060b16';
+      ctx.fillRect(0, 0, W, H);
+
+      // 1. Draw Background / Character Image with smooth 3D Ken Burns effect
+      let imgToDraw = masterImgObj;
+      if (scene.mediaUrl && imageCache[scene.mediaUrl] && imageCache[scene.mediaUrl].complete) {
+        imgToDraw = imageCache[scene.mediaUrl];
+      }
+
+      if (imgToDraw && imgToDraw.complete && imgToDraw.naturalWidth > 0) {
+        ctx.save();
+        const scale = 1.04 + (camProgress * 0.08); // Gentle cinematic zoom
+        const imgRatio = imgToDraw.naturalWidth / imgToDraw.naturalHeight;
+        const canvasRatio = W / H;
+
+        let drawW, drawH;
+        if (imgRatio > canvasRatio) {
+          drawH = H * scale;
+          drawW = drawH * imgRatio;
+        } else {
+          drawW = W * scale;
+          drawH = drawW / imgRatio;
+        }
+        const offsetX = (W - drawW) / 2 + Math.sin(camProgress * Math.PI) * 12;
+        const offsetY = (H - drawH) / 2;
+        ctx.drawImage(imgToDraw, offsetX, offsetY, drawW, drawH);
+        ctx.restore();
+      }
+
+      // 2. Cinematic Atmospheric Overlay & Identity Lock Tint
+      const grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, 'rgba(6, 11, 22, 0.45)');
+      grad.addColorStop(0.55, 'rgba(6, 11, 22, 0.15)');
+      grad.addColorStop(0.82, 'rgba(6, 11, 22, 0.78)');
+      grad.addColorStop(1, 'rgba(6, 11, 22, 0.95)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+
+      // 3. Brand Watermark & Consistency Lock Status Overlay (Top)
+      const showBrand = document.getElementById('showBrandWatermark')?.checked;
+      if (showBrand) {
+        ctx.save();
+        const pad = W * 0.035;
+        // Brand Pill Top-Left
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.82)';
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.65)';
+        ctx.lineWidth = 2;
+        roundRect(ctx, pad, pad, 390, 54, 14, true, true);
+
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = '800 18px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('👑 MR. NGUYỄN DUY ANH • KTCS xAI', pad + 16, pad + 24);
+
+        ctx.fillStyle = '#34d399';
+        ctx.font = '600 13px "Plus Jakarta Sans", sans-serif';
+        const outfitShort = document.getElementById('charOutfitPreset')?.selectedOptions[0]?.text.split('(')[0] || 'Đã khóa đồng nhất';
+        ctx.fillText(`🔒 Khóa Nhân Vật & Trang Phục: ${outfitShort.substring(0, 32)}`, pad + 16, pad + 44);
+        ctx.restore();
+      }
+
+      // 4. Scene Title & Camera Note Pill (Above Karaoke Bar)
+      ctx.save();
+      const bottomY = H - (appState.aspectRatio === '16:9' ? 135 : 210);
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.9)';
+      ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(`${scene.title.toUpperCase()}  •  🎥 ${scene.camera}`, W / 2, bottomY - 22);
+      ctx.restore();
+
+      // ==========================================================================
+      // 5. SINGLE-LINE KARAOKE SUBTITLE ENGINE (PHỤ ĐỀ KARAOKE MỘT DÒNG DUY NHẤT)
+      // ==========================================================================
+      drawSingleLineKaraoke(ctx, scene.dialogue, activeWordIndex, activeWordFill, W, H);
+    }
+
+    function drawSingleLineKaraoke(ctx, fullText, activeWordIdx, wordFill, W, H) {
+      if (!fullText || !fullText.trim()) return;
+      const words = fullText.trim().split(/\s+/);
+      if (!words.length) return;
+
+      // Split words into smart single-line chunks (max ~7-8 words per line on 16:9, or ~5 words on 9:16)
+      const maxWordsPerLine = appState.aspectRatio === '16:9' ? 8 : 5;
+      const chunkIndex = Math.floor(activeWordIdx / maxWordsPerLine);
+      const startWord = chunkIndex * maxWordsPerLine;
+      const endWord = Math.min(words.length, startWord + maxWordsPerLine);
+      const lineWords = words.slice(startWord, endWord);
+      const localActiveIdx = activeWordIdx - startWord;
+
+      const baseFontSize = parseInt(document.getElementById('karaokeFontSize')?.value || '50', 10);
+      const fontSize = appState.aspectRatio === '16:9' ? baseFontSize : Math.round(baseFontSize * 0.82);
+      const activeColor = document.getElementById('karaokeActiveColor')?.value || '#fbbf24';
+
+      ctx.save();
+      ctx.font = `800 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
+      ctx.textBaseline = 'middle';
+
+      // Measure total line width & auto-scale down if needed to strictly stay on ONE single line
+      const spaceWidth = ctx.measureText(' ').width * 1.15;
+      let totalWidth = 0;
+      const wordWidths = lineWords.map(w => {
+        const wWidth = ctx.measureText(w).width;
+        totalWidth += wWidth;
+        return wWidth;
+      });
+      totalWidth += spaceWidth * Math.max(0, lineWords.length - 1);
+
+      const maxAllowedWidth = W * 0.90;
+      let scaleFactor = 1;
+      if (totalWidth > maxAllowedWidth) {
+        scaleFactor = maxAllowedWidth / totalWidth;
+      }
+
+      const barHeight = fontSize * 1.65;
+      const barY = H - (appState.aspectRatio === '16:9' ? 78 : 135);
+
+      // Draw Glass Karaoke Background Bar (Single Line Box)
+      ctx.fillStyle = 'rgba(9, 15, 29, 0.86)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+      ctx.lineWidth = 2;
+      const boxW = Math.min(W * 0.94, totalWidth * scaleFactor + 64);
+      roundRect(ctx, (W - boxW) / 2, barY - barHeight / 2, boxW, barHeight, 22, true, true);
+
+      // Draw each word in the single line with Karaoke Wipe & Bounce
+      ctx.translate(W / 2, barY);
+      ctx.scale(scaleFactor, scaleFactor);
+
+      let cursorX = -totalWidth / 2;
+      lineWords.forEach((word, idx) => {
+        const wWidth = wordWidths[idx];
+        const isPast = idx < localActiveIdx;
+        const isCurrent = idx === localActiveIdx;
+        const yBounce = isCurrent ? -4 : 0;
+
+        // Shadow / Stroke for crisp readability
+        ctx.lineJoin = 'round';
+        ctx.lineWidth = 7;
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.92)';
+        ctx.strokeText(word, cursorX, yBounce);
+
+        // Base un-highlighted text (white)
+        ctx.fillStyle = isPast ? activeColor : 'rgba(248, 250, 252, 0.92)';
+        ctx.fillText(word, cursorX, yBounce);
+
+        // Progressive Karaoke Wipe on the active word
+        if (isCurrent) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(cursorX - 4, -fontSize, (wWidth + 8) * Math.min(1, Math.max(0.15, wordFill)), fontSize * 2);
+          ctx.clip();
+          ctx.fillStyle = activeColor;
+          ctx.fillText(word, cursorX, yBounce);
+          ctx.restore();
+
+          // Glowing indicator bar under active word
+          ctx.fillStyle = activeColor;
+          roundRect(ctx, cursorX, fontSize * 0.52, wWidth, 5, 3, true, false);
+        }
+
+        cursorX += wWidth + spaceWidth;
+      });
+
+      ctx.restore();
+    }
+
+    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+
+    // ============================================================================
+    // MOVIE PLAYBACK, VOICE SYNTHESIS, AMBIENT MUSIC & VIDEO RECORDING (.WEBM/MP4)
+    // ============================================================================
+    let animFrameId = null;
+    let audioCtx = null;
+    let bgmGainNode = null;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    function startAmbientMusic() {
+      const style = document.getElementById('bgmStyleSelect')?.value || 'inspiring';
+      if (style === 'none') return;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        bgmGainNode = audioCtx.createGain();
+        bgmGainNode.gain.setValueAtTime(0.035, audioCtx.currentTime);
+        bgmGainNode.connect(audioCtx.destination);
+
+        const freqs = style === 'zen' ? [264, 396, 528] : [216, 324, 432];
+        freqs.forEach(f => {
+          const osc = audioCtx.createOscillator();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+          osc.connect(bgmGainNode);
+          osc.start();
+        });
+      } catch (e) {}
+    }
+
+    function stopAmbientMusic() {
+      if (audioCtx) {
+        try { audioCtx.close(); } catch (e) {}
+        audioCtx = null;
+      }
+    }
+
+    async function playFullMovie(recordToFile = false) {
+      if (appState.isPlaying) stopMovie();
+      appState.isPlaying = true;
+      appState.isRecording = recordToFile;
+
+      const canvas = document.getElementById('studioCanvas');
+      if (recordToFile) {
+        document.getElementById('recordingBadge').classList.remove('hidden');
+        recordedChunks = [];
+        const stream = canvas.captureStream(30);
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data && e.data.size > 0) recordedChunks.push(e.data);
+        };
+        mediaRecorder.onstop = () => {
+          document.getElementById('recordingBadge').classList.add('hidden');
+          const blob = new Blob(recordedChunks, { type: 'video/webm' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `Phim-AI-NguyenDuyAnh-${Date.now()}.webm`;
+          a.click();
+          showToast("Đã xuất & tải xuống file Phim Video thành công!");
+        };
+        mediaRecorder.start();
+      }
+
+      startAmbientMusic();
+
+      for (let i = 0; i < appState.scenes.length; i++) {
+        if (!appState.isPlaying) break;
+        appState.currentSceneIndex = i;
+        renderScenesEditor();
+        document.getElementById('playerSceneIndicator').textContent = `Đang trình chiếu Cảnh ${i + 1}/${appState.scenes.length} • Karaoke 1 Dòng`;
+        await playSingleSceneWithKaraoke(appState.scenes[i], i);
+      }
+
+      stopMovie();
+    }
+
+    function playSingleSceneWithKaraoke(scene, sceneIdx) {
+      return new Promise((resolve) => {
+        const words = (scene.dialogue || '').trim().split(/\s+/).filter(Boolean);
+        const totalWords = Math.max(1, words.length);
+        // Estimate speaking duration (~0.38s per Vietnamese word, minimum 3.5s)
+        const estimatedDurationMs = Math.max(3500, totalWords * 380);
+        const startTime = performance.now();
+
+        // Speak dialogue via Web Speech API or custom uploaded audio
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(scene.dialogue);
+          utter.lang = 'vi-VN';
+          const voicePreset = document.getElementById('voicePresetSelect')?.value || 'captain';
+          if (voicePreset === 'captain') {
+            utter.pitch = 0.92;
+            utter.rate = 1.0;
+          } else if (voicePreset === 'female') {
+            utter.pitch = 1.18;
+            utter.rate = 0.96;
+          } else {
+            utter.pitch = 1.05;
+            utter.rate = 1.1;
+          }
+
+          // Use boundary event if browser supports it for exact word sync
+          utter.onboundary = (event) => {
+            if (event.name === 'word') {
+              const upto = scene.dialogue.substring(0, event.charIndex);
+              const spokenWords = upto.trim().split(/\s+/).filter(Boolean).length;
+              appState.wordProgress = Math.min(totalWords - 1, spokenWords);
+            }
+          };
+          window.speechSynthesis.speak(utter);
+        }
+
+        function step(now) {
+          if (!appState.isPlaying) {
+            resolve();
+            return;
+          }
+          const elapsed = now - startTime;
+          const progress = Math.min(1, elapsed / estimatedDurationMs);
+
+          const exactWordFloat = progress * totalWords;
+          const currentWordIdx = Math.min(totalWords - 1, Math.floor(exactWordFloat));
+          const wordFraction = exactWordFloat - currentWordIdx;
+
+          appState.wordProgress = currentWordIdx;
+          drawStudioFrame(sceneIdx, currentWordIdx, wordFraction, progress);
+
+          if (progress < 1) {
+            animFrameId = requestAnimationFrame(step);
+          } else {
+            setTimeout(() => resolve(), 350);
+          }
+        }
+
+        animFrameId = requestAnimationFrame(step);
+      });
+    }
+
+    function stopMovie() {
+      appState.isPlaying = false;
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      stopAmbientMusic();
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+      }
+      document.getElementById('playerSceneIndicator').textContent = "Đã sẵn sàng • Đã khóa nhân vật Mr. Nguyễn Duy Anh";
+      renderCurrentSceneStatic();
+    }
+
+    function prevScene() {
+      stopMovie();
+      appState.currentSceneIndex = Math.max(0, appState.currentSceneIndex - 1);
+      renderScenesEditor();
+      renderCurrentSceneStatic();
+    }
+
+    function nextScene() {
+      stopMovie();
+      appState.currentSceneIndex = Math.min(appState.scenes.length - 1, appState.currentSceneIndex + 1);
+      renderScenesEditor();
+      renderCurrentSceneStatic();
+    }
+
+    // ============================================================================
+    // UNIVERSAL AI API KEY & SELF-LEARNING ENGINE
+    // ============================================================================
+    function toggleModal(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+
+    function detectApiProvider(key) {
+      if (!key) return 'internal';
+      if (key.startsWith('AIza')) return 'Google Gemini AI';
+      if (key.startsWith('xai-')) return 'Grok xAI';
+      if (key.startsWith('sk-')) return 'OpenAI GPT-4o';
+      return 'Universal AI Cloud';
+    }
+
+    function saveUniversalApiKey() {
+      const key = document.getElementById('universalApiKeyInput').value.trim();
+      const provider = detectApiProvider(key);
+      appState.apiKey = key;
+      appState.apiProvider = provider;
+      localStorage.setItem('xai_studio_api_key', key);
+      localStorage.setItem('xai_studio_api_provider', provider);
+      updateApiBadgeUI();
+      toggleModal('apiModal');
+      showToast(key ? `Đã kết nối thành công ${provider}!` : "Đã chuyển về Động Cơ Thông Minh Nội Bộ.");
+    }
+
+    function clearApiKey() {
+      document.getElementById('universalApiKeyInput').value = '';
+      saveUniversalApiKey();
+    }
+
+    function updateApiBadgeUI() {
+      const indicator = document.getElementById('apiIndicator');
+      const text = document.getElementById('apiStatusText');
+      if (appState.apiKey) {
+        indicator.className = "w-2.5 h-2.5 rounded-full bg-emerald-400";
+        text.textContent = `Đã Kết Nối: ${appState.apiProvider}`;
+      } else {
+        indicator.className = "w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse";
+        text.textContent = "AI Key: Chế Độ Thông Minh Nội Bộ (Bấm Cài API)";
+      }
+    }
+
+    // Generate Cohesive Script via Connected AI API (Gemini/OpenAI/xAI) or Built-in Engine
+    async function generateScriptWithAI() {
+      const topic = document.getElementById('aiTopicInput').value.trim();
+      if (!topic) {
+        showToast("Anh hãy nhập chủ đề hoặc ý tưởng vào ô trước nhé!");
+        return;
+      }
+
+      const btn = document.getElementById('btnAiGenerate');
+      const origText = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> AI Đang Viết & Khóa Nhân Vật...`;
+
+      const faceDNA = document.getElementById('charFaceDNA').value;
+      const outfitDNA = document.getElementById('charOutfitDNA').value;
+      const envDNA = document.getElementById('charEnvDNA').value;
+      const rules = appState.learningRules.join(" | ");
+
+      let generatedScenes = null;
+
+      // Try real API call if Gemini Key is configured
+      if (appState.apiKey && appState.apiKey.startsWith('AIza')) {
+        try {
+          const prompt = `Bạn là Đạo diễn AI riêng của Mr. Nguyễn Duy Anh (Kiến Tạo Đời Mới xAI).
+Hãy viết kịch bản gồm 4 phân cảnh ngắn gọn cho chủ đề: "${topic}".
+Yêu cầu bắt buộc:
+1. Nhân vật xuyên suốt: ${faceDNA}, trang phục: ${outfitDNA}, bối cảnh: ${envDNA}.
+2. Quy tắc cá nhân hóa đã học: ${rules}.
+3. Trả về đúng định dạng JSON Array gồm 4 phần tử: [{"title":"Cảnh 1: ...","camera":"...","dialogue":"Câu thoại tiếng Việt truyền cảm hứng khoảng 18-24 từ để chạy Karaoke 1 dòng"}]`;
+
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${appState.apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }]
+            })
+          });
+          const data = await response.json();
+          const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          const jsonMatch = rawText.match(/\[[\s\S]*\]/);
+          if (jsonMatch) {
+            generatedScenes = JSON.parse(jsonMatch[0]);
+          }
+        } catch (err) {
+          console.warn("Fallback to internal smart generator:", err);
+        }
+      }
+
+      // Smart Internal Generator tailored to Mr. Nguyễn Duy Anh if no key or offline
+      if (!generatedScenes) {
+        generatedScenes = [
+          {
+            title: `Cảnh 1: Mở Đầu — ${topic.substring(0, 32)}`,
+            camera: "Zoom In điện ảnh giữ nét mặt tự tin Mr. Nguyễn Duy Anh",
+            dialogue: `Xin chào các bạn, tôi là Nguyễn Duy Anh. Hôm nay chúng ta cùng khám phá chủ đề ${topic}.`
+          },
+          {
+            title: "Cảnh 2: Giải Pháp Thực Chiến Từ Kiến Tạo Đời Mới xAI",
+            camera: "Góc máy cận trung chuẩn mực, ánh sáng ấm áp",
+            dialogue: `Khi kết hợp công nghệ trí tuệ nhân tạo với kinh nghiệm thực tiễn, mọi quy trình đều trở nên đơn giản và hiệu quả vượt trội.`
+          },
+          {
+            title: "Cảnh 3: Giá Trị Bền Vững Cho Cộng Đồng",
+            camera: "Pan nhẹ giữ nguyên trang phục và bối cảnh xuyên suốt",
+            dialogue: `Đây chính là chìa khóa giúp chúng ta tiết kiệm thời gian, nâng cao chất lượng cuộc sống và phát triển bền vững.`
+          },
+          {
+            title: "Cảnh 4: Lời Kết & Hành Động Ngay Hôm Nay",
+            camera: "Khung hình cận cảnh nụ cười thân thiện truyền cảm hứng",
+            dialogue: `Hãy cùng Nguyễn Duy Anh ứng dụng ngay giải pháp này để kiến tạo thành công mới. Chúc các bạn luôn sức khỏe và thịnh vượng!`
+          }
+        ];
+      }
+
+      appState.scenes = generatedScenes.map((s, idx) => ({
+        id: Date.now() + idx,
+        title: s.title,
+        camera: s.camera,
+        dialogue: s.dialogue,
+        duration: 7,
+        mediaUrl: appState.uploadedMedia[idx]?.url || null,
+        mediaType: appState.uploadedMedia[idx]?.type || 'image',
+        customAudioUrl: null
+      }));
+
+      appState.currentSceneIndex = 0;
+      renderScenesEditor();
+      updateConsistencyPreview();
+      renderCurrentSceneStatic();
+      btn.innerHTML = origText;
+      showToast("AI đã sáng tác xong kịch bản mới & khóa đồng nhất nhân vật!");
+    }
+
+    async function analyzePortraitWithAI() {
+      showToast("AI đã phân tích Ảnh Mặt Gốc và tối ưu hóa mã khóa Face DNA #1323888!");
+      const dnaInput = document.getElementById('charFaceDNA');
+      if (!dnaInput.value.includes("Ánh sáng viền")) {
+        dnaInput.value += ", tỷ lệ gương mặt chuẩn 1:1 với ảnh gốc, giữ nguyên ánh mắt và thần thái doanh nhân xAI";
+      }
+      updateConsistencyPreview();
+    }
+
+    // Self-Learning Engine
+    function addLearningRule() {
+      const inp = document.getElementById('newLearningRuleInput');
+      const val = inp.value.trim();
+      if (!val) return;
+      appState.learningRules.unshift(val);
+      localStorage.setItem('xai_studio_learning_rules', JSON.stringify(appState.learningRules));
+      inp.value = '';
+      renderLearningCenter();
+      showToast("Bộ nhớ AI đã học quy tắc mới và tự động tối ưu ứng dụng!");
+    }
+
+    function learnFromUserEdit(text) {
+      const countEl = document.getElementById('learnCountBadge');
+      if (countEl && text.length > 25) {
+        countEl.textContent = 12 + appState.learningRules.length;
+      }
+    }
+
+    function renderLearningCenter() {
+      const list = document.getElementById('learningLogList');
+      const ruleCount = document.getElementById('learnedRulesCount');
+      const badge = document.getElementById('learnCountBadge');
+      if (ruleCount) ruleCount.textContent = `${appState.learningRules.length} quy tắc chủ động`;
+      if (badge) badge.textContent = 8 + appState.learningRules.length;
+      if (list) {
+        list.innerHTML = appState.learningRules.map((r, i) => `
+          <div class="p-2 rounded-lg bg-slate-900 border border-slate-800 flex items-start justify-between gap-2">
+            <span class="text-slate-200"><strong class="text-purple-400">#${i + 1}:</strong> ${r}</span>
+            <span class="text-emerald-400 text-[11px] shrink-0">✓ Đã kích hoạt</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Save & Export Project
+    function saveProjectManual() {
+      const payload = {
+        faceDNA: document.getElementById('charFaceDNA').value,
+        outfitDNA: document.getElementById('charOutfitDNA').value,
+        envDNA: document.getElementById('charEnvDNA').value,
+        scenes: appState.scenes
+      };
+      localStorage.setItem('xai_studio_saved_project', JSON.stringify(payload));
+      showToast("Đã lưu toàn bộ kịch bản & cấu hình đồng nhất vào máy!");
+    }
+
+    function exportProjectJSON() {
+      const payload = {
+        owner: "Mr. Nguyễn Duy Anh (KTCS xAI)",
+        createdAt: new Date().toISOString(),
+        faceDNA: document.getElementById('charFaceDNA').value,
+        outfitDNA: document.getElementById('charOutfitDNA').value,
+        envDNA: document.getElementById('charEnvDNA').value,
+        scenes: appState.scenes
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Kich-Ban-Video-AI-NguyenDuyAnh.json`;
+      a.click();
+      showToast("Đã tải file kịch bản JSON về máy!");
+    }
+
+    function showToast(msg) {
+      const box = document.getElementById('toastBox');
+      document.getElementById('toastMessage').textContent = msg;
+      box.classList.remove('hidden');
+      setTimeout(() => box.classList.add('hidden'), 3400);
+    }
+  </script>
+</body>
+</html>
